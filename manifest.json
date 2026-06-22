@@ -1,4 +1,3 @@
-
 {
   "manifest_version": 3,
   "name": "toolnova.tools — Free Online Tools",
@@ -14,6 +13,7 @@
     "default_popup": "popup.html",
     "default_title": "toolnova.tools"
   },
+  "context_menus": true,
   "permissions": [
     "contextMenus",
     "activeTab"
