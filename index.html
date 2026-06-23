@@ -4,7 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>toolnova.tools — Free Online Tools for Everyone</title>
-<meta name="description" content="Free online tools: QR code generator, image compressor, age calculator, unit converter, word counter and more. No signup needed.">
+<meta name="description" content="Free online tools: PDF converter, QR code generator, age calculator, BMI calculator, currency converter, word counter, password generator and more. No signup, no watermark, instant results.">
+<meta name="keywords" content="pdf to jpg, merge pdf, pdf converter, qr code generator, age calculator, bmi calculator, word counter, currency converter, password generator, image to text, ocr, free online tools">
+<meta name="robots" content="index, follow">
+<meta name="author" content="toolnova.tools">
+<link rel="canonical" href="https://toolnova.tools/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="toolnova.tools — Free Online Tools">
+<meta property="og:description" content="40+ free online tools: PDF converter, QR code, calculators, converters and more. No signup, instant results.">
+<meta property="og:url" content="https://toolnova.tools/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="toolnova.tools">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="toolnova.tools — Free Online Tools">
+<meta name="twitter:description" content="40+ free online tools. No signup, instant results.">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "toolnova.tools",
+  "url": "https://toolnova.tools",
+  "description": "Free online tools: PDF converter, QR code generator, calculators and more",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://toolnova.tools/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 
 <!-- PWA -->
 <link rel="manifest" href="/manifest.json">
@@ -533,7 +565,7 @@ function openTool(key){
     <h2>${tool.title}</h2>
     <div class="modal-sub">${tool.sub}</div>
     ${tool.render()}
-    <div class="modal-ad">📢 Advertisement — AdSense unit here</div>
+
   `;
   document.getElementById('overlay').classList.add('active');
   document.body.style.overflow='hidden';
