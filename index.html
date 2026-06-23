@@ -100,147 +100,329 @@ window.addEventListener('load', function() {
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<style>
-/* Translate Widget Styles */
-#google_translate_element {
-  display: inline-flex;
-  align-items: center;
-}
-.goog-te-gadget {
-  font-family: 'Inter', sans-serif !important;
-  font-size: 0 !important;
-}
-.goog-te-gadget .goog-te-combo {
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  border-radius: 99px;
-  padding: 6px 12px;
-  font-size: 13px;
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  cursor: pointer;
-  outline: none;
-  margin: 0 !important;
-  max-width: 130px;
-}
-.goog-te-gadget .goog-te-combo:focus {
-  border-color: var(--accent);
-}
-.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; }
-.goog-logo-link { display: none !important; }
-</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-
-<!-- ================================================
-     ADSENSE — Replace CA-PUB-XXXXXXXXXX with your ID
-     after Google approves your site (2-3 weeks)
-================================================ -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3359266836868361" crossorigin="anonymous"></script>
 
 <style>
+/* ── RESET & ROOT ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --bg:#f7f8fc;
   --surface:#ffffff;
   --surface2:#f0f2f8;
-  --border:#e2e5f0;
+  --border:#e4e7f0;
   --accent:#4f63d2;
   --accent-light:#eef0fd;
   --accent2:#0ba87e;
   --accent2-light:#e6f8f3;
   --text:#1a1d2e;
   --muted:#6b7394;
-  --radius:14px;
-  --shadow:0 2px 12px rgba(79,99,210,0.08);
+  --radius:16px;
+  --shadow-sm:0 2px 8px rgba(79,99,210,0.06);
+  --shadow-md:0 8px 32px rgba(79,99,210,0.12);
+  --shadow-lg:0 20px 60px rgba(79,99,210,0.16);
+
+  /* Category colors */
+  --pdf-bg:#fff1f0;   --pdf-color:#e8333a;   --pdf-border:#ffc9cc;
+  --ocr-bg:#eff6ff;   --ocr-color:#2563eb;   --ocr-border:#bfdbfe;
+  --edit-bg:#f5f3ff;  --edit-color:#7c3aed;  --edit-border:#ddd6fe;
+  --gen-bg:#fff7ed;   --gen-color:#ea7c0d;   --gen-border:#fed7aa;
+  --calc-bg:#f0fdf4;  --calc-color:#16a34a;  --calc-border:#bbf7d0;
+  --conv-bg:#f0f9ff;  --conv-color:#0891b2;  --conv-border:#bae6fd;
 }
+html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;}
 
-/* NAV */
-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
-.logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:-.5px;}
+/* ── GOOGLE TRANSLATE ── */
+#google_translate_element{display:inline-flex;align-items:center;}
+.goog-te-gadget{font-family:'Inter',sans-serif!important;font-size:0!important;}
+.goog-te-gadget .goog-te-combo{background:var(--surface2);border:1.5px solid var(--border);border-radius:99px;padding:6px 12px;font-size:13px;font-family:'Inter',sans-serif;color:var(--text);cursor:pointer;outline:none;margin:0!important;max-width:130px;}
+.goog-te-gadget .goog-te-combo:focus{border-color:var(--accent);}
+.goog-te-banner-frame{display:none!important;}
+body{top:0!important;}
+.goog-logo-link{display:none!important;}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;background:rgba(255,255,255,0.95);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 var(--border),0 4px 16px rgba(0,0,0,0.04);
+  transition:box-shadow .3s;
+}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:900;color:var(--accent);text-decoration:none;letter-spacing:-.5px;}
 .logo span{color:var(--accent2);}
-.nav-links{display:flex;align-items:center;gap:24px;}
+.nav-links{display:flex;align-items:center;gap:20px;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
 .nav-links a:hover{color:var(--text);}
-.nav-pro{background:var(--accent);color:#fff!important;padding:7px 16px;border-radius:99px;font-weight:600!important;transition:background .2s!important;}
-.nav-pro:hover{background:#3d4fb8!important;}
 
-/* HERO */
-.hero{text-align:center;padding:64px 20px 48px;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:20px;border:1px solid rgba(79,99,210,0.2);}
-.hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.15;margin-bottom:16px;color:var(--text);}
+/* ── CATEGORY BANNER (STICKY) ── */
+.cat-banner{
+  background:rgba(255,255,255,0.97);
+  border-bottom:1px solid var(--border);
+  padding:10px 20px;
+  position:sticky;top:53px;z-index:199;
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.cat-inner{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}
+
+.cat-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;font-size:13px;font-weight:600;
+  border-radius:99px;text-decoration:none;white-space:nowrap;
+  border:1.5px solid transparent;
+  transition:transform .32s cubic-bezier(.34,1.56,.64,1),
+             box-shadow .22s ease,
+             opacity .2s;
+  will-change:transform;
+}
+.cat-btn:hover{transform:translateY(-3px) scale(1.07);box-shadow:0 8px 20px rgba(0,0,0,0.13);}
+.cat-btn:active{transform:translateY(-1px) scale(1.03);}
+.cat-btn .ce{display:inline-block;transition:transform .32s cubic-bezier(.34,1.56,.64,1);}
+.cat-btn:hover .ce{transform:rotate(-15deg) scale(1.25);}
+
+.cat-pdf{background:var(--pdf-bg);color:var(--pdf-color);border-color:var(--pdf-border);}
+.cat-ocr{background:var(--ocr-bg);color:var(--ocr-color);border-color:var(--ocr-border);}
+.cat-edit{background:var(--edit-bg);color:var(--edit-color);border-color:var(--edit-border);}
+.cat-gen{background:var(--gen-bg);color:var(--gen-color);border-color:var(--gen-border);}
+.cat-calc{background:var(--calc-bg);color:var(--calc-color);border-color:var(--calc-border);}
+.cat-conv{background:var(--conv-bg);color:var(--conv-color);border-color:var(--conv-border);}
+
+/* ── HERO ── */
+.hero{
+  text-align:center;padding:72px 20px 56px;
+  background:linear-gradient(160deg,#ffffff 0%,#f0f2fb 60%,#e8f5f1 100%);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(79,99,210,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent-light),#e8f5f1);
+  color:var(--accent);font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 16px;border-radius:99px;margin-bottom:24px;
+  border:1.5px solid rgba(79,99,210,0.15);
+  box-shadow:0 2px 8px rgba(79,99,210,0.1);
+}
+.hero h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(34px,5.5vw,62px);
+  font-weight:900;line-height:1.1;margin-bottom:18px;
+  color:var(--text);letter-spacing:-.02em;
+}
 .hero h1 em{font-style:normal;color:var(--accent);}
-.hero p{color:var(--muted);font-size:17px;max-width:480px;margin:0 auto 32px;}
-.search-wrap{max-width:460px;margin:0 auto;position:relative;}
-.search-wrap input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:99px;padding:14px 20px 14px 48px;color:var(--text);font-size:15px;outline:none;transition:border-color .2s;box-shadow:var(--shadow);}
-.search-wrap input:focus{border-color:var(--accent);}
+.hero p{color:var(--muted);font-size:18px;max-width:500px;margin:0 auto 36px;font-weight:400;line-height:1.6;}
+.search-wrap{max-width:500px;margin:0 auto;position:relative;}
+.search-wrap input{
+  width:100%;background:var(--surface);
+  border:1.5px solid var(--border);border-radius:99px;
+  padding:15px 22px 15px 52px;color:var(--text);font-size:15px;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(79,99,210,0.08);
+  font-family:inherit;
+}
+.search-wrap input:focus{border-color:var(--accent);box-shadow:0 4px 24px rgba(79,99,210,0.18);}
 .search-wrap input::placeholder{color:var(--muted);}
-.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:17px;}
+.search-icon{position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none;}
 
-/* STATS */
-.stats{display:flex;justify-content:center;gap:48px;padding:32px 20px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.stat{text-align:center;}
-.stat-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:var(--accent);}
-.stat-label{color:var(--muted);font-size:13px;margin-top:2px;}
+/* ── STATS BAR ── */
+.stats{
+  display:flex;justify-content:center;gap:0;
+  background:var(--surface);border-bottom:1px solid var(--border);
+}
+.stat{
+  text-align:center;padding:24px 40px;
+  border-right:1px solid var(--border);
+  flex:1;max-width:240px;
+}
+.stat:last-child{border-right:none;}
+.stat-num{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:28px;font-weight:900;color:var(--accent);
+  line-height:1;margin-bottom:4px;
+}
+.stat-label{color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.03em;}
 
-/* AD BANNER — top */
-.ad-banner{max-width:728px;margin:24px auto;padding:0 24px;text-align:center;}
-.ad-placeholder{background:var(--surface);border:1.5px dashed var(--border);border-radius:var(--radius);padding:20px;color:var(--muted);font-size:13px;}
+/* ── SECTION ── */
+.section{max-width:1140px;margin:0 auto;padding:0 28px 80px;}
 
-/* SECTION */
-.section{max-width:1100px;margin:0 auto;padding:0 24px 64px;}
-.section-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;margin:40px 0 20px;color:var(--text);display:flex;align-items:center;gap:10px;}
+.section-title{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:13px;font-weight:700;
+  margin:48px 0 18px;color:var(--muted);
+  display:flex;align-items:center;gap:12px;
+  text-transform:uppercase;letter-spacing:.1em;
+}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border);}
-.section-badge{background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:600;padding:2px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em;}
+.section-title-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;font-size:16px;
+  flex-shrink:0;
+}
+.section-badge{
+  background:var(--accent-light);color:var(--accent);
+  font-size:10px;font-weight:700;padding:2px 10px;
+  border-radius:99px;letter-spacing:.06em;
+}
 
-/* TOOL GRID */
-.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
-.tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:22px 18px;cursor:pointer;transition:all .2s;text-decoration:none;display:block;position:relative;}
-.tool-card:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(79,99,210,0.12);transform:translateY(-2px);}
-.tool-icon{font-size:28px;margin-bottom:12px;display:block;}
-.tool-name{font-weight:600;font-size:14px;margin-bottom:4px;color:var(--text);}
-.tool-desc{color:var(--muted);font-size:12px;line-height:1.5;}
-.tool-badge{position:absolute;top:10px;right:10px;background:var(--accent2-light);color:var(--accent2);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:99px;}
-.tool-badge.hot{background:#fff3e6;color:#e07a20;}
-.tool-badge.pro{background:var(--accent-light);color:var(--accent);}
+/* ── TOOL GRID ── */
+.tool-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px;
+}
 
-/* PRO BANNER */
-.pro-banner{background:linear-gradient(135deg,var(--accent) 0%,#3d4fb8 100%);border-radius:20px;padding:36px 40px;margin:40px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-.pro-banner h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;}
-.pro-banner p{color:rgba(255,255,255,0.8);font-size:14px;max-width:420px;}
-.pro-banner ul{list-style:none;margin-top:12px;}
-.pro-banner ul li{color:rgba(255,255,255,0.9);font-size:13px;margin-bottom:4px;}
-.pro-banner ul li::before{content:'✓ ';color:#7dffda;}
-.btn-pro{background:#fff;color:var(--accent);font-weight:700;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;font-size:15px;font-family:inherit;white-space:nowrap;transition:transform .2s,box-shadow .2s;}
-.btn-pro:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);}
+/* ── TOOL CARD — The Star ── */
+.tool-card{
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px 20px 20px;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  position:relative;
+  overflow:hidden;
+  transition:
+    transform .32s cubic-bezier(.34,1.56,.64,1),
+    box-shadow .28s ease,
+    border-color .22s ease;
+  will-change:transform;
+}
+/* animated shimmer on hover */
+.tool-card::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.6) 50%,transparent 60%);
+  transform:translateX(-100%) skewX(-15deg);
+  transition:transform .6s ease;
+  pointer-events:none;
+}
+.tool-card:hover::before{transform:translateX(200%) skewX(-15deg);}
 
-/* AFFILIATE SECTION */
-.affiliate-section{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:32px;margin:24px 0;}
-.affiliate-section h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px;}
-.affiliate-section p{color:var(--muted);font-size:14px;margin-bottom:20px;}
-.affiliate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
-.aff-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;text-decoration:none;display:block;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.04);}
-.aff-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 6px 20px rgba(79,99,210,0.12);}
-.aff-card-icon{font-size:22px;margin-bottom:8px;}
-.aff-card-name{font-weight:600;font-size:13px;color:var(--text);margin-bottom:2px;}
-.aff-card-desc{font-size:12px;color:var(--muted);}
-.aff-earn{font-size:11px;font-weight:600;color:var(--accent);margin-top:8px;}
+/* colored left accent bar */
+.tool-card::after{
+  content:'';
+  position:absolute;left:0;top:20%;bottom:20%;
+  width:3px;border-radius:0 3px 3px 0;
+  background:var(--card-accent,var(--accent));
+  opacity:0;
+  transform:scaleY(0);
+  transition:opacity .25s,transform .32s cubic-bezier(.34,1.56,.64,1);
+}
+.tool-card:hover::after{opacity:1;transform:scaleY(1);}
 
-/* MODAL */
-.overlay{display:none;position:fixed;inset:0;background:rgba(26,29,46,0.5);backdrop-filter:blur(4px);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.tool-card:hover{
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:var(--shadow-lg);
+  border-color:rgba(79,99,210,0.2);
+}
+
+/* per-section card accents */
+.tool-grid-pdf .tool-card{--card-accent:var(--pdf-color);}
+.tool-grid-pdf .tool-card:hover{border-color:rgba(232,51,58,0.2);box-shadow:0 16px 48px rgba(232,51,58,0.12);}
+.tool-grid-ocr .tool-card{--card-accent:var(--ocr-color);}
+.tool-grid-ocr .tool-card:hover{border-color:rgba(37,99,235,0.2);box-shadow:0 16px 48px rgba(37,99,235,0.12);}
+.tool-grid-edit .tool-card{--card-accent:var(--edit-color);}
+.tool-grid-edit .tool-card:hover{border-color:rgba(124,58,237,0.2);box-shadow:0 16px 48px rgba(124,58,237,0.12);}
+.tool-grid-gen .tool-card{--card-accent:var(--gen-color);}
+.tool-grid-gen .tool-card:hover{border-color:rgba(234,124,13,0.2);box-shadow:0 16px 48px rgba(234,124,13,0.12);}
+.tool-grid-calc .tool-card{--card-accent:var(--calc-color);}
+.tool-grid-calc .tool-card:hover{border-color:rgba(22,163,74,0.2);box-shadow:0 16px 48px rgba(22,163,74,0.12);}
+.tool-grid-conv .tool-card{--card-accent:var(--conv-color);}
+.tool-grid-conv .tool-card:hover{border-color:rgba(8,145,178,0.2);box-shadow:0 16px 48px rgba(8,145,178,0.12);}
+
+.tool-icon-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:12px;
+  margin-bottom:14px;
+  transition:transform .32s cubic-bezier(.34,1.56,.64,1);
+}
+.tool-card:hover .tool-icon-wrap{transform:scale(1.15) rotate(-5deg);}
+.tool-icon{font-size:24px;line-height:1;}
+.tool-name{font-weight:700;font-size:14px;margin-bottom:6px;color:var(--text);line-height:1.3;}
+.tool-desc{color:var(--muted);font-size:12px;line-height:1.55;}
+
+/* colored icon backgrounds per section */
+.tool-grid-pdf .tool-icon-wrap{background:var(--pdf-bg);}
+.tool-grid-ocr .tool-icon-wrap{background:var(--ocr-bg);}
+.tool-grid-edit .tool-icon-wrap{background:var(--edit-bg);}
+.tool-grid-gen .tool-icon-wrap{background:var(--gen-bg);}
+.tool-grid-calc .tool-icon-wrap{background:var(--calc-bg);}
+.tool-grid-conv .tool-icon-wrap{background:var(--conv-bg);}
+
+/* badge */
+.tool-badge{
+  position:absolute;top:12px;right:12px;
+  font-size:10px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;
+}
+.tool-badge.hot{background:#fff0e6;color:#e07a20;border:1px solid #ffd4a8;}
+.tool-badge.new{background:var(--accent2-light);color:var(--accent2);border:1px solid #a7f0d8;}
+
+/* ── SCROLL-IN ANIMATION ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.tool-card{animation:fadeUp .5s ease both;}
+.tool-card:nth-child(1){animation-delay:.04s}
+.tool-card:nth-child(2){animation-delay:.08s}
+.tool-card:nth-child(3){animation-delay:.12s}
+.tool-card:nth-child(4){animation-delay:.16s}
+.tool-card:nth-child(5){animation-delay:.20s}
+.tool-card:nth-child(6){animation-delay:.24s}
+.tool-card:nth-child(7){animation-delay:.28s}
+.tool-card:nth-child(8){animation-delay:.32s}
+
+/* ── POPULAR SECTION ── */
+.popular-section{
+  background:linear-gradient(135deg,#1e2a6e 0%,#0f1833 100%);
+  border-radius:24px;
+  padding:40px 36px;
+  margin:40px 0;
+  position:relative;overflow:hidden;
+}
+.popular-section::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,99,210,0.3) 0%,transparent 70%);
+  pointer-events:none;
+}
+.popular-section h3{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;
+}
+.popular-section p{color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:24px;}
+.popular-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;}
+.pop-card{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:16px 14px;
+  text-decoration:none;display:block;
+  transition:all .25s;
+}
+.pop-card:hover{background:rgba(255,255,255,0.14);transform:translateY(-3px);}
+.pop-icon{font-size:22px;margin-bottom:8px;}
+.pop-name{font-weight:600;font-size:13px;color:#fff;}
+.pop-tag{font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);margin-top:4px;}
+.pop-tag.fire{color:#fbbf24;}
+
+/* ── MODAL ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,29,46,0.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:20px;}
 .overlay.active{display:flex;}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:20px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;padding:36px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.15);}
-.modal-close{position:absolute;top:14px;right:14px;background:var(--surface2);border:none;color:var(--muted);width:32px;height:32px;border-radius:99px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.modal{background:var(--surface);border:1.5px solid var(--border);border-radius:24px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;padding:40px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.18);}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--surface2);border:none;color:var(--muted);width:34px;height:34px;border-radius:99px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .modal-close:hover{background:var(--border);color:var(--text);}
-.modal h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:21px;font-weight:700;margin-bottom:4px;}
+.modal h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;}
 .modal-sub{color:var(--muted);font-size:13px;margin-bottom:24px;}
-
-/* AD INSIDE MODAL */
-.modal-ad{background:var(--bg);border:1px dashed var(--border);border-radius:10px;padding:14px;text-align:center;color:var(--muted);font-size:12px;margin-top:20px;}
-
-/* FORM */
 label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em;}
 input[type="text"],input[type="number"],input[type="date"],select,textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s;margin-bottom:16px;}
 input:focus,select:focus,textarea:focus{border-color:var(--accent);}
@@ -248,29 +430,51 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .btn:hover{background:#3d4fb8;transform:translateY(-1px);}
 .btn-sec{background:var(--surface2);color:var(--text);border:1.5px solid var(--border);margin-top:8px;}
 .btn-sec:hover{background:var(--border);transform:translateY(-1px);}
-.result-box{background:var(--accent-light);border:1.5px solid rgba(79,99,210,0.2);border-radius:12px;padding:20px;margin-top:20px;}
+.result-box{background:var(--accent-light);border:1.5px solid rgba(79,99,210,0.15);border-radius:12px;padding:20px;margin-top:20px;}
 .result-box.green{background:var(--accent2-light);border-color:rgba(11,168,126,0.2);}
 .result-label{color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
-.result-value{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:var(--accent);}
+.result-value{font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:var(--accent);}
 .result-value.green{color:var(--accent2);}
 .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
-/* FOOTER */
-footer{background:var(--surface);border-top:1px solid var(--border);padding:40px;text-align:center;color:var(--muted);font-size:13px;}
-footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
-footer a:hover{color:var(--text);}
-.footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:var(--accent);margin-bottom:12px;}
+/* ── FOOTER ── */
+footer{
+  background:var(--text);
+  padding:48px 40px;text-align:center;
+  color:rgba(255,255,255,0.5);font-size:13px;
+}
+.footer-logo{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:900;font-size:22px;
+  background:linear-gradient(135deg,#7c8ff5,#5bead4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  margin-bottom:14px;
+}
+footer a{color:rgba(255,255,255,0.4);text-decoration:none;margin:0 10px;transition:color .2s;}
+footer a:hover{color:#fff;}
+.footer-links{margin-bottom:16px;}
 
+/* ── RESPONSIVE ── */
 @media(max-width:640px){
-  nav{padding:14px 16px;}
-  .nav-links .nav-links-hide{display:none;}
-  .hero{padding:40px 16px 32px;}
-  .section{padding:0 16px 48px;}
-  .pro-banner{padding:24px 20px;}
-  .modal{padding:24px 18px;}
+  nav{padding:12px 16px;}
+  .cat-banner{top:49px;padding:8px 14px;}
+  .cat-inner{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;}
+  .cat-inner::-webkit-scrollbar{height:0;}
+  .hero{padding:48px 16px 40px;}
+  .stats{flex-wrap:wrap;}
+  .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--border);padding:18px 16px;}
+  .section{padding:0 16px 60px;}
+  .tool-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .tool-card{padding:18px 14px 16px;}
+  .modal{padding:28px 20px;}
   .row{grid-template-columns:1fr;}
-  .result-grid{grid-template-columns:1fr 1fr;}
+  .popular-section{padding:28px 20px;}
+  .popular-grid{grid-template-columns:1fr 1fr;}
+  footer{padding:36px 20px;}
+}
+@media(max-width:400px){
+  .tool-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -280,52 +484,31 @@ footer a:hover{color:var(--text);}
 <nav>
   <a href="/" class="logo">toolnova<span>.tools</span></a>
   <div class="nav-links">
-    <a href="#tools" class="nav-links-hide">Tools</a>
+    <a href="#tools" class="nav-links-hide" style="display:none;">Tools</a>
     <div id="google_translate_element"></div>
   </div>
 </nav>
 
-<!-- CATEGORY BANNER -->
-<style>
-.cat-banner{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;position:sticky;top:57px;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.cat-inner{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;}
-.cat-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;text-decoration:none;font-size:13px;font-weight:600;border:1.5px solid transparent;border-radius:99px;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .22s,filter .2s;white-space:nowrap;}
-.cat-btn:hover{transform:translateY(-3px) scale(1.07);box-shadow:0 6px 18px rgba(0,0,0,0.15);filter:brightness(1.08);}
-.cat-btn .ce{display:inline-block;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
-.cat-btn:hover .ce{transform:rotate(-12deg) scale(1.2);}
-/* Per-category soft colors */
-.cat-btn-pdf{background:#fff0f0;color:#d63031;border-color:#ffc9c9;}
-.cat-btn-ocr{background:#f0f7ff;color:#2d6cdf;border-color:#c0d8ff;}
-.cat-btn-edit{background:#f5f0ff;color:#7048e8;border-color:#d8ccff;}
-.cat-btn-gen{background:#fff8f0;color:#e07a20;border-color:#ffddb0;}
-.cat-btn-calc{background:#f0fff8;color:#0b9e5a;border-color:#b0f0d8;}
-.cat-btn-conv{background:#f0fbff;color:#0891b2;border-color:#b0e4f5;}
-@media(max-width:540px){
-  .cat-inner{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding-bottom:2px;-webkit-overflow-scrolling:touch;}
-  .cat-inner::-webkit-scrollbar{height:3px;}
-  .cat-inner::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
-  .cat-banner{top:53px;}
-}
-</style>
+<!-- CATEGORY BANNER — sticky under nav -->
 <div class="cat-banner">
   <div class="cat-inner">
-    <a href="#pdf-converter" class="cat-btn cat-btn-pdf"><span class="ce">📄</span> PDF Converter</a>
-    <a href="#ocr-tools"     class="cat-btn cat-btn-ocr"><span class="ce">🔍</span> OCR Tools</a>
-    <a href="#edit-pdf"      class="cat-btn cat-btn-edit"><span class="ce">✂️</span> Edit PDF</a>
-    <a href="#generators"    class="cat-btn cat-btn-gen"><span class="ce">🔧</span> Generators</a>
-    <a href="#calculators"   class="cat-btn cat-btn-calc"><span class="ce">🧮</span> Calculators</a>
-    <a href="#converters"    class="cat-btn cat-btn-conv"><span class="ce">🔄</span> Converters</a>
+    <a href="#pdf-converter" class="cat-btn cat-pdf" onclick="smoothTo('pdf-converter',event)"><span class="ce">📄</span> PDF Tools</a>
+    <a href="#ocr-tools"     class="cat-btn cat-ocr"  onclick="smoothTo('ocr-tools',event)"><span class="ce">🔍</span> OCR</a>
+    <a href="#edit-pdf"      class="cat-btn cat-edit" onclick="smoothTo('edit-pdf',event)"><span class="ce">✂️</span> Edit PDF</a>
+    <a href="#generators"    class="cat-btn cat-gen"  onclick="smoothTo('generators',event)"><span class="ce">🔧</span> Generators</a>
+    <a href="#calculators"   class="cat-btn cat-calc" onclick="smoothTo('calculators',event)"><span class="ce">🧮</span> Calculators</a>
+    <a href="#converters"    class="cat-btn cat-conv" onclick="smoothTo('converters',event)"><span class="ce">🔄</span> Converters</a>
   </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">⚡ 100% Free · No signup · Instant results</div>
+  <div class="hero-badge">⚡ 100% Free · No Signup · Instant Results</div>
   <h1>Every tool you need,<br><em>right here.</em></h1>
-  <p>Free online tools used by millions. QR codes, calculators, converters — no account, no clutter.</p>
+  <p>Free online tools used by millions — PDF converter, calculators, converters and more. No account, no clutter.</p>
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
-    <input type="text" id="search-input" placeholder="Search tools... (QR, age, unit, word...)" oninput="filterTools(this.value)">
+    <input type="text" id="search-input" placeholder="Search tools... (PDF, QR, age, unit...)" oninput="filterTools(this.value)" autocomplete="off">
   </div>
 </div>
 
@@ -333,256 +516,238 @@ footer a:hover{color:var(--text);}
 <div class="stats">
   <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Free Tools</div></div>
   <div class="stat"><div class="stat-num">0</div><div class="stat-label">Signups Required</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Runs In Your Browser</div></div>
-  <div class="stat"><div class="stat-num">Private</div><div class="stat-label">We Never Store Your Data</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Browser-Based</div></div>
+  <div class="stat"><div class="stat-num">🔒</div><div class="stat-label">We Never Store Data</div></div>
 </div>
 
-<!-- TOP AD BANNER - AdSense will auto-insert ads here after approval -->
-<div class="ad-banner"></div>
+<div class="ad-banner" style="max-width:728px;margin:20px auto;padding:0 24px;text-align:center;"></div>
 
 <!-- TOOLS -->
 <div class="section" id="tools">
 
-  <div class="section-title" id="pdf-converter">📄 PDF Converter <span class="section-badge">Most Popular</span></div>
-  <div class="tool-grid">
+  <!-- PDF CONVERTER -->
+  <div class="section-title" id="pdf-anchor-pdf-converter">
+    <span class="section-title-icon" style="background:var(--pdf-bg);">📄</span>
+    PDF Converter
+    <span class="section-badge">Most Popular</span>
+  </div>
+  <div id="pdf-converter" class="tool-grid tool-grid-pdf">
     <a class="tool-card" href="/pdf-to-word.html">
-      <span class="tool-icon">📄</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📄</span></div>
       <div class="tool-name">PDF to Word</div>
       <div class="tool-desc">Convert PDF files to editable Word documents instantly.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/word-to-pdf.html">
-      <span class="tool-icon">📝</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📝</span></div>
       <div class="tool-name">Word to PDF</div>
       <div class="tool-desc">Convert Word documents to PDF format. Fast and free.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/pdf-to-jpg.html">
-      <span class="tool-icon">🖼️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🖼️</span></div>
       <div class="tool-name">PDF to JPG</div>
       <div class="tool-desc">Convert PDF pages to high quality JPG images.</div>
     </a>
     <a class="tool-card" href="/jpg-to-pdf.html">
-      <span class="tool-icon">🔄</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔄</span></div>
       <div class="tool-name">JPG to PDF</div>
       <div class="tool-desc">Combine JPG images into a single PDF file.</div>
     </a>
     <a class="tool-card" href="/pdf-to-excel.html">
-      <span class="tool-icon">📊</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📊</span></div>
       <div class="tool-name">PDF to Excel</div>
       <div class="tool-desc">Extract tables from PDF into Excel spreadsheets.</div>
     </a>
     <a class="tool-card" href="/pdf-to-png.html">
-      <span class="tool-icon">🖼️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🖼️</span></div>
       <div class="tool-name">PDF to PNG</div>
       <div class="tool-desc">Convert PDF pages to PNG images with transparency.</div>
     </a>
     <a class="tool-card" href="/png-to-pdf.html">
-      <span class="tool-icon">🔄</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔄</span></div>
       <div class="tool-name">PNG to PDF</div>
       <div class="tool-desc">Convert PNG images to PDF documents instantly.</div>
     </a>
     <a class="tool-card" href="/pdf-to-text.html">
-      <span class="tool-icon">📋</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📋</span></div>
       <div class="tool-name">PDF to Text</div>
       <div class="tool-desc">Extract all text content from any PDF file.</div>
     </a>
   </div>
 
-  <div class="section-title" id="ocr-tools">🔍 OCR Tools <span class="section-badge">New</span></div>
-  <div class="tool-grid">
+  <!-- OCR TOOLS -->
+  <div class="section-title" id="pdf-anchor-ocr-tools">
+    <span class="section-title-icon" style="background:var(--ocr-bg);">🔍</span>
+    OCR Tools
+    <span class="section-badge" style="background:#eff6ff;color:#2563eb;">New</span>
+  </div>
+  <div id="ocr-tools" class="tool-grid tool-grid-ocr">
     <a class="tool-card" href="/image-to-text.html">
-      <span class="tool-icon">🔍</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔍</span></div>
       <div class="tool-name">Image to Text (OCR)</div>
       <div class="tool-desc">Extract text from any image using AI recognition.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/scan-pdf-to-text.html">
-      <span class="tool-icon">📱</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📱</span></div>
       <div class="tool-name">Scan PDF to Text</div>
       <div class="tool-desc">Make scanned PDFs searchable with OCR technology.</div>
     </a>
   </div>
 
-  <div class="section-title" id="edit-pdf">✂️ Edit PDF</div>
-  <div class="tool-grid">
+  <!-- EDIT PDF -->
+  <div class="section-title" id="pdf-anchor-edit-pdf">
+    <span class="section-title-icon" style="background:var(--edit-bg);">✂️</span>
+    Edit PDF
+  </div>
+  <div id="edit-pdf" class="tool-grid tool-grid-edit">
     <a class="tool-card" href="/merge-pdf.html">
-      <span class="tool-icon">📎</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📎</span></div>
       <div class="tool-name">Merge PDF</div>
       <div class="tool-desc">Combine multiple PDF files into one document.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/split-pdf.html">
-      <span class="tool-icon">✂️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">✂️</span></div>
       <div class="tool-name">Split PDF</div>
       <div class="tool-desc">Split a PDF into multiple separate files.</div>
     </a>
     <a class="tool-card" href="/compress-pdf.html">
-      <span class="tool-icon">🗜️</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🗜️</span></div>
       <div class="tool-name">Compress PDF</div>
       <div class="tool-desc">Reduce PDF file size without losing quality.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/rotate-pdf.html">
-      <span class="tool-icon">🔃</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔃</span></div>
       <div class="tool-name">Rotate PDF</div>
-      <div class="tool-desc">Rotate PDF pages to any angle. 90, 180, 270 degrees.</div>
+      <div class="tool-desc">Rotate PDF pages to any angle — 90, 180, 270 degrees.</div>
     </a>
     <a class="tool-card" href="/delete-pdf-pages.html">
-      <span class="tool-icon">🗑️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🗑️</span></div>
       <div class="tool-name">Delete PDF Pages</div>
       <div class="tool-desc">Remove unwanted pages from your PDF file.</div>
     </a>
     <a class="tool-card" href="/extract-pdf-pages.html">
-      <span class="tool-icon">📤</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📤</span></div>
       <div class="tool-name">Extract PDF Pages</div>
       <div class="tool-desc">Extract specific pages from a PDF document.</div>
     </a>
     <a class="tool-card" href="/pdf-sign.html">
-      <span class="tool-icon">✍️</span>
-      <div class="tool-name">Sign PDF</div>
-      <div class="tool-desc">Draw, type or upload your signature and place it on any PDF page.</div>
       <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">✍️</span></div>
+      <div class="tool-name">Sign PDF</div>
+      <div class="tool-desc">Draw, type or upload your signature on any PDF page.</div>
     </a>
   </div>
 
-  <div class="section-title" id="generators">🔧 Generators <span class="section-badge">Popular</span></div>
-  <div class="tool-grid">
+  <!-- GENERATORS -->
+  <div class="section-title" id="pdf-anchor-generators">
+    <span class="section-title-icon" style="background:var(--gen-bg);">🔧</span>
+    Generators
+    <span class="section-badge" style="background:#fff7ed;color:#ea7c0d;">Popular</span>
+  </div>
+  <div id="generators" class="tool-grid tool-grid-gen">
     <a class="tool-card" href="/qr-code-generator.html">
-      <span class="tool-icon">📱</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📱</span></div>
       <div class="tool-name">QR Code Generator</div>
       <div class="tool-desc">Turn any URL or text into a QR code. Download as PNG instantly.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/password-generator.html">
-      <span class="tool-icon">🔐</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔐</span></div>
       <div class="tool-name">Password Generator</div>
-      <div class="tool-desc">Strong, secure passwords of any length. Symbols, numbers, uppercase.</div>
+      <div class="tool-desc">Strong, secure passwords of any length with symbols and numbers.</div>
     </a>
     <a class="tool-card" href="/color-code-converter.html">
-      <span class="tool-icon">🎨</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🎨</span></div>
       <div class="tool-name">Color Code Converter</div>
       <div class="tool-desc">Convert between HEX, RGB, and HSL color formats instantly.</div>
     </a>
     <a class="tool-card" href="/lorem-ipsum-generator.html">
-      <span class="tool-icon">🔑</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔑</span></div>
       <div class="tool-name">Lorem Ipsum Generator</div>
       <div class="tool-desc">Generate placeholder text for designs and prototypes.</div>
     </a>
   </div>
 
-  <div class="section-title" id="calculators">🧮 Calculators</div>
-  <div class="tool-grid">
+  <!-- CALCULATORS -->
+  <div class="section-title" id="pdf-anchor-calculators">
+    <span class="section-title-icon" style="background:var(--calc-bg);">🧮</span>
+    Calculators
+  </div>
+  <div id="calculators" class="tool-grid tool-grid-calc">
     <a class="tool-card" href="/age-calculator.html">
-      <span class="tool-icon">🎂</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🎂</span></div>
       <div class="tool-name">Age Calculator</div>
       <div class="tool-desc">Your exact age in years, months, days and hours.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/bmi-calculator.html">
-      <span class="tool-icon">⚖️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">⚖️</span></div>
       <div class="tool-name">BMI Calculator</div>
       <div class="tool-desc">Body Mass Index with US Imperial and Metric support.</div>
     </a>
     <a class="tool-card" href="/tip-calculator.html">
-      <span class="tool-icon">🍽️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🍽️</span></div>
       <div class="tool-name">Tip Calculator</div>
       <div class="tool-desc">Split the bill and calculate tips for any group size.</div>
     </a>
     <a class="tool-card" href="/discount-calculator.html">
-      <span class="tool-icon">🏷️</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🏷️</span></div>
       <div class="tool-name">Discount Calculator</div>
       <div class="tool-desc">Final price after any percentage discount. Quick math.</div>
     </a>
     <a class="tool-card" href="/loan-calculator.html">
-      <span class="tool-icon">🏦</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🏦</span></div>
       <div class="tool-name">Loan Calculator</div>
-      <div class="tool-desc">Monthly payment, total interest on any loan. US-style.</div>
+      <div class="tool-desc">Monthly payment, total interest on any loan.</div>
     </a>
   </div>
 
-  <div class="section-title" id="converters">🔄 Converters</div>
-  <div class="tool-grid">
+  <!-- CONVERTERS -->
+  <div class="section-title" id="pdf-anchor-converters">
+    <span class="section-title-icon" style="background:var(--conv-bg);">🔄</span>
+    Converters
+  </div>
+  <div id="converters" class="tool-grid tool-grid-conv">
     <a class="tool-card" href="/unit-converter.html">
-      <span class="tool-icon">📏</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📏</span></div>
       <div class="tool-name">Unit Converter</div>
       <div class="tool-desc">Length, weight, temperature, speed, volume — all units.</div>
     </a>
     <a class="tool-card" href="/currency-converter.html">
-      <span class="tool-icon">💱</span>
+      <span class="tool-badge hot">Hot</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">💱</span></div>
       <div class="tool-name">Currency Converter</div>
       <div class="tool-desc">Convert between 15 major world currencies instantly.</div>
-      <span class="tool-badge hot">Hot</span>
     </a>
     <a class="tool-card" href="/text-case-converter.html">
-      <span class="tool-icon">🔤</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">🔤</span></div>
       <div class="tool-name">Text Case Converter</div>
       <div class="tool-desc">UPPER, lower, Title Case, camelCase in one click.</div>
     </a>
     <a class="tool-card" href="/word-counter.html">
-      <span class="tool-icon">📝</span>
+      <div class="tool-icon-wrap"><span class="tool-icon">📝</span></div>
       <div class="tool-name">Word Counter</div>
       <div class="tool-desc">Words, characters, sentences, and reading time — live.</div>
     </a>
   </div>
 
-
-  <!-- MID AD - AdSense auto -->
-  <div style="margin:24px 0;"></div>
-
-  <!-- AFFILIATE SECTION -->
-  <div class="affiliate-section" id="recommended">
+  <!-- MOST POPULAR DARK SECTION -->
+  <div class="popular-section">
     <h3>⭐ Most Popular Right Now</h3>
-    <p>Trending tools used by thousands of people every day.</p>
-    <div class="affiliate-grid">
-      <a class="aff-card" href="/pdf-to-jpg.html">
-        <div class="aff-card-icon">🖼️</div>
-        <div class="aff-card-name">PDF to JPG</div>
-        <div class="aff-card-desc">Convert PDF pages to high quality JPG images instantly.</div>
-        <div class="aff-earn">🔥 Most Popular</div>
-      </a>
-      <a class="aff-card" href="/image-to-text.html">
-        <div class="aff-card-icon">🔍</div>
-        <div class="aff-card-name">Image to Text</div>
-        <div class="aff-card-desc">Extract text from any image using AI-powered OCR.</div>
-        <div class="aff-earn">🔥 Trending</div>
-      </a>
-      <a class="aff-card" href="/merge-pdf.html">
-        <div class="aff-card-icon">📎</div>
-        <div class="aff-card-name">Merge PDF</div>
-        <div class="aff-card-desc">Combine multiple PDF files into one document for free.</div>
-        <div class="aff-earn">🔥 Most Used</div>
-      </a>
-      <a class="aff-card" href="/qr-code-generator.html">
-        <div class="aff-card-icon">📱</div>
-        <div class="aff-card-name">QR Code Generator</div>
-        <div class="aff-card-desc">Generate QR codes for any URL or text. Download as PNG.</div>
-        <div class="aff-earn">⭐ Popular</div>
-      </a>
-      <a class="aff-card" href="/pdf-sign.html">
-        <div class="aff-card-icon">✍️</div>
-        <div class="aff-card-name">Sign PDF</div>
-        <div class="aff-card-desc">Draw or type your signature and place it on any PDF.</div>
-        <div class="aff-earn">⭐ New</div>
-      </a>
-      <a class="aff-card" href="/password-generator.html">
-        <div class="aff-card-icon">🔐</div>
-        <div class="aff-card-name">Password Generator</div>
-        <div class="aff-card-desc">Generate strong, secure passwords instantly. Customizable.</div>
-        <div class="aff-earn">⭐ Popular</div>
-      </a>
-      <a class="aff-card" href="/age-calculator.html">
-        <div class="aff-card-icon">🎂</div>
-        <div class="aff-card-name">Age Calculator</div>
-        <div class="aff-card-desc">Find your exact age in years, months, days and hours.</div>
-        <div class="aff-earn">⭐ Popular</div>
-      </a>
-      <a class="aff-card" href="/word-counter.html">
-        <div class="aff-card-icon">📝</div>
-        <div class="aff-card-name">Word Counter</div>
-        <div class="aff-card-desc">Count words, characters and reading time live as you type.</div>
-        <div class="aff-earn">⭐ Popular</div>
-      </a>
+    <p>Trending tools used by millions every day</p>
+    <div class="popular-grid">
+      <a class="pop-card" href="/pdf-to-jpg.html"><div class="pop-icon">🖼️</div><div class="pop-name">PDF to JPG</div><div class="pop-tag fire">🔥 #1 Most Used</div></a>
+      <a class="pop-card" href="/image-to-text.html"><div class="pop-icon">🔍</div><div class="pop-name">Image to Text</div><div class="pop-tag fire">🔥 Trending</div></a>
+      <a class="pop-card" href="/merge-pdf.html"><div class="pop-icon">📎</div><div class="pop-name">Merge PDF</div><div class="pop-tag fire">🔥 Top Tool</div></a>
+      <a class="pop-card" href="/qr-code-generator.html"><div class="pop-icon">📱</div><div class="pop-name">QR Generator</div><div class="pop-tag">⭐ Popular</div></a>
+      <a class="pop-card" href="/pdf-sign.html"><div class="pop-icon">✍️</div><div class="pop-name">Sign PDF</div><div class="pop-tag">⭐ New</div></a>
+      <a class="pop-card" href="/password-generator.html"><div class="pop-icon">🔐</div><div class="pop-name">Password Gen</div><div class="pop-tag">⭐ Popular</div></a>
+      <a class="pop-card" href="/age-calculator.html"><div class="pop-icon">🎂</div><div class="pop-name">Age Calculator</div><div class="pop-tag">⭐ Popular</div></a>
+      <a class="pop-card" href="/currency-converter.html"><div class="pop-icon">💱</div><div class="pop-name">Currency</div><div class="pop-tag">⭐ Popular</div></a>
     </div>
   </div>
 
@@ -591,13 +756,13 @@ footer a:hover{color:var(--text);}
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">toolnova.tools</div>
-  <p style="margin-bottom:14px;">
+  <div class="footer-links">
     <a href="/">Home</a>
     <a href="/privacy-policy.html">Privacy Policy</a>
     <a href="/terms.html">Terms</a>
     <a href="/contact.html">Contact</a>
-  </p>
-  <p>© 2026 toolnova.tools — All tools run in your browser. We never store your data.</p>
+  </div>
+  <p>© 2026 toolnova.tools — All tools run entirely in your browser. We never store your data.</p>
 </footer>
 
 <!-- MODAL -->
@@ -624,6 +789,18 @@ function openTool(key){
 function closeTool(){document.getElementById('overlay').classList.remove('active');document.body.style.overflow='';}
 function closeIfOutside(e){if(e.target===document.getElementById('overlay'))closeTool();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeTool();});
+
+// ── SMOOTH SCROLL — offset for sticky nav+banner ───────────────────────────
+function smoothTo(id, e) {
+  e && e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.querySelector('nav').offsetHeight;
+  const bannerH = document.querySelector('.cat-banner').offsetHeight;
+  const offset = navH + bannerH + 12;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
 
 // ── SEARCH ────────────────────────────────────────────────────────────────────
 function filterTools(q){
