@@ -1,49 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact Us | toolnova.tools</title>
-<meta name="description" content="Get in touch with the toolnova.tools team with questions, feedback or partnership inquiries.">
-<meta name="robots" content="index, follow">
+<meta name="description" content="Get in touch with toolnova.tools — send feedback, report a bug, or suggest a new tool. We read every message.">
 <link rel="canonical" href="https://toolnova.tools/contact.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234f63d2'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial,sans-serif' font-weight='800' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#4f63d2">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="/assets/style.css">
+<meta name="robots" content="index, follow">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:
+      radial-gradient(circle at 6% 8%,rgba(255,214,102,0.35) 0%,transparent 42%),
+      radial-gradient(circle at 94% 12%,rgba(126,200,255,0.32) 0%,transparent 42%),
+      radial-gradient(circle at 12% 92%,rgba(255,159,205,0.30) 0%,transparent 42%),
+      radial-gradient(circle at 92% 90%,rgba(126,232,184,0.30) 0%,transparent 42%),
+      #F7F8FC;
+    color:#111827;min-height:100vh;display:flex;flex-direction:column;
+  }
+  nav{display:flex;align-items:center;gap:16px;padding:16px 32px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border-bottom:1px solid #E5E8F0;}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#5B5BF7;text-decoration:none;}
+  main{flex:1;max-width:640px;margin:0 auto;padding:48px 24px 64px;width:100%;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;color:#5B5BF7;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:28px;}
+  .back-link:hover{text-decoration:underline;}
+  h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:34px;font-weight:800;margin-bottom:10px;color:#111827;}
+  .lead{color:#526078;font-size:15.5px;line-height:1.6;margin-bottom:32px;}
+  form{background:#fff;border:1px solid #E5E8F0;border-radius:18px;padding:28px;box-shadow:0 4px 20px rgba(15,23,42,.05);}
+  label{display:block;font-size:13px;font-weight:700;color:#111827;margin-bottom:6px;}
+  input,select,textarea{
+    width:100%;background:#F7F8FC;border:1.5px solid #E5E8F0;border-radius:10px;
+    padding:12px 14px;font-size:14.5px;font-family:inherit;color:#111827;
+    outline:none;transition:border-color .2s;margin-bottom:18px;
+  }
+  input:focus,select:focus,textarea:focus{border-color:#5B5BF7;}
+  textarea{resize:vertical;min-height:120px;}
+  button{
+    width:100%;background:linear-gradient(115deg,#5B5BF7,#08A8C7);color:#fff;
+    font-weight:700;font-size:15px;padding:14px;border:none;border-radius:12px;
+    cursor:pointer;transition:opacity .2s;
+  }
+  button:hover{opacity:.92;}
+  button:disabled{opacity:.6;cursor:not-allowed;}
+  .hp{position:absolute;left:-9999px;} /* honeypot spam trap, hidden from real users */
+  #status{margin-top:16px;font-size:14px;font-weight:600;text-align:center;display:none;padding:12px;border-radius:10px;}
+  #status.ok{display:block;background:#E6F8F3;color:#067A5C;}
+  #status.err{display:block;background:#FDECEC;color:#B42318;}
+  footer{background:#101728;color:#AEB8CB;text-align:center;padding:32px 20px;font-size:13px;margin-top:auto;}
+  footer a{color:#BAC4D5;text-decoration:none;margin:0 8px;}
+  footer a:hover{color:#fff;text-decoration:underline;}
+  .footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;}
+</style>
 </head>
 <body>
+
 <nav>
-  <a class="logo" href="/">tool<span>nova</span></a>
-  <div class="nav-cats">
-    <a href="/#pdf-converter" class="cat-btn">📄 PDF</a>
-    <a href="/#calculators" class="cat-btn">🧮 Calculators</a>
-    <a href="/#converters" class="cat-btn">🔄 Converters</a>
-    <a href="/#generators" class="cat-btn">🔧 Generators</a>
-  </div>
+  <a class="logo" href="/">toolnova.tools</a>
 </nav>
-<main class="static-page">
-<h1>Contact Us</h1>
-<p>We'd love to hear from you — bug reports, tool suggestions, or general feedback.</p>
-<h2>Email</h2>
-<p>For all inquiries, reach us at <a href="mailto:hello@toolnova.tools">hello@toolnova.tools</a>. We aim to respond within 2–3 business days.</p>
-<h2>Advertising / Partnerships</h2>
-<p>For advertising or partnership inquiries, please use the same email address with the subject line "Partnership".</p>
+
+<main>
+  <a class="back-link" href="/">&larr; Back to Home</a>
+  <h1>Contact Us</h1>
+  <p class="lead">Bug report, tool suggestion, feedback or a complaint — whatever it is, we read every message and reply when we can.</p>
+
+  <form id="contact-form" autocomplete="off">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required placeholder="Your name">
+
+    <label for="email">Your email <span style="font-weight:400;color:#8A93A6;">(so we can reply)</span></label>
+    <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+    <label for="topic">Type</label>
+    <select id="topic" name="topic">
+      <option value="Suggestion">Suggestion / New tool idea</option>
+      <option value="Bug report">Bug report</option>
+      <option value="Feedback">General feedback</option>
+      <option value="Complaint">Complaint</option>
+      <option value="Partnership">Advertising / Partnership</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
+
+    <!-- honeypot: bots fill this, humans never see it -->
+    <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+
+    <button type="submit" id="submit-btn">Send Message</button>
+    <div id="status"></div>
+  </form>
 </main>
+
 <footer>
-  <div class="footer-links">
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/privacy-policy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms</a>
-    <a href="/cookie-policy.html">Cookie Policy</a>
-    <a href="/faq.html">FAQ</a>
-    <a href="/sitemap.xml">Sitemap</a>
-  </div>
-  <p class="footer-copy">© 2026 toolnova.tools — Free online tools. All processing happens in your browser; files are never uploaded to a server.</p>
+  <div class="footer-logo">toolnova.tools</div>
+  <div><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a></div>
+  <div style="margin-top:6px;"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/faq.html">FAQ</a><a href="/sitemap.html">Sitemap</a></div>
+  <p style="margin-top:14px;">&copy; 2026 toolnova.tools &mdash; Free browser-based online tools.</p>
 </footer>
+
+<script>
+// Formspree ile gönderim — e-posta adresi hiçbir yerde görünmüyor,
+// sadece Formspree panelinde ayarlı gizli hedefe iletiliyor.
+const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // <-- Formspree'den alınan ID buraya
+
+document.getElementById('contact-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status');
+  const data = new FormData(this);
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  status.className = ''; status.style.display = 'none';
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      status.textContent = "Thanks — your message has been sent. We'll get back to you soon.";
+      status.className = 'ok';
+      this.reset();
+    } else {
+      throw new Error('send failed');
+    }
+  } catch (err) {
+    status.textContent = "Something went wrong. Please try again in a moment.";
+    status.className = 'err';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  }
+});
+</script>
+
 </body>
 </html>
