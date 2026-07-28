@@ -1,32 +1,162 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Free Word Counter — toolnova.tools</title><meta name="description" content="Count words, characters, sentences and reading time instantly. Free online word counter, no signup needed."><script async src="https://www.googletagmanager.com/gtag/js?id=G-3V90PDJDP1"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3V90PDJDP1');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3359266836868361" crossorigin="anonymous"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}:root{--bg:#f7f8fc;--surface:#fff;--surface2:#f0f2f8;--border:#e2e5f0;--accent:#4f63d2;--accent-light:#eef0fd;--accent2:#0ba87e;--text:#1a1d2e;--muted:#6b7394;--radius:14px;}body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;font-size:15px;line-height:1.6;}nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}.logo{font-family:"Plus Jakarta Sans",sans-serif;font-size:22px;font-weight:800;color:var(--accent);text-decoration:none;}.logo span{color:var(--accent2);}.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;}.breadcrumb{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 40px;font-size:13px;color:var(--muted);}.breadcrumb a{color:var(--accent);text-decoration:none;}.tool-hero{text-align:center;padding:48px 20px 32px;background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);border-bottom:1px solid var(--border);}.tool-hero-icon{font-size:52px;margin-bottom:12px;}.tool-hero h1{font-family:"Plus Jakarta Sans",sans-serif;font-size:clamp(26px,4vw,42px);font-weight:800;margin-bottom:12px;}.tool-hero h1 em{font-style:normal;color:var(--accent);}.tool-hero p{color:var(--muted);font-size:16px;max-width:480px;margin:0 auto;}.tool-wrap{max-width:680px;margin:40px auto;padding:0 24px 64px;}.card{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:36px;box-shadow:0 2px 12px rgba(79,99,210,.08);}textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:14px;font-family:inherit;outline:none;min-height:180px;resize:vertical;}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}.stat-box{background:var(--accent-light);border:1.5px solid rgba(79,99,210,.2);border-radius:12px;padding:16px;text-align:center;}.stat-num{font-family:"Plus Jakarta Sans",sans-serif;font-size:24px;font-weight:800;color:var(--accent);}.stat-label{color:var(--muted);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}.related{margin-top:48px;}.related h2{font-family:"Plus Jakarta Sans",sans-serif;font-size:18px;font-weight:700;margin-bottom:16px;}.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}.related-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;text-decoration:none;display:block;transition:all .2s;}.related-card:hover{border-color:var(--accent);transform:translateY(-2px);}.related-card-icon{font-size:24px;margin-bottom:8px;}.related-card-name{font-weight:600;font-size:13px;color:var(--text);}footer{background:var(--surface);border-top:1px solid var(--border);padding:32px;text-align:center;color:var(--muted);font-size:13px;}.footer-logo{font-family:"Plus Jakarta Sans",sans-serif;font-weight:800;font-size:18px;color:var(--accent);margin-bottom:10px;}footer a{color:var(--muted);text-decoration:none;margin:0 8px;}@media(max-width:640px){nav{padding:14px 16px;}.tool-wrap{padding:0 16px 48px;}.card{padding:24px 18px;}.stats-grid{grid-template-columns:1fr 1fr;}}</style></head>
-<body>
-<nav><a href="/" class="logo">toolnova<span>.tools</span></a><div class="nav-links"><a href="/">← All Tools</a></div></nav>
-<div class="breadcrumb"><a href="/">Home</a> › Word Counter</div>
-<div class="tool-hero"><div class="tool-hero-icon">📝</div><h1>Free <em>Word Counter</em></h1><p>Count words, characters, sentences and reading time live as you type.</p></div>
-<div class="tool-wrap"><div class="card">
-  <textarea id="wc-in" placeholder="Start typing or paste your text here..." oninput="liveWC()"></textarea>
-  <div class="stats-grid">
-    <div class="stat-box"><div class="stat-num" id="wc-w">0</div><div class="stat-label">Words</div></div>
-    <div class="stat-box"><div class="stat-num" id="wc-c">0</div><div class="stat-label">Characters</div></div>
-    <div class="stat-box"><div class="stat-num" id="wc-s">0</div><div class="stat-label">Sentences</div></div>
-    <div class="stat-box"><div class="stat-num" id="wc-t">0</div><div class="stat-label">Read Time</div></div>
-  </div>
-</div>
-<div class="related"><h2>🔧 Related Tools</h2><div class="related-grid">
-  <a class="related-card" href="/text-case-converter.html"><div class="related-card-icon">🔤</div><div class="related-card-name">Text Case Converter</div></a>
-  <a class="related-card" href="/lorem-ipsum-generator.html"><div class="related-card-icon">🔑</div><div class="related-card-name">Lorem Ipsum</div></a>
-  <a class="related-card" href="/password-generator.html"><div class="related-card-icon">🔐</div><div class="related-card-name">Password Generator</div></a>
-  <a class="related-card" href="/qr-code-generator.html"><div class="related-card-icon">📱</div><div class="related-card-name">QR Code Generator</div></a>
-</div></div></div>
-<footer><div class="footer-logo">toolnova.tools</div><p><a href="/">Home</a><a href="/word-counter.html">Word Counter</a><a href="/text-case-converter.html">Text Case</a><a href="/lorem-ipsum-generator.html">Lorem Ipsum</a></p><p style="margin-top:8px;">© 2026 toolnova.tools</p></footer>
-<script>
-function liveWC(){
-  const t=document.getElementById('wc-in').value;
-  const w=t.trim()?t.trim().split(/\s+/).length:0;
-  document.getElementById('wc-w').textContent=w.toLocaleString();
-  document.getElementById('wc-c').textContent=t.length.toLocaleString();
-  document.getElementById('wc-s').textContent=t.split(/[.!?]+/).filter(s=>s.trim()).length;
-  const min=Math.ceil(w/200);
-  document.getElementById('wc-t').textContent=min<1?'<1 min':min+' min';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter — Free, Words & Characters | toolnova.tools</title>
+<meta name="description" content="Count words, characters and reading time online, free. No signup.">
+<link rel="canonical" href="https://toolnova.tools/word-counter.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Word Counter — Free, Words & Characters | toolnova.tools">
+<meta property="og:description" content="Count words, characters and reading time online, free. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolnova.tools/word-counter.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235B5BF7'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial,sans-serif' font-weight='800' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#5B5BF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Word Counter",
+  "url": "https://toolnova.tools/word-counter.html",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any (runs in browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free browser-based tool to count words, characters and reading time. No signup required."
 }
-</script></body></html>
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is this word counter free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no signup."}},
+    {"@type":"Question","name":"Does it count characters too?","acceptedAnswer":{"@type":"Answer","text":"Yes, both word count and character count update live."}},
+    {"@type":"Question","name":"Is my text uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Counting happens locally in your browser."}}
+  ]
+}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:radial-gradient(circle at 6% 8%,rgba(255,214,102,0.30) 0%,transparent 42%),radial-gradient(circle at 94% 12%,rgba(126,200,255,0.28) 0%,transparent 42%),radial-gradient(circle at 12% 92%,rgba(255,159,205,0.26) 0%,transparent 42%),radial-gradient(circle at 92% 90%,rgba(126,232,184,0.26) 0%,transparent 42%),#F7F8FC;
+    color:#111827;min-height:100vh;display:flex;flex-direction:column;line-height:1.65;}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 32px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border-bottom:1px solid #E5E8F0;position:sticky;top:0;z-index:20;flex-wrap:wrap;}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#111827;text-decoration:none;}
+  .logo span{background:linear-gradient(100deg,#5B5BF7,#8B5CF6,#08A8C7);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  main{flex:1;max-width:760px;margin:0 auto;padding:48px 24px 64px;width:100%;}
+  .back-link{display:inline-flex;align-items:center;gap:6px;color:#5B5BF7;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:22px;}
+  .back-link:hover{text-decoration:underline;}
+  .badge{display:inline-flex;background:#EEEEFF;color:#5B5BF7;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:16px;}
+  h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;margin-bottom:14px;letter-spacing:-.02em;}
+  .lead{color:#526078;font-size:16.5px;margin-bottom:28px;max-width:600px;}
+  .cta-box{background:linear-gradient(160deg,#111827,#1E293B);border-radius:20px;padding:32px;text-align:center;color:#fff;margin-bottom:36px;box-shadow:0 20px 50px -12px rgba(15,23,42,.3);}
+  .cta-box p{color:#AEB8CB;margin-bottom:18px;font-size:14.5px;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(115deg,#5B5BF7,#8B5CF6,#08A8C7);color:#fff;font-weight:700;font-size:15.5px;padding:14px 30px;border-radius:12px;text-decoration:none;box-shadow:0 10px 24px -6px rgba(91,91,247,.5);}
+  h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:750;margin:34px 0 12px;}
+  p{color:#3F4859;font-size:15px;margin-bottom:12px;}
+  ol,ul{color:#3F4859;font-size:15px;margin:0 0 16px 22px;}
+  li{margin-bottom:8px;}
+  .steps{display:grid;gap:12px;margin:16px 0 8px;}
+  .step{background:#fff;border:1px solid #E5E8F0;border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;}
+  .step-num{width:26px;height:26px;border-radius:50%;background:#5B5BF7;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .trust{display:flex;flex-wrap:wrap;gap:16px;margin:18px 0 8px;}
+  .trust span{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#3F4859;background:#fff;border:1px solid #E5E8F0;border-radius:99px;padding:6px 14px;}
+  details{background:#fff;border:1px solid #E5E8F0;border-radius:12px;padding:14px 18px;margin-bottom:10px;}
+  summary{font-weight:700;cursor:pointer;color:#111827;font-size:14.5px;}
+  details p{margin-top:10px;margin-bottom:0;}
+  .related{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+  .related a{background:#fff;border:1px solid #E5E8F0;border-radius:10px;padding:8px 14px;text-decoration:none;color:#111827;font-size:13.5px;font-weight:600;}
+  .related a:hover{border-color:#5B5BF7;color:#5B5BF7;}
+  footer{background:#101728;color:#AEB8CB;text-align:center;padding:32px 20px;font-size:13px;margin-top:auto;}
+  footer a{color:#BAC4D5;text-decoration:none;margin:0 8px;}
+  footer a:hover{color:#fff;text-decoration:underline;}
+  .footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;}
+  #google_translate_element{font-size:12px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">tool<span>nova.tools</span></a>
+  <div id="google_translate_element"></div>
+</nav>
+
+<main>
+<a class="back-link" href="/">&larr; Back to Home</a>
+<span class="badge">Converters</span>
+<h1>Word Counter</h1>
+<p class="lead">Count words, characters, and estimated reading time as you type or paste — free and instant.</p>
+
+<div class="cta-box">
+  <p>No upload. No signup. No watermark. Your file never leaves your device.</p>
+  <a class="cta-btn" href="/#tool=wordcount">Open Word Counter &rarr;</a>
+</div>
+
+<div class="trust">
+  <span>🔒 Runs in your browser</span>
+  <span>⚡ Instant conversion</span>
+  <span>✓ No signup</span>
+  <span>✓ Free, unlimited use</span>
+</div>
+
+<h2>How it works</h2>
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div>Open the <a href="/#tool=wordcount">Word Counter</a>.</div></div>
+  <div class="step"><div class="step-num">2</div><div>Paste or type your text.</div></div>
+  <div class="step"><div class="step-num">3</div><div>See live word count, character count, and reading time.</div></div>
+</div><div>Open the <a href="/#tool=pdf2word">PDF to Word tool</a> and select or drag in your PDF file.</div></div>
+  <div class="step"><div class="step-num">2</div><div>Toolnova reads and converts the file locally in your browser &mdash; nothing is sent to a server.</div></div>
+  <div class="step"><div class="step-num">3</div><div>Download your editable .docx file, ready to open in Word, Google Docs, or any compatible editor.</div></div>
+</div>
+
+<h2>Why use a word counter?</h2>
+<p>Essays, social posts, and meta descriptions all have length limits. A live counter saves you from guessing or manually counting words one by one.</p>
+
+<h2>Frequently asked questions</h2>
+<details open><summary>Is this word counter free?</summary><p>Yes, completely free with no signup.</p></details>
+<details><summary>Does it count characters too?</summary><p>Yes, both word count and character count update live.</p></details>
+<details><summary>Is my text uploaded anywhere?</summary><p>No. Counting happens locally in your browser.</p></details>
+
+<h2>Related tools</h2>
+<div class="related">
+  <a href="/text-case-converter.html">Text Case Converter</a>
+  <a href="/lorem-ipsum-generator.html">Lorem Ipsum Generator</a>
+  <a href="/image-to-text.html">Image to Text</a>
+</div>
+</main>
+
+<footer>
+  <div class="footer-logo">toolnova.tools</div>
+  <div><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div>
+  <div style="margin-top:6px;"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/faq.html">FAQ</a><a href="/sitemap.html">Sitemap</a></div>
+  <p style="margin-top:14px;">&copy; 2026 toolnova.tools &mdash; Free browser-based online tools.</p>
+</footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,he,hi,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ny,or,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tl,tg,ta,te,th,tr,uk,ur,ug,uz,vi,cy,xh,yi,yo,zu',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+function toolnovaLoadTranslateWidget(){
+  if(window.__toolnovaTranslateLoaded) return;
+  window.__toolnovaTranslateLoaded = true;
+  const s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  document.head.appendChild(s);
+}
+const toolnovaBrowserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
+if (toolnovaBrowserLang !== 'en') { toolnovaLoadTranslateWidget(); }
+else { window.addEventListener('load', function(){ setTimeout(toolnovaLoadTranslateWidget, 4000); }); }
+</script>
+
+</body>
+</html>
