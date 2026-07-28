@@ -7,20 +7,30 @@
 <meta name="description" content="Get in touch with toolnova.tools — send feedback, report a bug, or suggest a new tool. We read every message.">
 <link rel="canonical" href="https://toolnova.tools/contact.html">
 <meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235B5BF7'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial,sans-serif' font-weight='800' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#5B5BF7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
     background:
-      radial-gradient(circle at 6% 8%,rgba(255,214,102,0.35) 0%,transparent 42%),
-      radial-gradient(circle at 94% 12%,rgba(126,200,255,0.32) 0%,transparent 42%),
-      radial-gradient(circle at 12% 92%,rgba(255,159,205,0.30) 0%,transparent 42%),
-      radial-gradient(circle at 92% 90%,rgba(126,232,184,0.30) 0%,transparent 42%),
+      radial-gradient(circle at 6% 8%,rgba(255,214,102,0.30) 0%,transparent 42%),
+      radial-gradient(circle at 94% 12%,rgba(126,200,255,0.28) 0%,transparent 42%),
+      radial-gradient(circle at 12% 92%,rgba(255,159,205,0.26) 0%,transparent 42%),
+      radial-gradient(circle at 92% 90%,rgba(126,232,184,0.26) 0%,transparent 42%),
       #F7F8FC;
     color:#111827;min-height:100vh;display:flex;flex-direction:column;
   }
-  nav{display:flex;align-items:center;gap:16px;padding:16px 32px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border-bottom:1px solid #E5E8F0;}
-  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#5B5BF7;text-decoration:none;}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 32px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border-bottom:1px solid #E5E8F0;position:sticky;top:0;z-index:20;flex-wrap:wrap;}
+  .nav-left{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#111827;text-decoration:none;letter-spacing:-.02em;}
+  .logo span{background:linear-gradient(100deg,#5B5BF7,#8B5CF6,#08A8C7);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .nav-cats{display:flex;gap:8px;flex-wrap:wrap;}
+  .cat-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:9px;background:#fff;color:#3F4859;border:1.3px solid #E5E8F0;text-decoration:none;font-size:12.5px;font-weight:700;transition:all .2s;}
+  .cat-btn:hover{border-color:#5B5BF7;color:#5B5BF7;background:#EEEEFF;}
   main{flex:1;max-width:640px;margin:0 auto;padding:48px 24px 64px;width:100%;}
   .back-link{display:inline-flex;align-items:center;gap:6px;color:#5B5BF7;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:28px;}
   .back-link:hover{text-decoration:underline;}
@@ -36,13 +46,13 @@
   input:focus,select:focus,textarea:focus{border-color:#5B5BF7;}
   textarea{resize:vertical;min-height:120px;}
   button{
-    width:100%;background:linear-gradient(115deg,#5B5BF7,#08A8C7);color:#fff;
+    width:100%;background:linear-gradient(115deg,#5B5BF7,#8B5CF6,#08A8C7);color:#fff;
     font-weight:700;font-size:15px;padding:14px;border:none;border-radius:12px;
     cursor:pointer;transition:opacity .2s;
   }
   button:hover{opacity:.92;}
   button:disabled{opacity:.6;cursor:not-allowed;}
-  .hp{position:absolute;left:-9999px;} /* honeypot spam trap, hidden from real users */
+  .hp{position:absolute;left:-9999px;}
   #status{margin-top:16px;font-size:14px;font-weight:600;text-align:center;display:none;padding:12px;border-radius:10px;}
   #status.ok{display:block;background:#E6F8F3;color:#067A5C;}
   #status.err{display:block;background:#FDECEC;color:#B42318;}
@@ -50,18 +60,28 @@
   footer a{color:#BAC4D5;text-decoration:none;margin:0 8px;}
   footer a:hover{color:#fff;text-decoration:underline;}
   .footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;}
+  @media(max-width:640px){nav{padding:12px 16px;}.nav-cats{display:none;}main{padding:32px 16px 48px;}}
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="/">toolnova.tools</a>
+  <div class="nav-left">
+    <a class="logo" href="/">tool<span>nova.tools</span></a>
+    <div class="nav-cats">
+      <a href="/#pdf-converter" class="cat-btn">📄 PDF</a>
+      <a href="/#calculators" class="cat-btn">🧮 Calculators</a>
+      <a href="/#converters" class="cat-btn">🔄 Converters</a>
+      <a href="/#generators" class="cat-btn">🔧 Generators</a>
+    </div>
+  </div>
+  <div class="nav-lang" id="google_translate_element"></div>
 </nav>
 
 <main>
   <a class="back-link" href="/">&larr; Back to Home</a>
   <h1>Contact Us</h1>
-  <p class="lead">Bug report, tool suggestion, feedback or a complaint — whatever it is, we read every message and reply when we can.</p>
+  <p class="lead">Bug report, tool suggestion, feedback or a complaint &mdash; whatever it is, we read every message and reply when we can.</p>
 
   <form id="contact-form" autocomplete="off">
     <label for="name">Name</label>
@@ -83,7 +103,6 @@
     <label for="message">Message</label>
     <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
 
-    <!-- honeypot: bots fill this, humans never see it -->
     <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
 
     <button type="submit" id="submit-btn">Send Message</button>
@@ -93,14 +112,12 @@
 
 <footer>
   <div class="footer-logo">toolnova.tools</div>
-  <div><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a></div>
+  <div><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div>
   <div style="margin-top:6px;"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/faq.html">FAQ</a><a href="/sitemap.html">Sitemap</a></div>
   <p style="margin-top:14px;">&copy; 2026 toolnova.tools &mdash; Free browser-based online tools.</p>
 </footer>
 
 <script>
-// Formspree ile gönderim — e-posta adresi hiçbir yerde görünmüyor,
-// sadece Formspree panelinde ayarlı gizli hedefe iletiliyor.
 const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // <-- Formspree'den alınan ID buraya
 
 document.getElementById('contact-form').addEventListener('submit', async function(e){
@@ -115,25 +132,42 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
   try {
     const res = await fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+      method: 'POST', body: data, headers: { 'Accept': 'application/json' }
     });
     if (res.ok) {
-      status.textContent = "Thanks — your message has been sent. We'll get back to you soon.";
-      status.className = 'ok';
-      this.reset();
+      window.location.href = '/contact-thanks.html';
     } else {
       throw new Error('send failed');
     }
   } catch (err) {
     status.textContent = "Something went wrong. Please try again in a moment.";
     status.className = 'err';
-  } finally {
     btn.disabled = false;
     btn.textContent = 'Send Message';
   }
 });
+</script>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,he,hi,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ny,or,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tl,tg,ta,te,th,tr,uk,ur,ug,uz,vi,cy,xh,yi,yo,zu',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+function toolnovaLoadTranslateWidget(){
+  if(window.__toolnovaTranslateLoaded) return;
+  window.__toolnovaTranslateLoaded = true;
+  const s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  document.head.appendChild(s);
+}
+const toolnovaBrowserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
+if (toolnovaBrowserLang !== 'en') { toolnovaLoadTranslateWidget(); }
+else { window.addEventListener('load', function(){ setTimeout(toolnovaLoadTranslateWidget, 4000); }); }
 </script>
 
 </body>
