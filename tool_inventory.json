@@ -1,0 +1,207 @@
+[
+  {
+    "name": "PDF Converter",
+    "tools": [
+      {
+        "name": "PDF to Word",
+        "description": "Convert PDF files to editable Word documents instantly.",
+        "key": "pdf2word"
+      },
+      {
+        "name": "Word to PDF",
+        "description": "Convert Word documents to PDF format. Fast and free.",
+        "key": "word2pdf"
+      },
+      {
+        "name": "PDF to JPG",
+        "description": "Convert PDF pages to high quality JPG images.",
+        "key": "pdf2jpg"
+      },
+      {
+        "name": "JPG to PDF",
+        "description": "Combine JPG images into a single PDF file.",
+        "key": "img2pdf"
+      },
+      {
+        "name": "PDF to Excel",
+        "description": "Extract tables from PDF into Excel spreadsheets.",
+        "key": "pdf2excel"
+      },
+      {
+        "name": "PDF to PNG",
+        "description": "Convert PDF pages to high-quality PNG images.",
+        "key": "pdf2png"
+      },
+      {
+        "name": "PNG to PDF",
+        "description": "Convert PNG images to PDF documents instantly.",
+        "key": "img2pdf"
+      },
+      {
+        "name": "PDF to Text",
+        "description": "Extract all text content from any PDF file.",
+        "key": "pdf2text"
+      }
+    ]
+  },
+  {
+    "name": "OCR Tools",
+    "tools": [
+      {
+        "name": "Image to Text (OCR)",
+        "description": "Extract text from images using browser-based OCR technology.",
+        "key": "ocr"
+      },
+      {
+        "name": "Scan PDF to Text",
+        "description": "Make scanned PDFs searchable with OCR technology.",
+        "key": "scanocr"
+      }
+    ]
+  },
+  {
+    "name": "Edit PDF",
+    "tools": [
+      {
+        "name": "Merge PDF",
+        "description": "Combine multiple PDF files into one document.",
+        "key": "merge"
+      },
+      {
+        "name": "Split PDF",
+        "description": "Split a PDF into multiple separate files.",
+        "key": "split"
+      },
+      {
+        "name": "Compress PDF",
+        "description": "Re-optimize a PDF to reduce its file size when possible.",
+        "key": "compress"
+      },
+      {
+        "name": "Rotate PDF",
+        "description": "Rotate PDF pages to any angle. 90, 180, 270 degrees.",
+        "key": "rotate"
+      },
+      {
+        "name": "Delete PDF Pages",
+        "description": "Remove unwanted pages from your PDF file.",
+        "key": "deletepages"
+      },
+      {
+        "name": "Extract PDF Pages",
+        "description": "Extract specific pages from a PDF document.",
+        "key": "extractpages"
+      },
+      {
+        "name": "Sign PDF",
+        "description": "Draw, type or upload your signature and place it on any PDF page.",
+        "key": "sign"
+      },
+      {
+        "name": "Add Text to PDF",
+        "description": "Type anywhere on a page — fill forms, add notes, annotate.",
+        "key": "addtext"
+      }
+    ]
+  },
+  {
+    "name": "Generators",
+    "tools": [
+      {
+        "name": "QR Code Generator",
+        "description": "Turn any URL or text into a QR code. Download as PNG instantly.",
+        "key": "qr"
+      },
+      {
+        "name": "Password Generator",
+        "description": "Strong, secure passwords of any length. Symbols, numbers, uppercase.",
+        "key": "password"
+      },
+      {
+        "name": "Color Code Converter",
+        "description": "Convert between HEX, RGB, and HSL color formats instantly.",
+        "key": "color"
+      },
+      {
+        "name": "Lorem Ipsum Generator",
+        "description": "Generate placeholder text for designs and prototypes.",
+        "key": "hash"
+      }
+    ]
+  },
+  {
+    "name": "Calculators",
+    "tools": [
+      {
+        "name": "Age Calculator",
+        "description": "Your exact age in years, months, days and hours.",
+        "key": "age"
+      },
+      {
+        "name": "BMI Calculator",
+        "description": "Body Mass Index with US Imperial and Metric support.",
+        "key": "bmi"
+      },
+      {
+        "name": "Tip Calculator",
+        "description": "Split the bill and calculate tips for any group size.",
+        "key": "tip"
+      },
+      {
+        "name": "Discount Calculator",
+        "description": "Final price after any percentage discount. Quick math.",
+        "key": "discount"
+      },
+      {
+        "name": "Loan Calculator",
+        "description": "Monthly payment, total interest on any loan. US-style.",
+        "key": "loan"
+      },
+      {
+        "name": "BMR Calculator",
+        "description": "Your basal metabolic rate — calories burned at rest.",
+        "key": "bmr"
+      },
+      {
+        "name": "Calorie Calculator",
+        "description": "Daily calorie needs based on activity level (TDEE).",
+        "key": "calorie"
+      },
+      {
+        "name": "Body Fat Calculator",
+        "description": "Estimate body fat % using the US Navy tape method.",
+        "key": "bodyfat"
+      },
+      {
+        "name": "Water Intake Calculator",
+        "description": "Daily recommended water intake based on weight & activity.",
+        "key": "water"
+      }
+    ]
+  },
+  {
+    "name": "Converters",
+    "tools": [
+      {
+        "name": "Unit Converter",
+        "description": "Length, weight, temperature, speed, volume — all units.",
+        "key": "unit"
+      },
+      {
+        "name": "Currency Converter",
+        "description": "Estimate conversions between 15 major world currencies.",
+        "key": "currency"
+      },
+      {
+        "name": "Text Case Converter",
+        "description": "UPPER, lower, Title Case, camelCase in one click.",
+        "key": "case"
+      },
+      {
+        "name": "Word Counter",
+        "description": "Words, characters, sentences, and reading time — live.",
+        "key": "wordcount"
+      }
+    ]
+  }
+]

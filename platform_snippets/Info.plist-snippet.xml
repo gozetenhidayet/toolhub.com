@@ -1,0 +1,4 @@
+<!-- Add inside <dict> in ios/Runner/Info.plist -->
+<!-- GOOGLE TEST APP ID — replace before production release -->
+<key>GADApplicationIdentifier</key>
+<string>ca-app-pub-3940256099942544~1458002511</string>
