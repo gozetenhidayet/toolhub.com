@@ -1,3 +1,0 @@
-# Add to https://toolnova.tools/robots.txt so the app-ads crawler is allowed.
-User-agent: Google-adstxt
-Disallow:
