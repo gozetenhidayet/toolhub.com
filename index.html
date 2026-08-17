@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Free Online PDF Tools, Calculators & Converters | Toolnova</title>
-<meta content="Use 35+ free PDF tools, OCR, calculators, converters and generators in your browser. No signup, no watermark, and no file uploads to our servers." name="description"/>
+<meta content="Use 37+ free PDF tools, document scanning, OCR, calculators, converters and generators in your browser. No signup, no watermark, and no file uploads to our servers." name="description"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
 <meta content="Toolnova" name="author"/>
 <meta content="Toolnova" name="application-name"/>
@@ -17,7 +17,7 @@
 <link href="https://toolnova.tools/" hreflang="x-default" rel="alternate"/>
 <!-- Open Graph -->
 <meta content="Free Online PDF Tools, Calculators & Converters | Toolnova" property="og:title"/>
-<meta content="Use 35+ free browser-based PDF tools, OCR, calculators, converters and generators. No signup and no watermark." property="og:description"/>
+<meta content="Use 37+ free browser-based PDF tools, document scanning, OCR, calculators, converters and generators. No signup and no watermark." property="og:description"/>
 <meta content="https://toolnova.tools/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="toolnova.tools" property="og:site_name"/>
@@ -89,7 +89,24 @@
      registration only once an actual /sw.js file exists at the site root. -->
 <!-- Google AdSense: keep this exact account tag in the <head> of every monetized page. -->
 <meta content="ca-pub-3359266836868361" name="google-adsense-account"/>
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3359266836868361"></script>
+<script>
+// AdSense account remains declared in <head>, but the heavy ad runtime is loaded after
+// the critical first paint (or on first interaction) to reduce mobile LCP/main-thread cost.
+(function(){
+  let loaded=false;
+  function loadAdSense(){
+    if(loaded) return; loaded=true;
+    const ad=document.createElement('script');
+    ad.async=true;
+    ad.crossOrigin='anonymous';
+    ad.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3359266836868361';
+    document.head.appendChild(ad);
+  }
+  window.toolnovaLoadAdSense=loadAdSense;
+  const timer=setTimeout(loadAdSense,6500);
+  ['scroll','touchstart','pointerdown','keydown'].forEach(evt=>window.addEventListener(evt,()=>{clearTimeout(timer);loadAdSense();},{once:true,passive:true}));
+})();
+</script>
 <!-- Google Analytics: deferred to reduce main-thread work. Consent defaults to denied;
      configure Google Privacy & messaging/CMP in the AdSense dashboard before serving personalized ads. -->
 <script>
@@ -201,6 +218,20 @@ if (toolnovaBrowserLang !== 'en') {
 }
 .goog-te-banner-frame { display: none !important; }
 body { top: 0 !important; }
+/* Google Translate injects its own stylesheet AFTER this one with a rule like
+   "html.translated-ltr body{top:40px!important}" — that selector has higher
+   specificity than the plain "body{top:0!important}" above, so it still wins
+   and pushes the whole page down. These higher-specificity overrides close
+   that gap for every language Google Translate is capable of switching to. */
+html.translated-ltr body,
+html.translated-rtl body {
+  top: 0 !important;
+  margin-top: 0 !important;
+}
+html.translated-ltr,
+html.translated-rtl {
+  margin-top: 0 !important;
+}
 .goog-logo-link { display: none !important; }
 .goog-te-gadget-icon { display: none !important; }
 </style>
@@ -533,6 +564,9 @@ footer a:hover{color:var(--text);}
 .faq-list details{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;}
 .faq-list summary{cursor:pointer;font-weight:700;line-height:1.4;}
 .faq-list details p{color:var(--muted);font-size:13px;margin-top:9px;}
+.cat-guide{max-width:900px;margin:0 auto 20px;}
+.cat-guide p{color:var(--muted);font-size:14.5px;line-height:1.75;margin-bottom:14px;}
+.cat-guide strong{color:var(--text);}
 .trust-note{max-width:820px;margin:22px auto 0;background:var(--accent-light);border:1px solid rgba(79,99,210,.2);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:12.5px;line-height:1.6;}
 .tool-notice{margin-top:18px;padding:11px 13px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:11.5px;line-height:1.55;}
 .footer-disclosure{max-width:760px;margin:14px auto 0;line-height:1.6;font-size:12px;}
@@ -683,7 +717,7 @@ nav{padding:11px clamp(16px,2.4vw,36px);gap:18px;background:rgba(255,255,255,.86
  linear-gradient(135deg,#FFFFFF 0%,color-mix(in srgb,var(--cat-soft) 62%,#fff) 100%);box-shadow:0 20px 48px rgba(30,41,59,.075);}
 .category-showcase::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 0 43%,rgba(255,255,255,.7) 50%,transparent 57%);transform:translateX(-120%);transition:transform .75s ease;}.category-showcase:hover::before{transform:translateX(120%);}
 .section-desc-icon{width:64px;height:64px;border-radius:19px;background:linear-gradient(135deg,var(--cat),var(--cat2));color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px rgba(var(--cat-rgb),.24);animation:none;position:relative;z-index:1;}.section-desc-icon svg{width:29px;height:29px;}
-.section-desc-content{position:relative;z-index:1;max-width:850px;}.section-eyebrow{font-size:9.5px;font-weight:850;letter-spacing:.16em;color:var(--cat);margin-bottom:5px;}.section-desc-content h3{font:800 clamp(20px,2vw,27px) 'Plus Jakarta Sans';letter-spacing:-.03em;color:#101828;line-height:1.18;margin:0 0 8px;}.section-desc-box p{font-size:14.5px;line-height:1.65;color:#526078;font-weight:500;margin:0;}
+.section-desc-content{position:relative;z-index:1;max-width:850px;}.section-eyebrow{font-size:9.5px;font-weight:850;letter-spacing:.16em;color:var(--cat);margin-bottom:5px;}.section-desc-content h2{font:800 clamp(20px,2vw,27px) 'Plus Jakarta Sans';letter-spacing:-.03em;color:#101828;line-height:1.18;margin:0 0 8px;}.section-desc-box p{font-size:14.5px;line-height:1.65;color:#526078;font-weight:500;margin:0;}
 .section-feature-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;}.section-feature-row span{padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.78);border:1px solid color-mix(in srgb,var(--cat) 14%,#E4E7EC);color:#475467;font-size:10.5px;font-weight:750;box-shadow:0 4px 10px rgba(15,23,42,.03);}
 .section-orbit{width:145px;height:145px;border:1px solid rgba(var(--cat-rgb),.16);border-radius:50%;justify-self:end;position:relative;box-shadow:0 0 0 26px rgba(var(--cat-rgb),.035),0 0 0 52px rgba(var(--cat-rgb),.018);}.section-orbit::before{content:"";position:absolute;inset:36px;border-radius:50%;background:linear-gradient(135deg,var(--cat),var(--cat2));opacity:.14;}.section-orbit i{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--cat);box-shadow:0 5px 12px rgba(var(--cat-rgb),.22);}.section-orbit i:first-child{top:5px;left:52px}.section-orbit i:nth-child(2){right:7px;bottom:35px;width:8px;height:8px;background:var(--cat2)}.section-orbit i:nth-child(3){left:12px;bottom:22px;width:6px;height:6px;opacity:.65}
 
@@ -716,15 +750,147 @@ nav{padding:11px clamp(16px,2.4vw,36px);gap:18px;background:rgba(255,255,255,.86
 .affiliate-section{border-radius:25px;padding:30px;background:linear-gradient(135deg,#12182A,#202A46);box-shadow:0 25px 60px rgba(15,23,42,.18);}.affiliate-section h2{color:#fff!important}.affiliate-section>p{color:#B9C2D4!important}.affiliate-section .tool-card{background:#fff;}
 footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}footer a:hover{color:#fff;text-decoration:underline;}.footer-logo{color:#fff;}
 
+
+/* Performance + responsive workspace fixes (2026-08-14) */
+.tool-grid,.category-showcase,.info-section{content-visibility:auto;contain-intrinsic-size:1px 760px;}
+.split-workspace{display:flex;flex-direction:column;gap:14px;margin-top:14px}.split-file-group{border:1.5px solid var(--border);border-radius:14px;padding:12px;background:var(--surface2)}
+.split-file-head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.split-file-name{font-weight:800;word-break:break-word}.split-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);padding:7px 10px;border-radius:9px;font-size:11px;font-weight:750;cursor:pointer}.mini-btn:hover{border-color:var(--accent);color:var(--accent)}
+.split-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:9px;margin-top:10px}.split-thumb{position:relative;border:2px solid transparent;border-radius:10px;background:var(--surface);padding:5px;cursor:pointer;box-shadow:0 3px 10px rgba(15,23,42,.06)}.split-thumb.selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,#fff)}.split-thumb canvas{display:block;width:100%;height:auto;border-radius:6px;background:#fff}.split-page-label{font-size:10px;text-align:center;margin-top:4px;font-weight:750}.split-check{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--border);font-size:11px}.split-thumb.selected .split-check{background:var(--accent);border-color:var(--accent);color:#fff}
+.scanner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:12px}.scanner-page{border:1.5px solid var(--border);border-radius:12px;padding:7px;background:var(--surface2);position:relative}.scanner-page canvas{width:100%;height:auto;display:block;border-radius:8px;background:#fff}.scanner-page .scanner-page-actions{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}.scanner-page .mini-btn{flex:1;padding:6px 5px;min-width:56px}.scanner-status{font-size:12px;color:var(--muted);margin-top:8px}
+.scanner-crop-overlay{position:fixed;inset:0;background:rgba(15,20,35,.72);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px;}.scanner-crop-box{background:var(--surface);border-radius:16px;padding:18px;max-width:640px;width:100%;max-height:92vh;overflow:auto;}.scanner-crop-head strong{display:block;font-size:15px;margin-bottom:2px;}.scanner-crop-head span{color:var(--muted);font-size:12.5px;}.scanner-crop-stage{position:relative;margin:14px 0;touch-action:none;user-select:none;background:#111;border-radius:10px;overflow:hidden;}.scanner-crop-stage img{display:block;width:100%;height:auto;}.scanner-crop-stage svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}.scanner-crop-handle{position:absolute;width:26px;height:26px;margin:-13px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.35);cursor:grab;touch-action:none;}.scanner-crop-handle:active{cursor:grabbing;}.scanner-crop-actions{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}.scanner-crop-actions .btn,.scanner-crop-actions .btn-sec{width:auto;flex:1;min-width:120px;}
+@media(max-width:1024px){
+  .overlay{padding:0;align-items:stretch;}
+  .modal,.modal.fullscreen{width:100vw;max-width:none;height:100dvh;max-height:100dvh;margin:0;border-radius:0;padding:calc(58px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));overflow-y:auto;}
+  .modal-close,.modal-fullscreen-btn{top:calc(10px + env(safe-area-inset-top));position:fixed;z-index:1002;}
+  .modal-close{right:12px}.modal-fullscreen-btn{right:60px;display:none;}
+  .dropzone{min-height:150px;display:flex;flex-direction:column;justify-content:center;}
+  .row{grid-template-columns:1fr;}
+}
+@media(max-width:700px){
+  .hero{padding:16px 16px 24px!important;}
+  .hero-badge{margin-top:0;}
+  .category-title{margin-top:20px!important;margin-bottom:12px;}
+  .category-showcase{display:none!important;}
+  .section{padding-top:0!important;padding-bottom:42px!important;}
+  .title-name{margin:0;font-size:23px!important;margin:0;}
+  .title-sub{font-size:9px!important;}
+  .tool-card{min-height:0!important;padding:18px 17px 15px!important;}
+  .tool-icon-wrap{margin-top:24px!important;}
+  .split-thumbs{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:430px){.split-thumbs{grid-template-columns:repeat(2,minmax(0,1fr));}.scanner-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
 @media(max-width:1120px){.hero-shell{grid-template-columns:1fr;gap:44px}.hero-copy{max-width:800px}.hero-preview{max-width:660px;margin:0 auto;width:100%;}.stats{grid-template-columns:repeat(2,1fr)}.category-showcase{grid-template-columns:60px 1fr 145px}.section-orbit{width:120px;height:120px}}
 @media(max-width:900px){nav{padding:10px 15px}.nav-cats{padding-top:5px}.hero{padding-top:58px}.hero-preview{min-height:420px}.section{padding-left:20px;padding-right:20px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){
-  nav{position:sticky;top:0}.logo{font-size:21px}.cat-label{display:inline}.hero{padding:45px 17px 48px}.hero h1{font-size:clamp(40px,12vw,58px)}.hero p{font-size:16px}.hero-preview{display:none}.search-wrap input{height:58px;padding-right:18px}.search-key{display:none}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.hero-primary,.hero-secondary{padding:0 12px;font-size:12.5px}.hero-trust{gap:10px 14px}.stats{grid-template-columns:1fr 1fr;padding:16px 16px 4px}.stat{padding:13px;gap:9px}.stat-icon{width:37px;height:37px}.stat-num{font-size:18px}.stat-label{font-size:10px}.section{padding:2px 16px 62px}.category-title{margin-top:54px;gap:9px}.category-number{display:none}.title-icon{width:42px;height:42px}.title-name{font-size:24px}.title-sub{font-size:9.5px}.category-title::after{display:none}.section-badge{margin-left:auto}.category-showcase{grid-template-columns:48px 1fr;padding:22px 18px;gap:14px;min-height:0}.section-desc-icon{width:48px;height:48px;border-radius:15px}.section-desc-icon svg{width:22px;height:22px}.section-desc-content h3{font-size:19px}.section-desc-box p{font-size:13px}.section-orbit{display:none}.section-feature-row{gap:6px}.section-feature-row span{font-size:9.5px;padding:5px 8px}.tool-grid{grid-template-columns:1fr;gap:15px}.tool-card{min-height:229px;padding:21px 19px 16px}.tool-icon-wrap{margin-top:25px}.affiliate-section{padding:20px 14px;border-radius:20px}}
+  nav{position:sticky;top:0}.logo{font-size:21px}.cat-label{display:inline}.hero{padding:16px 17px 24px}.hero h1{font-size:clamp(40px,12vw,58px)}.hero p{font-size:16px}.hero-preview{display:none}.search-wrap input{height:58px;padding-right:18px}.search-key{display:none}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.hero-primary,.hero-secondary{padding:0 12px;font-size:12.5px}.hero-trust{gap:10px 14px}.stats{grid-template-columns:1fr 1fr;padding:16px 16px 4px}.stat{padding:13px;gap:9px}.stat-icon{width:37px;height:37px}.stat-num{font-size:18px}.stat-label{font-size:10px}.section{padding:2px 16px 62px}.category-title{margin-top:20px;gap:9px}.category-number{display:none}.title-icon{width:42px;height:42px}.title-name{font-size:24px}.title-sub{font-size:9.5px}.category-title::after{display:none}.section-badge{margin-left:auto}.category-showcase{grid-template-columns:48px 1fr;padding:22px 18px;gap:14px;min-height:0}.section-desc-icon{width:48px;height:48px;border-radius:15px}.section-desc-icon svg{width:22px;height:22px}.section-desc-content h2{font-size:19px}.section-desc-box p{font-size:13px}.section-orbit{display:none}.section-feature-row{gap:6px}.section-feature-row span{font-size:9.5px;padding:5px 8px}.tool-grid{grid-template-columns:1fr;gap:15px}.tool-card{min-height:229px;padding:21px 19px 16px}.tool-icon-wrap{margin-top:25px}.affiliate-section{padding:20px 14px;border-radius:20px}}
 @media(max-width:420px){.hero-actions{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.cat-btn{padding:5px 7px}.cat-symbol{width:27px;height:27px}.cat-label{font-size:11px}.category-showcase{grid-template-columns:1fr}.section-desc-icon{margin-bottom:2px}.section-feature-row span:nth-child(3){display:none}}
 @media(hover:none),(pointer:coarse){.tool-card:hover{transform:none!important}.category-showcase:hover::before{transform:translateX(-120%)}}
 @media(prefers-reduced-motion:reduce){.preview-window,.floating-chip,.preview-progress i{animation:none!important}}
-</style></head>
+</style><style id="tn-high-advanced-ui">
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   TOOLNOVA HIGH-ADVANCED TOOL WORKSPACE — modal/tool UI only
+   Homepage cards, hero, category sections and navigation are intentionally untouched.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+:root{--tn-workspace:#f6f8fc;--tn-panel:#ffffff;--tn-ink:#111827;--tn-soft:#667085;--tn-line:#e6eaf2;--tn-shadow:0 28px 80px rgba(15,23,42,.22)}
+.overlay{background:rgba(15,23,42,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:18px}
+.modal{max-width:1160px;width:min(1160px,calc(100vw - 36px));max-height:min(900px,calc(100dvh - 36px));padding:0;border-radius:28px;border:1px solid rgba(255,255,255,.72);background:var(--tn-workspace);box-shadow:var(--tn-shadow);overflow:hidden;display:block}
+.modal.fullscreen{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;border:0}
+.modal-close,.modal-fullscreen-btn{position:absolute;top:18px;z-index:30;width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.9);border:1px solid rgba(148,163,184,.28);box-shadow:0 8px 22px rgba(15,23,42,.08);backdrop-filter:blur(12px);color:#475467;font-size:17px}
+.modal-close{right:18px}.modal-fullscreen-btn{right:66px}
+.modal-close:hover,.modal-fullscreen-btn:hover{background:#fff;border-color:color-mix(in srgb,var(--tn-tool-accent,#4f63d2) 48%,#d5dbea);color:var(--tn-tool-accent,#4f63d2);transform:translateY(-1px)}
+.tn-tool-shell{--tn-tool-accent:#4f63d2;--tn-tool-soft:#eef2ff;display:flex;flex-direction:column;height:min(900px,calc(100dvh - 36px));min-height:610px;color:var(--tn-ink)}
+.modal.fullscreen .tn-tool-shell{height:100dvh}
+.tn-tool-hero{position:relative;flex:0 0 auto;padding:24px 126px 22px 28px;background:linear-gradient(135deg,#fff 0%,color-mix(in srgb,var(--tn-tool-soft) 66%,#fff) 100%);border-bottom:1px solid var(--tn-line);overflow:hidden}
+.tn-tool-hero:after{content:"";position:absolute;width:330px;height:330px;border-radius:50%;right:70px;top:-260px;background:radial-gradient(circle,color-mix(in srgb,var(--tn-tool-accent) 15%,transparent),transparent 68%);pointer-events:none}
+.tn-tool-heading{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.tn-tool-icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:26px;background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--tn-tool-soft) 85%,#fff));border:1px solid color-mix(in srgb,var(--tn-tool-accent) 22%,#fff);box-shadow:0 10px 30px color-mix(in srgb,var(--tn-tool-accent) 15%,transparent)}
+.tn-tool-crumb{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--tn-tool-accent);margin-bottom:4px}
+.tn-tool-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:25px;font-weight:850;letter-spacing:-.035em;line-height:1.08;margin:0;color:#101828}
+.tn-tool-sub{font-size:13.5px;color:#667085;margin-top:6px;line-height:1.55;max-width:760px}
+.tn-trust-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.tn-trust-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.76);border-radius:999px;padding:6px 9px;font-size:10.5px;font-weight:750;color:#475467}
+.tn-trust-dot{width:6px;height:6px;border-radius:50%;background:#12b76a;box-shadow:0 0 0 3px rgba(18,183,106,.11)}
+.tn-stepper{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;background:#fff;border-bottom:1px solid var(--tn-line);padding:0 28px}
+.tn-step{position:relative;display:flex;align-items:center;gap:10px;padding:13px 14px 13px 0;color:#98a2b3;font-size:11.5px;font-weight:760}
+.tn-step:not(:last-child):after{content:"";height:1px;position:absolute;left:38px;right:8px;bottom:-1px;background:#eef1f5}
+.tn-step-num{width:24px;height:24px;display:grid;place-items:center;border-radius:8px;background:#f2f4f7;color:#667085;font-size:10px;font-weight:850;transition:.2s}
+.tn-step.active{color:var(--tn-tool-accent)}.tn-step.active .tn-step-num{background:var(--tn-tool-accent);color:#fff;box-shadow:0 5px 14px color-mix(in srgb,var(--tn-tool-accent) 26%,transparent)}
+.tn-step.done{color:#344054}.tn-step.done .tn-step-num{background:#ecfdf3;color:#079455}.tn-step.done .tn-step-num:before{content:'✓';font-size:12px}.tn-step.done .tn-step-num{font-size:0}
+.tn-workspace-grid{display:grid;grid-template-columns:minmax(0,1fr) 278px;gap:0;min-height:0;flex:1}
+.tn-stage-scroll{min-width:0;overflow:auto;padding:26px 28px 34px;background:linear-gradient(180deg,#f9faff 0%,#f6f8fc 100%)}
+.tn-tool-stage{max-width:760px;margin:0 auto}
+.tn-tool-stage>.tool-notice{margin-top:16px}
+.tn-side{border-left:1px solid var(--tn-line);background:#fff;padding:24px 20px;overflow:auto}
+.tn-side-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:850;color:#344054;margin-bottom:12px}
+.tn-side-card{border:1px solid var(--tn-line);background:#fcfcfd;border-radius:16px;padding:14px;margin-bottom:12px}
+.tn-side-card strong{display:block;font-size:12px;color:#344054;margin-bottom:5px}.tn-side-card p{font-size:11.5px;color:#667085;line-height:1.55;margin:0}
+.tn-side-list{display:grid;gap:8px}.tn-side-list button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border:1px solid var(--tn-line);border-radius:12px;padding:10px 11px;color:#344054;font:inherit;font-size:11.5px;font-weight:750;cursor:pointer;text-align:left;transition:.18s}.tn-side-list button:hover{border-color:color-mix(in srgb,var(--tn-tool-accent) 40%,#d0d5dd);background:var(--tn-tool-soft);color:var(--tn-tool-accent);transform:translateX(2px)}
+.tn-privacy-card{background:linear-gradient(135deg,#ecfdf3,#f6fef9);border-color:#d1fadf}.tn-privacy-icon{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#d1fadf;margin-bottom:9px}
+.tn-tool-stage label{font-size:11px;font-weight:800;color:#475467;letter-spacing:.075em;margin-bottom:7px}
+.tn-tool-stage input[type="text"],.tn-tool-stage input[type="number"],.tn-tool-stage input[type="date"],.tn-tool-stage select,.tn-tool-stage textarea{background:#fff;border:1px solid #dfe4ec;border-radius:13px;padding:12px 14px;box-shadow:0 1px 2px rgba(16,24,40,.02);margin-bottom:14px}
+.tn-tool-stage input:focus,.tn-tool-stage select:focus,.tn-tool-stage textarea:focus{border-color:var(--tn-tool-accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--tn-tool-accent) 10%,transparent)}
+.tn-tool-stage .row{gap:14px}
+.tn-tool-stage .btn{min-height:50px;border-radius:13px;background:linear-gradient(135deg,var(--tn-tool-accent),color-mix(in srgb,var(--tn-tool-accent) 72%,#263ca7));font-size:14px;font-weight:800;box-shadow:0 10px 22px color-mix(in srgb,var(--tn-tool-accent) 20%,transparent)}
+.tn-tool-stage .btn:hover{filter:brightness(.98);transform:translateY(-1px);box-shadow:0 14px 28px color-mix(in srgb,var(--tn-tool-accent) 25%,transparent)}
+.tn-tool-stage .btn-sec{background:#fff;color:#344054;border:1px solid #dfe4ec;box-shadow:0 2px 8px rgba(16,24,40,.04)}
+.tn-tool-stage .btn-sec:hover{background:#f8faff;color:var(--tn-tool-accent);border-color:color-mix(in srgb,var(--tn-tool-accent) 35%,#dfe4ec)}
+/* premium upload area */
+.tn-tool-stage .dropzone{position:relative;min-height:208px;border:1.5px dashed color-mix(in srgb,var(--tn-tool-accent) 33%,#d7dde8);border-radius:20px;padding:28px 24px;background:linear-gradient(145deg,#fff 0%,color-mix(in srgb,var(--tn-tool-soft) 46%,#fff) 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),0 10px 26px rgba(16,24,40,.035);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden}
+.tn-tool-stage .dropzone:before{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.9);border-radius:14px;pointer-events:none}.tn-tool-stage .dropzone:hover,.tn-tool-stage .dropzone.dragover{border-color:var(--tn-tool-accent);background:linear-gradient(145deg,#fff,var(--tn-tool-soft));box-shadow:0 14px 34px color-mix(in srgb,var(--tn-tool-accent) 10%,transparent)}
+.tn-tool-stage .dropzone-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:25px;margin:0 0 12px;background:#fff;border:1px solid color-mix(in srgb,var(--tn-tool-accent) 22%,#e5e7eb);box-shadow:0 10px 24px rgba(16,24,40,.08);animation:none}
+.tn-tool-stage .dropzone-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:850;color:#1d2939;margin-bottom:5px}.tn-tool-stage .dropzone-sub{font-size:11.5px;color:#667085;line-height:1.5}
+.tn-upload-cta{margin-top:13px;display:inline-flex;align-items:center;gap:7px;border-radius:11px;background:var(--tn-tool-accent);color:#fff;padding:9px 13px;font-size:11px;font-weight:800;box-shadow:0 8px 18px color-mix(in srgb,var(--tn-tool-accent) 20%,transparent)}
+.tn-format-row{display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:11px}.tn-format-row span{font-size:9.5px;font-weight:750;color:#667085;background:rgba(255,255,255,.8);border:1px solid #eaecf0;border-radius:999px;padding:4px 7px}
+/* file queue */
+.file-chip{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr) auto auto;align-items:center;gap:11px;background:#fff;border:1px solid #e3e7ee;border-radius:15px;padding:10px 11px;margin:8px 0;box-shadow:0 5px 16px rgba(16,24,40,.035);transition:.18s}
+.file-chip[draggable="true"]{cursor:grab}.file-chip.dragging{opacity:.48;transform:scale(.99)}.file-chip.drag-target{border-color:var(--tn-tool-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--tn-tool-accent) 9%,transparent)}
+.fc-visual{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--tn-tool-soft);color:var(--tn-tool-accent);font-size:20px;overflow:hidden}.fc-visual img{width:100%;height:100%;object-fit:cover}.fc-meta{min-width:0}.file-chip .fc-name{display:block;font-size:12.5px;font-weight:800;color:#344054;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fc-ready{font-size:9.5px;color:#079455;font-weight:800;margin-top:3px}.file-chip .fc-size{font-size:10px;color:#667085;background:#f8fafc;border-radius:999px;padding:4px 7px}.file-chip .fc-x{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#f8fafc;color:#667085}.file-chip .fc-x:hover{background:#fff1f3;color:#d92d20}.tn-reorder-hint{font-size:10px;color:#98a2b3;margin:5px 2px 12px}
+/* options */
+.tn-options-card{background:#fff;border:1px solid var(--tn-line);border-radius:18px;padding:16px;margin:14px 0;box-shadow:0 8px 24px rgba(16,24,40,.03)}
+.tn-options-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.tn-options-title{font-size:12px;font-weight:850;color:#344054}.tn-options-badge{font-size:9px;font-weight:850;color:var(--tn-tool-accent);background:var(--tn-tool-soft);padding:4px 7px;border-radius:999px}
+/* result experience */
+.tn-tool-stage .result-box{border:1px solid color-mix(in srgb,var(--tn-tool-accent) 20%,#e1e6ef);background:linear-gradient(145deg,#fff 0%,color-mix(in srgb,var(--tn-tool-soft) 40%,#fff) 100%);border-radius:20px;padding:20px;box-shadow:0 14px 34px rgba(16,24,40,.06);margin-top:18px}
+.tn-tool-stage .result-box.green{background:linear-gradient(145deg,#fff,#f0fdf7);border-color:#ccebdc}.tn-tool-stage .result-label{font-size:10px;font-weight:850;letter-spacing:.1em;color:#667085}.tn-tool-stage .result-value{font-size:28px;letter-spacing:-.03em}
+.tn-tool-stage .result-grid{gap:12px}.tn-tool-stage .result-grid>.tn-result-suite{grid-column:1/-1}
+.tn-result-suite{margin-top:18px;padding-top:16px;border-top:1px solid rgba(152,162,179,.2);font-family:Inter,Arial,sans-serif;text-align:left}
+.tn-result-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:11px}.tn-result-status{display:flex;align-items:center;gap:9px}.tn-success-mark{width:34px;height:34px;border-radius:11px;background:#ecfdf3;color:#079455;display:grid;place-items:center;font-size:16px;font-weight:900}.tn-result-status strong{font-size:12px;color:#344054}.tn-result-status small{display:block;font-size:10px;color:#667085;margin-top:2px}.tn-output-meta{font-size:9.5px;color:#667085;background:#f8fafc;border:1px solid #eaecf0;border-radius:999px;padding:5px 8px;white-space:nowrap}
+.tn-action-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.tn-action{display:flex;align-items:center;justify-content:center;gap:5px;min-height:38px;padding:7px 8px;border-radius:10px;border:1px solid #dfe4ec;background:#fff;color:#344054;font:inherit;font-size:10.5px;font-weight:800;cursor:pointer;transition:.16s}.tn-action:hover{border-color:color-mix(in srgb,var(--tn-tool-accent) 40%,#dfe4ec);background:var(--tn-tool-soft);color:var(--tn-tool-accent);transform:translateY(-1px)}.tn-action.primary{background:var(--tn-tool-accent);border-color:var(--tn-tool-accent);color:#fff}.tn-action.primary:hover{filter:brightness(.97);color:#fff}.tn-action.more{position:relative}
+.tn-next-row{display:flex;align-items:center;gap:8px;overflow-x:auto;padding-top:11px;margin-top:11px;border-top:1px dashed #e4e7ec}.tn-next-label{font-size:9.5px;color:#98a2b3;font-weight:800;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}.tn-next-chip{border:0;background:#f8fafc;color:#475467;border-radius:999px;padding:7px 9px;font-size:9.5px;font-weight:800;white-space:nowrap;cursor:pointer}.tn-next-chip:hover{background:var(--tn-tool-soft);color:var(--tn-tool-accent)}
+/* original primary output buttons become visually consistent */
+.tn-result-enhanced>button.btn:not(.tn-keep-visible),.tn-result-enhanced>div>button.btn:not(.tn-keep-visible){margin-top:12px}
+/* scanner */
+.tn-scanner-capture{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.tn-capture-card{position:relative;border:1px solid #dfe4ec;background:#fff;border-radius:16px;padding:14px;text-align:left;cursor:pointer;transition:.18s}.tn-capture-card:hover{border-color:var(--tn-tool-accent);background:var(--tn-tool-soft);transform:translateY(-1px)}.tn-capture-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--tn-tool-soft);font-size:17px;margin-bottom:9px}.tn-capture-card strong{font-size:12px;color:#344054;display:block}.tn-capture-card span{font-size:10px;color:#667085;line-height:1.4}.tn-capture-card input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.scanner-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.scanner-page{background:#fff;border:1px solid #e4e7ec;border-radius:16px;padding:8px;box-shadow:0 7px 20px rgba(16,24,40,.04)}.scanner-page canvas{border-radius:10px}.scanner-page-actions{gap:6px}.mini-btn{border-radius:9px!important;background:#f8fafc!important;border:1px solid #e4e7ec!important;font-weight:750!important}
+/* make inline editor previews feel like canvas workspaces */
+#sign-preview-wrap,#txt-preview-wrap{border-radius:16px!important;border-color:#dfe4ec!important;background:repeating-conic-gradient(#f8fafc 0% 25%,#fff 0% 50%) 50%/18px 18px!important;box-shadow:inset 0 0 0 1px #fff,0 8px 24px rgba(16,24,40,.04)}
+/* output media */
+.tn-tool-stage img[alt="Generated preview"]{border-radius:12px!important;border-color:#dfe4ec!important;box-shadow:0 10px 28px rgba(16,24,40,.12)!important}
+.tool-notice{border-radius:13px!important;border:1px solid #f4dfae!important;background:#fffaeb!important;color:#7a5b14!important;padding:11px 12px!important;font-size:10.5px!important;line-height:1.5!important}
+/* responsive */
+@media(max-width:960px){.overlay{padding:0}.modal,.modal.fullscreen{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;border:0}.tn-tool-shell,.modal.fullscreen .tn-tool-shell{height:100dvh;min-height:0}.tn-workspace-grid{grid-template-columns:1fr}.tn-side{display:none}.tn-tool-hero{padding:calc(16px + env(safe-area-inset-top)) 112px 16px 16px}.tn-tool-icon{width:46px;height:46px;border-radius:14px;font-size:22px}.tn-tool-title{font-size:21px}.tn-tool-sub{font-size:12px}.tn-trust-row{margin-top:10px}.tn-trust-pill:nth-child(3){display:none}.tn-stepper{padding:0 16px}.tn-stage-scroll{padding:18px 16px calc(28px + env(safe-area-inset-bottom))}.modal-close,.modal-fullscreen-btn{top:calc(10px + env(safe-area-inset-top));position:absolute}.modal-fullscreen-btn{display:none}.tn-action-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tn-action-grid .tn-action:nth-child(4),.tn-action-grid .tn-action:nth-child(5){display:flex}}
+@media(max-width:600px){.tn-tool-heading{gap:11px}.tn-tool-icon{width:42px;height:42px}.tn-tool-title{font-size:18px}.tn-tool-sub{max-width:calc(100vw - 40px);line-height:1.45}.tn-tool-hero{padding-right:58px}.modal-close{right:10px}.tn-step{padding:10px 4px 10px 0;font-size:10px;gap:6px}.tn-step-num{width:21px;height:21px}.tn-step span:last-child{max-width:76px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tn-tool-stage .dropzone{min-height:180px;padding:23px 15px}.tn-scanner-capture{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}.file-chip{grid-template-columns:38px minmax(0,1fr) auto}.file-chip .fc-size{display:none}.fc-visual{width:38px;height:38px}.tn-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tn-action{min-height:40px}.tn-result-top{align-items:flex-start;flex-direction:column}.tn-output-meta{white-space:normal}.tn-tool-stage .result-box{padding:16px}.tn-trust-pill{font-size:9.5px;padding:5px 7px}.tn-trust-pill:nth-child(2){display:none}}
+@media(max-width:380px){.tn-tool-icon{display:none}.tn-tool-hero{padding-left:14px}.tn-stage-scroll{padding-left:12px;padding-right:12px}.tn-scanner-capture{grid-template-columns:1fr}}
+
+</style>
+</head>
 <body>
+<script>
+(function(){
+  function tnClampTop(){
+    document.documentElement.style.setProperty('top','0px','important');
+    if(document.body) document.body.style.setProperty('top','0px','important');
+  }
+  function tnStartObserver(){
+    tnClampTop();
+    var tnTopObserver=new MutationObserver(tnClampTop);
+    tnTopObserver.observe(document.documentElement,{attributes:true,attributeFilter:['style','class']});
+    if(document.body) tnTopObserver.observe(document.body,{attributes:true,attributeFilter:['style','class']});
+  }
+  if(document.body){ tnStartObserver(); } else { document.addEventListener('DOMContentLoaded', tnStartObserver); }
+})();
+</script>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <!-- NAV -->
 <!-- NAV + CATEGORY BAR (single sticky row) -->
@@ -733,7 +899,7 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="nav-cats"><a class="cat-btn" href="#pdf-converter" style="--c1:#FFF0F1;--c2:#D92D4B;">
 <span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h6"></path></svg></span><span class="cat-label">PDF Converter</span><span class="cat-count">8</span>
 </a><a class="cat-btn" href="#ocr-tools" style="--c1:#FFF7E8;--c2:#C56A00;">
-<span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span><span class="cat-label">OCR Tools</span><span class="cat-count">2</span>
+<span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span><span class="cat-label">OCR Tools</span><span class="cat-count">3</span>
 </a><a class="cat-btn" href="#edit-pdf" style="--c1:#F5EEFF;--c2:#7947D6;">
 <span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="6" cy="7" r="3"></circle><circle cx="6" cy="17" r="3"></circle><path d="m8.7 8.4 11.3 6.1M8.7 15.6 20 9.5"></path></svg></span><span class="cat-label">Edit PDF</span><span class="cat-count">8</span>
 </a><a class="cat-btn" href="#generators" style="--c1:#EEF4FF;--c2:#3567D6;">
@@ -742,9 +908,9 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="2" width="16" x="4" y="2"></rect><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"></path></svg></span><span class="cat-label">Calculators</span><span class="cat-count">9</span>
 </a><a class="cat-btn" href="#converters" style="--c1:#EAFBFA;--c2:#087C77;">
 <span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"></path><path d="M18 7l-3 3M6 17l3-3"></path></svg></span><span class="cat-label">Converters</span><span class="cat-count">4</span>
-</a><a aria-pressed="false" class="cat-btn" href="#" id="fav-cat-btn" onclick="return toggleFavoritesView(event)" style="--c1:#FFF0F4;--c2:#B42357;">
+</a><button aria-pressed="false" class="cat-btn" id="fav-cat-btn" type="button" onclick="return toggleFavoritesView(event)" style="--c1:#FFF0F4;--c2:#B42357;">
 <span class="cat-symbol"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"></path></svg></span><span class="cat-label">Favorites</span><span class="cat-count" id="fav-count">0</span>
-</a></div>
+</button></div>
 <div class="nav-lang" id="google_translate_element"></div>
 </nav>
 <main id="main-content">
@@ -835,14 +1001,14 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="section-title category-title theme-pdf" id="pdf-converter">
 <span class="category-number">01</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h6"></path></svg></span>
-<span class="title-copy"><span class="title-name">PDF Converter</span><span class="title-sub">Document conversion</span></span>
+<span class="title-copy"><h2 class="title-name">PDF Converter</h2><span class="title-sub">Document conversion</span></span>
 <span class="section-badge">Most Popular</span>
 </div>
 <div class="section-desc-box category-showcase theme-pdf">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h6"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">DOCUMENT WORKFLOW</div>
-<h3>Convert files without compromising quality</h3>
+<h2>Convert files without compromising quality</h2>
 <p>Move between PDF, Word, Excel, JPG and PNG with crisp output and a workflow that stays entirely in your browser.</p>
 <div class="section-feature-row"><span>8 precision tools</span><span>Local processing</span><span>No watermark</span></div>
 </div>
@@ -901,19 +1067,30 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="tool-desc">Extract readable text from a PDF for copying, searching and editing.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
 </div>
+<div class="cat-guide">
+<p>Converting between PDF, Word, Excel, JPG and PNG usually comes down to picking the right tool for what needs to change and what has to stay the same. <strong>PDF to Word</strong> and <strong>PDF to Text</strong> pull out the words so you can edit or search them, but neither can rebuild a complex multi-column layout pixel-for-pixel — keep the source file and only convert a copy when precise formatting matters. <strong>Word to PDF</strong> goes the other direction and is the safer choice when a document needs to look identical on every device, because PDF freezes the layout instead of leaving it to whatever fonts happen to be installed on the reader's computer. <strong>PDF to JPG</strong> and <strong>PDF to PNG</strong> render each page as an image — JPG is smaller and fine for photos or scans, PNG is lossless and better for pages with sharp text or line art. <strong>Image to PDF</strong> and the <strong>Document Scanner</strong> do the reverse: turning one or more photos into a single, properly ordered PDF, with the scanner adding page-enhancement filters and an optional searchable text layer so the result behaves like a real scanned document instead of just a picture.</p>
+<p>Every converter on this page runs the actual conversion inside your browser tab using open-source libraries (pdf-lib and pdf.js) that download once and then execute locally — your PDF, Word file or photo is never uploaded to a Toolnova server. That's also why very large files (several hundred pages, or dozens of high-resolution photos) can take longer or use more memory than a server-side converter would: the work is genuinely happening on your own device.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/pdf-to-word-what-survives.html">What actually survives a PDF to Word conversion</a> &middot; <a href="/blog/scan-documents-with-your-phone.html">How to scan documents with just your phone</a> &middot; <a href="/blog/how-browser-based-file-tools-work.html">How browser-based file tools actually work</a></p>
+</div>
+<div aria-label="PDF converter FAQ" class="faq-list">
+<details><summary>Will PDF to Word keep my original formatting?</summary><p>Text and paragraph breaks carry over, but complex layouts — multi-column pages, embedded fonts, tables that span pages — are approximated, not pixel-perfect. For documents you'll keep editing long-term, treat the .doc output as a strong starting draft rather than a final replacement for the source file.</p></details>
+<details><summary>Can I convert a password-protected PDF?</summary><p>Not directly — decrypt it first. Because the file never leaves your browser, Toolnova has no way to prompt for or store a password on a server; you'll need a PDF that's already unlocked before running it through any converter here.</p></details>
+<details><summary>Why does PDF to JPG produce one image per page instead of one image total?</summary><p>PDF pages aren't a single continuous image — each page is rendered separately so you can pick and download exactly the pages you need, or grab all of them at once as a ZIP.</p></details>
+<details><summary>Is there a file size or page limit?</summary><p>There's no artificial cap, but since conversion happens on your device, the practical limit is your browser's available memory. Mobile browsers in particular can struggle with 100+ page PDFs or very high-resolution scans — splitting a large file first with Split PDF often helps.</p></details>
+</div>
 <div class="section-title category-title theme-ocr" id="ocr-tools">
 <span class="category-number">02</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span>
-<span class="title-copy"><span class="title-name">OCR Tools</span><span class="title-sub">Text recognition</span></span>
+<span class="title-copy"><h2 class="title-name">OCR Tools</h2><span class="title-sub">Text recognition</span></span>
 <span class="section-badge">Smart OCR</span>
 </div>
 <div class="section-desc-box category-showcase theme-ocr">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">TEXT EXTRACTION</div>
-<h3>Turn pixels into editable, searchable text</h3>
+<h2>Turn pixels into editable, searchable text</h2>
 <p>Capture text from photos, screenshots and scanned PDFs with private on-device recognition — ready to copy, search and reuse.</p>
-<div class="section-feature-row"><span>2 OCR tools</span><span>Searchable output</span><span>No upload</span></div>
+<div class="section-feature-row"><span>3 OCR tools</span><span>Scan + searchable output</span><span>Local processing</span></div>
 </div>
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
@@ -931,18 +1108,36 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="tool-name">Scan PDF to Text</div>
 <div class="tool-desc">Transform scanned PDF pages into searchable, reusable text with OCR.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
+
+<a class="tool-card" data-key="c10b" href="/#tool=docscanner" onclick="return handleToolCardClick(event,this,'docscanner')">
+<span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c10b')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c10b')}" role="button" tabindex="0"></span>
+<div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewBox="0 0 24 24"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3"/><rect x="7" y="6" width="10" height="12" rx="1.5"/><path d="M9 10h6M9 13h6"/></svg></span></div>
+<div class="tool-name">Document Scanner</div>
+<div class="tool-desc">Scan with your phone camera, enhance pages, run OCR and export a multi-page PDF.</div>
+<span class="tool-badge hot">New</span>
+<div class="tool-card-footer"><span>📱 Camera ready</span><span>Open tool →</span></div></a>
+</div>
+<div class="cat-guide">
+<p>Optical character recognition (OCR) turns pixels — a photo of a receipt, a scanned contract, a screenshot of a paragraph — into text you can copy, search and edit. Toolnova's OCR runs entirely in your browser using Tesseract, the same open-source recognition engine behind many commercial tools, downloaded on demand the first time you open an OCR tool. <strong>Image to Text</strong> handles single photos and screenshots directly. <strong>Scan PDF to Text</strong> does the same job for a scanned PDF, page by page, and is the tool to reach for when a PDF was produced by a physical scanner or a "photo saved as PDF" workflow rather than exported from a word processor — those PDFs contain an image of the text, not the text itself, so PDF to Text alone will return nothing useful on them.</p>
+<p>OCR accuracy depends heavily on the source image: straight, well-lit, high-contrast photos of clean typed text recognize best. Handwriting, low light, skewed angles and low resolution all reduce accuracy, and no OCR engine — Toolnova's included — gets everything right on a difficult scan. Always proofread OCR output before relying on it for anything official.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/scan-documents-with-your-phone.html">How to scan documents with just your phone (no app required)</a></p>
+</div>
+<div aria-label="OCR tools FAQ" class="faq-list">
+<details><summary>Does OCR work on handwriting?</summary><p>Only unreliably. Tesseract, like most OCR engines, is trained primarily on printed text; cursive or messy handwriting often produces garbled results. For handwritten notes, manual transcription is still more accurate.</p></details>
+<details><summary>Which languages does OCR support?</summary><p>The default is English. Recognition quality for other languages depends on which language data the underlying engine loads — accented characters and non-Latin scripts are more error-prone than plain English text.</p></details>
+<details><summary>Why is OCR slower than the other tools?</summary><p>Recognition happens page-by-page on your own device's CPU rather than a server, so a 20-page scanned PDF genuinely takes longer than a 1-page photo. Large or high-resolution files take proportionally longer.</p></details>
 </div>
 <div class="section-title category-title theme-edit" id="edit-pdf">
 <span class="category-number">03</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="6" cy="7" r="3"></circle><circle cx="6" cy="17" r="3"></circle><path d="m8.7 8.4 11.3 6.1M8.7 15.6 20 9.5"></path></svg></span>
-<span class="title-copy"><span class="title-name">Edit PDF</span><span class="title-sub">Organize & annotate</span></span>
+<span class="title-copy"><h2 class="title-name">Edit PDF</h2><span class="title-sub">Organize & annotate</span></span>
 <span class="section-badge">8 Tools</span>
 </div>
 <div class="section-desc-box category-showcase theme-edit">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="6" cy="7" r="3"></circle><circle cx="6" cy="17" r="3"></circle><path d="m8.7 8.4 11.3 6.1M8.7 15.6 20 9.5"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">PDF CONTROL CENTER</div>
-<h3>Make every document work exactly the way you need</h3>
+<h2>Make every document work exactly the way you need</h2>
 <p>Merge, split, compress, rotate, sign, remove pages and add text with a focused editing toolkit built for quick results.</p>
 <div class="section-feature-row"><span>8 editing tools</span><span>Precise page control</span><span>No software</span></div>
 </div>
@@ -1004,6 +1199,17 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
 </div>
+<div class="cat-guide">
+<p>The Edit PDF tools cover the everyday page-level changes people actually need: combining files with <strong>Merge PDF</strong>, pulling specific pages out with <strong>Split PDF</strong>, <strong>Extract PDF Pages</strong> or the multi-file <strong>Split Multiple PDFs</strong>, removing pages you don't want with <strong>Delete PDF Pages</strong>, fixing sideways scans with <strong>Rotate PDF</strong>, shrinking file size with <strong>Compress PDF</strong>, and adding a signature or typed note directly onto a page with <strong>Sign PDF</strong> and <strong>Add Text to PDF</strong>. All of them work on the PDF's existing structure rather than re-rendering the document from scratch, which is why they stay fast even on large files and why the output keeps the original text as real, selectable text instead of turning it into a flat image.</p>
+<p>A common question is what "compress" actually does here: Toolnova's compressor re-optimizes the PDF's internal structure (removing redundant objects, using more efficient object streams) rather than aggressively re-encoding embedded images at lower quality the way some server-based compressors do. The size reduction is usually modest, but visual quality never degrades — if a PDF is mostly large embedded images, the more effective move is often to convert it to JPG first, compress the images at a lower quality, then rebuild it with Image to PDF.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/compress-pdf-without-losing-quality.html">A practical guide to compressing PDFs without losing quality</a></p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/a-practical-guide-to-editing-pdfs-in-your-browser.html">A practical guide to editing PDFs in your browser</a></p>
+</div>
+<div aria-label="Edit PDF FAQ" class="faq-list">
+<details><summary>What's the difference between Split PDF and Extract PDF Pages?</summary><p>Split PDF takes a typed page range (like "1-3,5"), which is quick when you already know the exact pages. Extract PDF Pages shows a thumbnail of every page so you can click to select visually — better when you need to check what's actually on each page first. Split Multiple PDFs does the same visual selection across several files at once.</p></details>
+<details><summary>Can I sign a PDF and have it count as a legally binding signature?</summary><p>Sign PDF adds a typed, drawn or uploaded signature image to the page — useful for everyday forms and internal documents, but it doesn't add cryptographic signing or identity verification. Contracts that require a legally certified e-signature need a dedicated e-signature service instead.</p></details>
+<details><summary>Will editing a PDF here remove its password protection?</summary><p>No — encrypted or password-protected PDFs need to be unlocked first, outside Toolnova, since files aren't uploaded anywhere for processing. Once you have an unprotected copy, any of the Edit PDF tools will work on it.</p></details>
+</div>
 <!-- Mid-page ad slot: commented out until a real AdSense ad-slot ID exists.
        See note on the top ad banner above for why a fake slot ID must not go live.
   <div class="ad-slot" style="margin:8px 0 32px;">
@@ -1019,14 +1225,14 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="section-title category-title theme-gen" id="generators">
 <span class="category-number">04</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg></span>
-<span class="title-copy"><span class="title-name">Generators</span><span class="title-sub">Create instantly</span></span>
+<span class="title-copy"><h2 class="title-name">Generators</h2><span class="title-sub">Create instantly</span></span>
 <span class="section-badge">Popular</span>
 </div>
 <div class="section-desc-box category-showcase theme-gen">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">INSTANT CREATION</div>
-<h3>Create useful digital assets in seconds</h3>
+<h2>Create useful digital assets in seconds</h2>
 <p>Generate QR codes, secure passwords, color values and polished placeholder text without accounts, limits or complicated setup.</p>
 <div class="section-feature-row"><span>4 smart generators</span><span>Instant download</span><span>Free to use</span></div>
 </div>
@@ -1059,17 +1265,26 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="tool-desc">Generate clean placeholder copy for layouts, prototypes and design mockups.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
 </div>
+<div class="cat-guide">
+<p><strong>QR Code Generator</strong> and <strong>Password Generator</strong> are the two tools people reach for most in this category, and both matter more than they look: a QR code is only as reliable as the data encoded in it, so double-check the URL or text before generating one for print — a mistake is expensive to fix once it's on a flyer or a product label. A generated password's strength comes almost entirely from length and randomness rather than complexity rules; a random 16-character password is dramatically harder to guess than a shorter one stuffed with symbols, which is why the length slider matters more than which character sets you tick.</p>
+<p><strong>Color Code Converter</strong> converts between HEX, RGB and HSL for designers and developers who need the same color expressed in a different format, and <strong>Lorem Ipsum Generator</strong> produces placeholder paragraphs for mockups and layout testing before real copy is ready.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/qr-codes-and-passwords-common-mistakes.html">QR codes and passwords: two small tools, two common mistakes</a></p>
+</div>
+<div aria-label="Generators FAQ" class="faq-list">
+<details><summary>Are generated passwords stored anywhere?</summary><p>No. Passwords are generated using your browser's random number generator and shown to you once — nothing is transmitted or logged. Copy it somewhere secure, ideally a password manager, right away, since closing the tool loses it.</p></details>
+<details><summary>Do QR codes expire?</summary><p>A QR code generated here simply encodes a fixed piece of text or a URL — it doesn't expire and isn't tied to a Toolnova account. If it points to a URL, the code stays scannable for as long as that URL stays live.</p></details>
+</div>
 <div class="section-title category-title theme-calc" id="calculators">
 <span class="category-number">05</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="2" width="16" x="4" y="2"></rect><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"></path></svg></span>
-<span class="title-copy"><span class="title-name">Calculators</span><span class="title-sub">Fast, reliable answers</span></span>
+<span class="title-copy"><h2 class="title-name">Calculators</h2><span class="title-sub">Fast, reliable answers</span></span>
 <span class="section-badge">9 Tools</span>
 </div>
 <div class="section-desc-box category-showcase theme-calc">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="20" rx="2" width="16" x="4" y="2"></rect><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h4"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">SMART EVERYDAY MATH</div>
-<h3>Accurate answers without spreadsheet work</h3>
+<h2>Accurate answers without spreadsheet work</h2>
 <p>Calculate age, BMI, calories, tips, discounts, loans, body fat and hydration with clear inputs and results you can understand.</p>
 <div class="section-feature-row"><span>9 calculators</span><span>Clear formulas</span><span>Instant results</span></div>
 </div>
@@ -1137,17 +1352,28 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
 </div>
+<div class="cat-guide">
+<p>The health calculators — <strong>BMI</strong>, <strong>BMR</strong>, <strong>Calorie</strong>, <strong>Body Fat</strong> and <strong>Water Intake</strong> — all use standard, published formulas (Mifflin-St Jeor for BMR and calorie needs, the U.S. Navy tape-measurement method for body fat) rather than anything proprietary, so the math behind each result is the same starting point a dietitian or trainer would use. They're estimates, though: BMI in particular doesn't distinguish muscle from fat and can be misleading for very athletic or very tall or short people, and none of these numbers account for medical conditions, medications or individual metabolic variation. Treat every result here as a reference point for a conversation with a professional, not a diagnosis.</p>
+<p>The financial calculators — <strong>Tip</strong>, <strong>Discount</strong> and <strong>Loan</strong> — use straightforward arithmetic (simple amortization for the loan calculator) and are accurate for the numbers you enter, but a real loan quote will also include fees, taxes, insurance requirements and a lender's specific compounding method. Use the loan calculator to compare scenarios quickly, then confirm the real figure with your lender before signing anything.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/bmi-bmr-tdee-explained.html">BMI, BMR and TDEE explained: what the numbers actually mean</a></p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/how-to-calculate-your-exact-age.html">How to calculate your exact age</a> &middot; <a href="/blog/tip-calculator-guide-how-much-to-tip.html">Tip calculator guide</a> &middot; <a href="/blog/how-loan-calculators-work.html">How loan calculators work</a></p>
+</div>
+<div aria-label="Calculators FAQ" class="faq-list">
+<details><summary>Which formula does the BMR calculator use?</summary><p>The Mifflin-St Jeor equation, generally considered more accurate than the older Harris-Benedict formula for most adults. It estimates the calories your body burns at complete rest, before any activity is added.</p></details>
+<details><summary>Why does the loan calculator's total interest look different from my bank's quote?</summary><p>Bank quotes typically include origination fees, PMI or insurance, taxes and their own compounding schedule, none of which a simple calculator can know about. Use the tool to compare "what if" scenarios — a shorter term, a lower rate — then get the exact figure from the lender.</p></details>
+<details><summary>Is the Body Fat calculator as accurate as a DEXA scan or caliper test?</summary><p>No — the U.S. Navy tape method used here is a reasonable estimate from a few circumference measurements, but it's less precise than clinical methods like DEXA scans, hydrostatic weighing or skinfold calipers. It's a useful, free way to track trends over time, not a clinical measurement.</p></details>
+</div>
 <div class="section-title category-title theme-conv" id="converters">
 <span class="category-number">06</span>
 <span class="title-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"></path><path d="M18 7l-3 3M6 17l3-3"></path></svg></span>
-<span class="title-copy"><span class="title-name">Converters</span><span class="title-sub">Everyday conversions</span></span>
+<span class="title-copy"><h2 class="title-name">Converters</h2><span class="title-sub">Everyday conversions</span></span>
 <span class="section-badge">One Click</span>
 </div>
 <div class="section-desc-box category-showcase theme-conv">
 <span class="section-desc-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M7 7h11l-3-3M17 17H6l3 3"></path><path d="M18 7l-3 3M6 17l3-3"></path></svg></span>
 <div class="section-desc-content">
 <div class="section-eyebrow">FAST CONVERSIONS</div>
-<h3>Switch formats, units and values instantly</h3>
+<h2>Switch formats, units and values instantly</h2>
 <p>Convert measurements, currencies, text case and color formats through a streamlined interface made for everyday work.</p>
 <div class="section-feature-row"><span>4 converters</span><span>Live results</span><span>Simple workflow</span></div>
 </div>
@@ -1180,6 +1406,14 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="tool-name">Word Counter</div>
 <div class="tool-desc">Track words, characters, sentences and estimated reading time as you type.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
+</div>
+<div class="cat-guide">
+<p><strong>Unit Converter</strong> covers length, weight, temperature and speed using exact, fixed conversion factors, so its numbers are as precise as your input — there's no approximation beyond normal floating-point rounding. <strong>Currency Converter</strong> is different: exchange rates move constantly, so the rates built into this tool are static reference points rather than a live feed, useful for a rough estimate but not for anything time-sensitive like an actual transfer or purchase — check your bank or a live-rate source for that. <strong>Case Converter</strong> and <strong>Word Counter</strong> are the simpler text utilities in this group: instant case switching (upper, lower, title, sentence case) for writers and developers cleaning up text, and a live word, character and sentence count useful for anything with a length limit, from a social post to an essay assignment.</p>
+<p style="font-size:13.5px;">Further reading: <a href="/blog/beginners-guide-to-unit-and-currency-conversion.html">Unit and currency conversion explained</a> &middot; <a href="/blog/word-counter-guide-for-writers-and-students.html">Word counter guide</a></p>
+</div>
+<div aria-label="Converters FAQ" class="faq-list">
+<details><summary>How current are the currency conversion rates?</summary><p>They're static reference rates, not a live market feed, so treat the result as an approximation. For an actual transfer, purchase or accounting record, always confirm the live rate with your bank or card provider.</p></details>
+<details><summary>Does Word Counter count differently than Microsoft Word or Google Docs?</summary><p>Minor differences are normal — tools vary slightly in how they treat hyphenated words, numbers and punctuation when counting. For strict submission limits, use whichever tool your recipient will actually use to check the count.</p></details>
 </div>
 <!-- MID AD - AdSense auto -->
 <div style="margin:24px 0;"></div>
@@ -1295,7 +1529,7 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 // ── LAZY LIBRARY LOADING ──────────────────────────────────────────────────────
 // PDF/OCR/QR libraries are heavy (tesseract.js especially) — load them only when
 // a tool that needs them is actually opened, not on every single page visit.
-const PDF_TOOL_KEYS=new Set(['pdf2word','word2pdf','pdf2jpg','img2pdf','pdf2excel','pdf2png','pdf2text','scanocr','merge','split','compress','rotate','deletepages','extractpages','sign','addtext']);
+const PDF_TOOL_KEYS=new Set(['pdf2word','word2pdf','pdf2jpg','img2pdf','pdf2excel','pdf2png','pdf2text','scanocr','docscanner','merge','split','compress','rotate','deletepages','extractpages','sign','addtext']);
 async function ensureLibsForTool(key){
   if(PDF_TOOL_KEYS.has(key)){
     if(!window.PDFLib){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'); }
@@ -1304,7 +1538,7 @@ async function ensureLibsForTool(key){
       if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
     }
   }
-  if(key==='ocr' && !window.Tesseract){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js'); }
+  if(['ocr','scanocr','docscanner'].includes(key) && !window.Tesseract){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js'); }
   if(key==='qr' && !window.QRCode){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'); }
 }
 
@@ -1347,6 +1581,54 @@ window.addEventListener('popstate', syncToolFromLocation);
 window.addEventListener('hashchange', syncToolFromLocation);
 window.addEventListener('DOMContentLoaded', syncToolFromLocation, {once:true});
 
+
+const TN_WORKSPACE_META={
+  qr:{category:'Generators',accent:'#e53157',soft:'#fff0f4'},password:{category:'Generators',accent:'#e07a20',soft:'#fff6e8'},color:{category:'Generators',accent:'#7c5ce7',soft:'#f5f1ff'},hash:{category:'Generators',accent:'#5468d4',soft:'#eef2ff'},
+  age:{category:'Calculators',accent:'#d04d87',soft:'#fff0f6'},bmi:{category:'Calculators',accent:'#0f9f87',soft:'#ecfdf8'},bmr:{category:'Calculators',accent:'#e05a35',soft:'#fff2ee'},calorie:{category:'Calculators',accent:'#5c7c3c',soft:'#f4f8ec'},bodyfat:{category:'Calculators',accent:'#117c9c',soft:'#edf9fc'},water:{category:'Calculators',accent:'#2587d9',soft:'#eef7ff'},tip:{category:'Calculators',accent:'#b15c2a',soft:'#fff6ed'},discount:{category:'Calculators',accent:'#a63b72',soft:'#fff1f7'},loan:{category:'Calculators',accent:'#4f63d2',soft:'#eef2ff'},
+  unit:{category:'Converters',accent:'#0a8c82',soft:'#ecfbf9'},currency:{category:'Converters',accent:'#0d8a66',soft:'#edfbf5'},case:{category:'Text Tools',accent:'#6b5bd1',soft:'#f3f1ff'},wordcount:{category:'Text Tools',accent:'#4169d8',soft:'#eef3ff'},quiz:{category:'Games',accent:'#d17b16',soft:'#fff7e8'},memory:{category:'Games',accent:'#8b56c5',soft:'#f7f0ff'},
+  merge:{category:'PDF Tools',accent:'#eb4d6d',soft:'#fff0f3'},split:{category:'PDF Tools',accent:'#7b61d1',soft:'#f4f1ff'},compress:{category:'PDF Tools',accent:'#e09a15',soft:'#fff8e8'},rotate:{category:'PDF Tools',accent:'#0b9a8b',soft:'#edfbf8'},deletepages:{category:'PDF Tools',accent:'#d74747',soft:'#fff1f1'},extractpages:{category:'PDF Tools',accent:'#3478d4',soft:'#eef5ff'},sign:{category:'PDF Editor',accent:'#238a68',soft:'#eefaf5'},addtext:{category:'PDF Editor',accent:'#5a67d8',soft:'#eef1ff'},img2pdf:{category:'PDF Converter',accent:'#0b9b78',soft:'#ecfbf6'},pdf2jpg:{category:'PDF Converter',accent:'#d58a00',soft:'#fff8e8'},pdf2png:{category:'PDF Converter',accent:'#00a489',soft:'#edfbf8'},pdf2text:{category:'PDF Converter',accent:'#4f63d2',soft:'#eef2ff'},ocr:{category:'OCR Tools',accent:'#d47b00',soft:'#fff7e7'},scanocr:{category:'OCR Tools',accent:'#5b63cf',soft:'#f0f1ff'},docscanner:{category:'OCR & Scan',accent:'#0b8b88',soft:'#ecfbfa'},pdf2word:{category:'PDF Converter',accent:'#e53157',soft:'#fff0f4'},word2pdf:{category:'PDF Converter',accent:'#4b79df',soft:'#eef4ff'},pdf2excel:{category:'PDF Converter',accent:'#0c9a75',soft:'#edfbf5'}
+};
+const TN_RELATED={
+  qr:['password','color'],password:['qr','wordcount'],color:['qr','case'],hash:['wordcount','case'],
+  age:['bmi','bmr'],bmi:['calorie','bodyfat','water'],bmr:['calorie','bmi'],calorie:['bmr','water'],bodyfat:['bmi','water'],water:['bmi','calorie'],tip:['discount','currency'],discount:['tip','currency'],loan:['currency','discount'],unit:['currency','case'],currency:['unit','discount'],case:['wordcount','hash'],wordcount:['case','hash'],quiz:['memory'],memory:['quiz'],
+  merge:['compress','split','rotate'],split:['merge','extractpages','compress'],compress:['merge','split','pdf2word'],rotate:['deletepages','extractpages','compress'],deletepages:['extractpages','compress','merge'],extractpages:['merge','compress','img2pdf'],sign:['addtext','compress','merge'],addtext:['sign','compress','merge'],img2pdf:['compress','merge','pdf2jpg'],pdf2jpg:['img2pdf','pdf2png','compress'],pdf2png:['img2pdf','pdf2jpg','compress'],pdf2text:['scanocr','pdf2word','wordcount'],ocr:['docscanner','scanocr','wordcount'],scanocr:['docscanner','pdf2text','pdf2word'],docscanner:['scanocr','pdf2word','compress'],pdf2word:['word2pdf','pdf2text','compress'],word2pdf:['pdf2word','compress','merge'],pdf2excel:['pdf2text','scanocr','compress']
+};
+function tnPlainTitle(title){return String(title||'').replace(/^[^A-Za-z0-9]+/,'').trim()}
+function tnToolIcon(title){const m=String(title||'').match(/^([^A-Za-z0-9\s]+)\s*/);return m?m[1]:'✦'}
+function tnMeta(key){return TN_WORKSPACE_META[key]||{category:'Online Tool',accent:'#4f63d2',soft:'#eef2ff'}}
+function tnRelatedButtons(key){return (TN_RELATED[key]||[]).slice(0,3).map(k=>TOOLS[k]?`<button type="button" onclick="tnOpenRelated('${k}')"><span>${tnToolIcon(TOOLS[k].title)} ${tnPlainTitle(TOOLS[k].title)}</span><span>→</span></button>`:'').join('')}
+function tnShellMarkup(key,tool,body,notice){
+  const m=tnMeta(key), icon=tnToolIcon(tool.title),title=tnPlainTitle(tool.title);
+  return `<div class="tn-tool-shell" style="--tn-tool-accent:${m.accent};--tn-tool-soft:${m.soft}">
+    <header class="tn-tool-hero"><div class="tn-tool-heading"><div class="tn-tool-icon" aria-hidden="true">${icon}</div><div><div class="tn-tool-crumb">${m.category} · toolnova.tools</div><h2 class="tn-tool-title" id="modal-title">${title}</h2><div class="tn-tool-sub">${tool.sub}</div><div class="tn-trust-row"><span class="tn-trust-pill"><i class="tn-trust-dot"></i> Private browser processing</span><span class="tn-trust-pill">✓ No signup</span><span class="tn-trust-pill">✓ No watermark</span></div></div></div></header>
+    <div class="tn-stepper" aria-label="Tool workflow"><div class="tn-step active" data-step="1"><span class="tn-step-num">1</span><span>Add input</span></div><div class="tn-step" data-step="2"><span class="tn-step-num">2</span><span>Customize & process</span></div><div class="tn-step" data-step="3"><span class="tn-step-num">3</span><span>Review & export</span></div></div>
+    <div class="tn-workspace-grid"><div class="tn-stage-scroll"><main class="tn-tool-stage" id="tn-tool-stage">${body}${notice}</main></div><aside class="tn-side"><div class="tn-side-title">Professional workspace</div><div class="tn-side-card tn-privacy-card"><div class="tn-privacy-icon">🔒</div><strong>Your files stay on your device</strong><p>Supported file operations are processed in your browser. Always review the output before relying on it.</p></div><div class="tn-side-card"><strong>Workflow tips</strong><p>Use clear source files, review previews before exporting, and keep originals until you verify the result.</p></div><div class="tn-side-title" style="margin-top:18px">Continue with</div><div class="tn-side-list">${tnRelatedButtons(key)||'<button type="button" onclick="closeTool()"><span>Browse all tools</span><span>→</span></button>'}</div></aside></div>
+  </div>`
+}
+function tnSetStep(n){document.querySelectorAll('.tn-step').forEach((el,i)=>{const step=i+1;el.classList.toggle('active',step===n);el.classList.toggle('done',step<n)})}
+function tnOpenRelated(key){if(!TOOLS[key])return; const hash='#tool='+key; try{history.replaceState({},'',hash)}catch(e){} openTool(key)}
+function tnResetCurrentTool(){if(window.__tnCurrentToolKey)openTool(window.__tnCurrentToolKey)}
+function tnCurrentResultBox(){const stage=document.getElementById('tn-tool-stage');if(!stage)return null;const boxes=[...stage.querySelectorAll('.result-box')].filter(b=>!b.querySelector('.progress-wrap')&&!/error|could not|invalid/i.test(b.textContent));return boxes.at(-1)||null}
+function tnGetResultText(){const box=tnCurrentResultBox();if(!box)return '';const clone=box.cloneNode(true);clone.querySelectorAll('button,.tn-result-suite,.progress-wrap,script,style').forEach(x=>x.remove());return clone.innerText.replace(/\n{3,}/g,'\n\n').trim()}
+function tnOutputInfo(){const k=window.__tnCurrentToolKey;let blob=null,name='toolnova-result.txt',type='text/plain';try{
+  const pdf=(bytes,n)=>bytes?{blob:new Blob([bytes],{type:'application/pdf'}),name:n,type:'application/pdf'}:null;
+  if(k==='merge')return pdf(window._mergedPdfBytes,'merged.pdf');if(k==='split'){if(window._splitZipBlob)return{blob:window._splitZipBlob,name:'split-pages.zip',type:'application/zip'};return pdf(window._splitPdfBytes,'split-pages.pdf')}
+  if(k==='compress')return pdf(window._compressedPdfBytes,'compressed.pdf');if(k==='rotate')return pdf(window._rotatedPdfBytes,'rotated.pdf');if(k==='deletepages')return pdf(window._delPdfBytes,'edited.pdf');if(k==='extractpages')return pdf(window._extPdfBytes,'extracted.pdf');if(k==='sign')return pdf(window._signedPdfBytes,'signed.pdf');if(k==='addtext')return pdf(window._textPdfBytes,'edited.pdf');if(k==='img2pdf')return pdf(window._i2pBytes,'images.pdf');if(k==='docscanner')return pdf(window._scannerPdfBytes,'scanned-document.pdf');if(k==='word2pdf')return pdf(window._w2pBytes,'converted.pdf');
+  if(k==='pdf2word'&&window._wordBlob)return{blob:window._wordBlob,name:'converted.docx',type:window._wordBlob.type};if(k==='pdf2excel'&&window._xlsxBlob)return{blob:window._xlsxBlob,name:'converted.xlsx',type:window._xlsxBlob.type};
+  if(k==='pdf2text'&&typeof window._pdfText==='string')return{blob:new Blob([window._pdfText],{type:'text/plain'}),name:'extracted.txt',type:'text/plain'};if(k==='ocr'&&typeof window._ocrText==='string')return{blob:new Blob([window._ocrText],{type:'text/plain'}),name:'ocr-result.txt',type:'text/plain'};if(k==='scanocr'&&typeof window._scanOcrText==='string')return{blob:new Blob([window._scanOcrText],{type:'text/plain'}),name:'scanned-text.txt',type:'text/plain'};
+  if(k==='password'&&window._lastGeneratedPassword)return{blob:new Blob([window._lastGeneratedPassword],{type:'text/plain'}),name:'password.txt',type:'text/plain'};
+}catch(e){console.warn(e)}const text=tnGetResultText();return text?{blob:new Blob([text],{type:'text/plain'}),name,type}:null}
+function tnSafeFilename(name,fallback){return String(name||fallback||'toolnova-result').trim().replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').slice(0,120)||fallback}
+function tnDownloadCurrent(){const info=tnOutputInfo();if(info){downloadBlob(info.blob,info.name);showToast('Downloaded');return}const btn=tnCurrentResultBox()?.querySelector('button[onclick*="download" i]');if(btn)btn.click();else showToast('No downloadable result yet')}
+function tnRenameCurrent(){const info=tnOutputInfo();if(!info){showToast('Create a result first');return}const dot=info.name.lastIndexOf('.'),base=dot>0?info.name.slice(0,dot):info.name,ext=dot>0?info.name.slice(dot):'';const entered=prompt('File name',base);if(entered===null)return;downloadBlob(info.blob,tnSafeFilename(entered,base)+ext);showToast('Downloaded with new name')}
+async function tnCopyCurrent(){const text=tnGetResultText();if(text){await navigator.clipboard.writeText(text);showToast('Result copied');return}const qr=document.querySelector('#qr-out canvas');if(qr&&navigator.clipboard&&window.ClipboardItem){qr.toBlob(async b=>{try{await navigator.clipboard.write([new ClipboardItem({'image/png':b})]);showToast('QR image copied')}catch(e){showToast('Copy is not supported here')}});return}showToast('Nothing to copy yet')}
+async function tnShareCurrent(){const info=tnOutputInfo(),title=tnPlainTitle(TOOLS[window.__tnCurrentToolKey]?.title||'Toolnova result');try{if(info&&navigator.share){const file=new File([info.blob],info.name,{type:info.type||info.blob.type||'application/octet-stream'});if(!navigator.canShare||navigator.canShare({files:[file]})){await navigator.share({title,files:[file]});return}}if(navigator.share){await navigator.share({title,text:tnGetResultText().slice(0,1000),url:location.href});return}await navigator.clipboard.writeText(location.href);showToast('Tool link copied')}catch(e){if(e&&e.name!=='AbortError')showToast('Sharing is not available in this browser')}}
+function tnPrintCurrent(){const box=tnCurrentResultBox();if(!box){showToast('Create a result first');return}const w=window.open('','_blank','noopener,noreferrer');if(!w){showToast('Allow pop-ups to print');return}const title=tnPlainTitle(TOOLS[window.__tnCurrentToolKey]?.title||'Toolnova Result');const clone=box.cloneNode(true);clone.querySelectorAll('button,.tn-result-suite').forEach(x=>x.remove());w.document.write(`<html><head><title>${title}</title><style>body{font-family:Arial,sans-serif;padding:32px;color:#111827}img{max-width:100%}.result-box{border:1px solid #ddd;border-radius:16px;padding:22px}textarea{width:100%;min-height:280px}</style></head><body><h1>${title}</h1>${clone.outerHTML}</body></html>`);w.document.close();setTimeout(()=>w.print(),250)}
+function tnResultNextChips(){const k=window.__tnCurrentToolKey;return (TN_RELATED[k]||[]).slice(0,3).map(x=>TOOLS[x]?`<button class="tn-next-chip" type="button" onclick="tnOpenRelated('${x}')">${tnToolIcon(TOOLS[x].title)} ${tnPlainTitle(TOOLS[x].title)}</button>`:'').join('')}
+function tnEnhanceResultBox(box){if(!box||box.dataset.tnEnhanced||box.querySelector('.progress-wrap'))return;const txt=box.textContent||'';if(/error|could not|invalid|loading|reading|rendering|building|converting|extracting|optimizing/i.test(txt)&&!box.classList.contains('green')&&!box.querySelector('.result-value,textarea'))return;box.dataset.tnEnhanced='1';box.classList.add('tn-result-enhanced');const info=tnOutputInfo(),size=info&&info.blob?fmtSize(info.blob.size):'Ready';const suite=document.createElement('div');suite.className='tn-result-suite';suite.innerHTML=`<div class="tn-result-top"><div class="tn-result-status"><span class="tn-success-mark">✓</span><div><strong>Result ready</strong><small>Review it, then choose what to do next.</small></div></div><span class="tn-output-meta">${size} · processed locally when supported</span></div><div class="tn-action-grid"><button class="tn-action primary" type="button" onclick="tnDownloadCurrent()">↓ Download</button><button class="tn-action" type="button" onclick="tnRenameCurrent()">✎ Rename</button><button class="tn-action" type="button" onclick="tnCopyCurrent()">⧉ Copy</button><button class="tn-action" type="button" onclick="tnShareCurrent()">↗ Share</button><button class="tn-action" type="button" onclick="tnPrintCurrent()">⌁ Print</button><button class="tn-action" type="button" onclick="tnResetCurrentTool()">↻ New task</button></div><div class="tn-next-row"><span class="tn-next-label">Continue with</span>${tnResultNextChips()||'<button class="tn-next-chip" onclick="closeTool()">Browse all tools</button>'}</div>`;box.appendChild(suite);tnSetStep(3)}
+function tnScanForResults(){const stage=document.getElementById('tn-tool-stage');if(!stage)return;stage.querySelectorAll('.result-box').forEach(tnEnhanceResultBox);const qr=document.querySelector('#qr-out');if(qr&&qr.querySelector('canvas')&&!qr.dataset.tnEnhanced){qr.dataset.tnEnhanced='1';const wrap=document.createElement('div');wrap.className='result-box green';wrap.innerHTML='<div class="result-label">QR code ready</div>';while(qr.firstChild)wrap.appendChild(qr.firstChild);qr.appendChild(wrap);setTimeout(()=>tnEnhanceResultBox(wrap),0)}}
+function tnStartResultObserver(){if(window.__tnResultObserver)window.__tnResultObserver.disconnect();const stage=document.getElementById('tn-tool-stage');if(!stage)return;window.__tnResultObserver=new MutationObserver(()=>{clearTimeout(window.__tnResultScanTimer);window.__tnResultScanTimer=setTimeout(tnScanForResults,30)});window.__tnResultObserver.observe(stage,{childList:true,subtree:true});setTimeout(tnScanForResults,60)}
+
 // ── MODAL ENGINE ──────────────────────────────────────────────────────────────
 const TOOL_NOTICES = {
   bmi:'Health result estimate only; not medical advice.',
@@ -1356,43 +1638,31 @@ const TOOL_NOTICES = {
   water:'Health result estimate only; not medical advice.',
   loan:'Financial estimate only. Lender fees, taxes and terms can change the actual cost.',
   currency:'Approximate static rates only. Confirm current rates with a bank or trusted market source.',
-  pdf2word:'Text-focused conversion. Complex layouts, fonts and scanned pages may not be preserved.',
+  pdf2word:'Creates a real .docx file from extracted text. Complex layouts, fonts, images and scanned pages may not be preserved.',
   word2pdf:'Text-focused conversion. Complex Word formatting may not be preserved.',
-  pdf2excel:'Extracts detected text rows to CSV for use in spreadsheet software; review the output carefully.'
+  pdf2excel:'Creates a real .xlsx workbook from detected text rows. Complex tables and scanned PDFs may require OCR or manual cleanup.'
 };
 
 async function openTool(key){
   const tool=TOOLS[key]; if(!tool) return;
+  window.__tnCurrentToolKey=key;
   const modal=document.getElementById('modal-content');
   const overlay=document.getElementById('overlay');
+  const meta=tnMeta(key);
   modal.classList.remove('fullscreen');
-  const needsLibs = PDF_TOOL_KEYS.has(key) || key==='ocr' || key==='qr';
+  modal.style.setProperty('--tn-tool-accent',meta.accent);
+  const needsLibs = PDF_TOOL_KEYS.has(key) || ['ocr','scanocr','docscanner','qr'].includes(key);
   const notice = TOOL_NOTICES[key] ? `<div class="tool-notice">${TOOL_NOTICES[key]}</div>` : '';
-  modal.innerHTML=`
-    <button class="modal-fullscreen-btn" id="fs-btn" type="button" onclick="toggleModalFullscreen()" title="Full screen" aria-label="Open tool in full screen">⛶</button>
-    <button class="modal-close" type="button" onclick="closeTool()" aria-label="Close tool">✕</button>
-    <h2 id="modal-title">${tool.title}</h2>
-    <div class="modal-sub">${tool.sub}</div>
-    ${needsLibs ? '<div id="tool-loading" style="text-align:center;padding:32px 0;color:var(--muted);font-size:13px;">Loading tool…</div>' : tool.render()}
-    ${notice}
-  `;
-  overlay.classList.add('active');
-  overlay.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-  document.title = tool.title.replace(/^[^A-Za-z0-9]+/, '') + ' | Toolnova';
-  modal.focus({preventScroll:true});
+  const loading='<div id="tool-loading" style="text-align:center;padding:48px 0;color:#667085;font-size:13px;"><div style="width:42px;height:42px;border-radius:14px;background:'+meta.soft+';display:grid;place-items:center;margin:0 auto 12px;color:'+meta.accent+'">✦</div><strong style="display:block;color:#344054;margin-bottom:4px">Preparing secure workspace…</strong>Loading only the browser libraries this tool needs.</div>';
+  modal.innerHTML=`<button class="modal-fullscreen-btn" id="fs-btn" type="button" onclick="toggleModalFullscreen()" title="Full screen" aria-label="Open tool in full screen">⛶</button><button class="modal-close" type="button" onclick="closeTool()" aria-label="Close tool">✕</button>${tnShellMarkup(key,tool,needsLibs?loading:tool.render(),notice)}`;
+  overlay.classList.add('active'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  document.title = tnPlainTitle(tool.title) + ' | Toolnova'; modal.focus({preventScroll:true});
   if(needsLibs){
-    try{
-      await ensureLibsForTool(key);
-      const loadingEl=document.getElementById('tool-loading');
-      if(loadingEl) loadingEl.outerHTML=tool.render();
-    }catch(err){
-      const loadingEl=document.getElementById('tool-loading');
-      if(loadingEl) loadingEl.innerHTML='<div class="result-box" style="color:#c0392b;">This tool could not load its browser library. Check your connection and try again.</div>';
-      console.error(err);
-    }
+    try{await ensureLibsForTool(key);const loadingEl=document.getElementById('tool-loading');if(loadingEl)loadingEl.outerHTML=tool.render();}
+    catch(err){const loadingEl=document.getElementById('tool-loading');if(loadingEl)loadingEl.innerHTML='<div class="result-box" style="color:#c0392b;">This tool could not load its browser library. Check your connection and try again.</div>';console.error(err)}
   }
   if(tool.init) tool.init();
+  tnSetStep(1); tnStartResultObserver();
 }
 function toggleModalFullscreen(){
   const modal=document.getElementById('modal-content');
@@ -1401,6 +1671,7 @@ function toggleModalFullscreen(){
   if(btn){ btn.textContent = isFull ? '⤡' : '⛶'; btn.title = isFull ? 'Exit full screen' : 'Full screen'; }
 }
 function closeTool(updateUrl=true){
+  if(window.__tnResultObserver){window.__tnResultObserver.disconnect();window.__tnResultObserver=null;}
   const overlay=document.getElementById('overlay');
   overlay.classList.remove('active');
   overlay.setAttribute('aria-hidden','true');
@@ -1427,6 +1698,7 @@ const TOOL_SEARCH_ALIASES = {
   pdf2text:'pdf to text pdf to txt extract text copy words from pdf pdf to txt convert pdf to text pdf text extractor copy text from pdf pdf document to text download pdf as txt read pdf text plain text from pdf convert digital pdf to text free pdf to text online pdf text extractor pdftotext pdf converter document converter free pdf converter online pdf converter pdf convertor convert pdf online document conversion tools how to extract text from pdf',
   ocr:'image to text photo to text picture to text screenshot to text jpg to text png to text ocr copy words from image image to text converter ocr image to text jpg to text jpeg to text png to text extract text from image copy text from image recognize text from image image ocr online ocr free ocr photo ocr screenshot ocr ocr scanner scan text optical character recognition image recognition text extractor scan to text document scanner searchable pdf recognize text what is ocr how does ocr work how to extract text from an image how to copy text from screenshot how to convert photo to text ocr vs pdf text extraction best free ocr online private browser based ocr image to text without signup ocr accuracy tips how to improve ocr results',
   scanocr:'scanned pdf to text pdf ocr searchable pdf scan document text ocr pdf pdf ocr scan pdf to text scanned document ocr make pdf searchable searchable pdf converter recognize text in pdf copy text from scanned pdf scanned pdf text extractor ocr scanned document pdf text recognition free pdf ocr online pdf ocr convert scanned pdf to editable text document scanner how to extract text from scanned pdf how to make scanned pdf searchable',
+  docscanner:'document scanner scan document phone camera scan to pdf mobile scanner receipt scanner document camera scan pages searchable pdf camera to pdf OCR scan to text crop deskew enhance black white multi page scanner',
   merge:'merge pdf combine pdf join pdf put pdfs together multiple pdf one file merge pdf online combine pdf files join pdf pdf merger pdf combiner merge multiple pdfs combine documents append pdf files put pdfs together multiple pdfs into one combine pdf pages free pdf merger online pdf merger merge pdfs without signup merge pdfs privately merge pdfs combine pdfs pdf editor modify pdf manage pdf pages pdf page tools pdf editing tools pdf organizer how to merge pdf files online how to combine multiple pdfs',
   split:'split pdf separate pdf divide pdf extract range cut pdf pages split pdf online divide pdf pdf splitter break pdf into pages split pdf by page split pdf by page range separate pdf file save individual pdf pages divide large pdf free pdf splitter online pdf splitter split pdfs pdf editor modify pdf manage pdf pages pdf page tools pdf editing tools pdf organizer how to split a large pdf',
   compress:'compress pdf reduce pdf size shrink pdf make pdf smaller optimize pdf email compress pdf online reduce pdf size pdf compressor reduce pdf file size compress pdf without losing quality optimize pdf small pdf file compress pdf for email compress document lower pdf size free pdf compressor online pdf compressor pdf size reducer compres pdf compress pdfs pdf compresser pdf editor modify pdf manage pdf pages pdf page tools pdf editing tools pdf organizer how to compress pdf without losing quality how to reduce pdf size for email',
@@ -1735,9 +2007,13 @@ const TOOLS={
   },
 
   split:{
-    title:'✂️ Split PDF',sub:'Pick pages or a range to extract into a new PDF',
-    render:()=>fileDropzone('split-file','application/pdf',false)+`<div id="split-list"></div><div id="split-options" style="display:none;"><label>Pages (e.g. 1-3,5,7)</label><input type="text" id="split-range" placeholder="1-3,5"><button class="btn" onclick="doSplitPDF()">Split PDF</button></div><div id="split-out"></div>`,
-    init(){ setupDropzone('split-file','split-list','split-options',false,'application/pdf'); }
+    title:'✂️ Split & Extract PDF Pages',sub:'Upload one or more PDFs, choose exact pages visually, then download one PDF or a ZIP',
+    render:()=>fileDropzone('split-file','application/pdf',true)+`<div id="split-list"></div><div id="split-options" style="display:none;">
+      <div id="split-workspace" class="split-workspace"></div>
+      <div class="row" style="margin-top:14px;"><div><label>Output</label><select id="split-mode"><option value="combined">All selected pages → one PDF</option><option value="perfile">One PDF per source file → ZIP</option><option value="singlepages">Each selected page → ZIP</option></select></div><div><label>Output name</label><input id="split-name" value="toolnova-selected-pages" maxlength="80"></div></div>
+      <button class="btn" id="split-btn" onclick="doSplitPDF()">Create Download</button>
+    </div><div id="split-out"></div>`,
+    init(){ setupDropzone('split-file','split-list','split-options',true,'application/pdf',renderAdvancedSplitWorkspace); }
   },
 
   compress:{
@@ -1822,9 +2098,9 @@ const TOOLS={
   },
 
   img2pdf:{
-    title:'🖼️ Image to PDF',sub:'Combine JPG/PNG images into a single PDF — drag to reorder',
-    render:()=>fileDropzone('i2p-files','image/*',true)+`<div id="i2p-list"></div><button class="btn" id="i2p-btn" style="display:none;margin-top:10px;" onclick="doImagesToPDF()">Create PDF</button><div id="i2p-out"></div>`,
-    init(){ setupDropzone('i2p-files','i2p-list','i2p-btn',true,'image/*'); }
+    title:'🖼️ Image to PDF',sub:'Combine images into a polished PDF with page, fit and margin controls',
+    render:()=>fileDropzone('i2p-files','image/*',true)+`<div id="i2p-list"></div><div class="tn-options-card" id="i2p-options" style="display:none"><div class="tn-options-head"><span class="tn-options-title">PDF layout</span><span class="tn-options-badge">Advanced</span></div><div class="row"><div><label>Page size</label><select id="i2p-size"><option value="auto">Match each image</option><option value="a4">A4</option><option value="letter">US Letter</option></select></div><div><label>Orientation</label><select id="i2p-orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div><div class="row"><div><label>Margin</label><select id="i2p-margin"><option value="0">None</option><option value="18">Small</option><option value="36" selected>Normal</option><option value="54">Wide</option></select></div><div><label>Image fit</label><select id="i2p-fit"><option value="contain">Fit whole image</option><option value="cover">Fill page</option></select></div></div></div><button class="btn" id="i2p-btn" style="display:none;margin-top:10px" onclick="doImagesToPDF()">Create professional PDF</button><div id="i2p-out"></div>`,
+    init(){ setupDropzone('i2p-files','i2p-list','i2p-btn',true,'image/*',(files)=>{const o=document.getElementById('i2p-options');if(o)o.style.display=files.length?'':'none'}); }
   },
 
   pdf2jpg:{
@@ -1857,21 +2133,32 @@ const TOOLS={
     init(){ setupDropzone('socr-file','socr-list','socr-btn',false,'application/pdf'); }
   },
 
+  docscanner:{
+    title:'📷 Document Scanner',sub:'Use your phone camera or photos to build a clean, searchable multi-page PDF',
+    render:()=>`<div class="tn-scanner-capture"><label class="tn-capture-card"><span class="tn-capture-icon">📷</span><strong>Open camera</strong><span>Capture a document page with the rear camera.</span><input type="file" id="scanner-camera" accept="image/*" capture="environment"></label><label class="tn-capture-card"><span class="tn-capture-icon">🖼️</span><strong>Choose photos</strong><span>Add one or many existing document images.</span><input type="file" id="scanner-images" accept="image/*" multiple></label></div>
+      <div class="tn-options-card"><div class="tn-options-head"><span class="tn-options-title">Scan settings</span><span class="tn-options-badge">Live preview</span></div><div class="row"><div><label>Enhancement</label><select id="scanner-mode" onchange="renderScannerPages()"><option value="document">Document enhance</option><option value="original">Original</option><option value="bw">Black & white</option></select></div><div><label>OCR language</label><select id="scanner-lang"><option value="eng">English</option><option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option><option value="tur">Turkish</option></select></div></div>
+      <div class="row" style="margin-top:2px;"><div><label>Brightness <span id="scanner-bright-val" style="color:var(--muted);font-weight:600;">0</span></label><input type="range" id="scanner-bright" min="-60" max="60" value="7" oninput="document.getElementById('scanner-bright-val').textContent=this.value;renderScannerPages()" style="width:100%;"></div><div><label>Contrast <span id="scanner-contrast-val" style="color:var(--muted);font-weight:600;">1.24</span></label><input type="range" id="scanner-contrast" min="80" max="220" value="124" oninput="document.getElementById('scanner-contrast-val').textContent=(this.value/100).toFixed(2);renderScannerPages()" style="width:100%;"></div></div>
+      <label style="text-transform:none;letter-spacing:0;font-size:12px;display:flex;align-items:center;gap:8px;margin:10px 0 0"><input type="checkbox" id="scanner-ocr" checked> Make the exported PDF searchable with an OCR text layer</label></div>
+      <div id="scanner-grid" class="scanner-grid"></div><div id="scanner-status" class="scanner-status"></div><button class="btn" id="scanner-export" style="display:none;margin-top:12px" onclick="exportScannedPDF()">Create searchable PDF</button><div id="scanner-out"></div>
+      <div id="scanner-crop-overlay" class="scanner-crop-overlay" style="display:none;"><div class="scanner-crop-box"><div class="scanner-crop-head"><strong>Straighten &amp; crop this page</strong><span>Drag the 4 corners to match the document's edges, then apply.</span></div><div id="scanner-crop-stage" class="scanner-crop-stage"></div><div class="scanner-crop-actions"><button class="btn btn-sec" type="button" onclick="scannerResetCorners()">Reset corners</button><button class="btn btn-sec" type="button" onclick="scannerCloseCrop()">Cancel</button><button class="btn" type="button" onclick="scannerApplyCrop()">Apply straighten &amp; crop</button></div></div></div>`,
+    init(){ initDocumentScanner(); }
+  },
+
   pdf2word:{
-    title:'📄 PDF to Word',sub:'Extract text from your PDF into an editable .doc file',
+    title:'📄 PDF to Word',sub:'Turn selectable PDF text into a clean, editable Word (.docx) document',
     render:()=>fileDropzone('p2w-file','application/pdf',false)+`<div id="p2w-list"></div><button class="btn" id="p2w-btn" style="display:none;margin-top:10px;" onclick="doPdfToWord()">Convert to Word</button><div id="p2w-out"></div><p style="color:var(--muted);font-size:11px;margin-top:10px;">* Extracts text content; original visual layout/images are not preserved.</p>`,
     init(){ setupDropzone('p2w-file','p2w-list','p2w-btn',false,'application/pdf'); }
   },
 
   word2pdf:{
     title:'📝 Word to PDF',sub:'Convert a .docx file to PDF',
-    render:()=>fileDropzone('w2p-file','.docx','false')+`<div id="w2p-list"></div><button class="btn" id="w2p-btn" style="display:none;margin-top:10px;" onclick="doWordToPdf()">Convert to PDF</button><div id="w2p-out"></div><p style="color:var(--muted);font-size:11px;margin-top:10px;">* Converts text content; complex formatting/images may not be preserved.</p>`,
+    render:()=>fileDropzone('w2p-file','.docx',false)+`<div id="w2p-list"></div><button class="btn" id="w2p-btn" style="display:none;margin-top:10px;" onclick="doWordToPdf()">Convert to PDF</button><div id="w2p-out"></div><p style="color:var(--muted);font-size:11px;margin-top:10px;">* Converts text content; complex formatting/images may not be preserved.</p>`,
     init(){ setupDropzone('w2p-file','w2p-list','w2p-btn',false,'.docx'); }
   },
 
   pdf2excel:{
-    title:'📊 PDF to Excel',sub:'Extract text/tables from a PDF into a .csv file',
-    render:()=>fileDropzone('p2e-file','application/pdf',false)+`<div id="p2e-list"></div><button class="btn" id="p2e-btn" style="display:none;margin-top:10px;" onclick="doPdfToExcel()">Convert to CSV</button><div id="p2e-out"></div><p style="color:var(--muted);font-size:11px;margin-top:10px;">* Best with PDFs containing simple tabular data.</p>`,
+    title:'📊 PDF to Excel',sub:'Extract detected rows into a real Excel (.xlsx) workbook for editing and analysis',
+    render:()=>fileDropzone('p2e-file','application/pdf',false)+`<div id="p2e-list"></div><button class="btn" id="p2e-btn" style="display:none;margin-top:10px;" onclick="doPdfToExcel()">Convert to Excel</button><div id="p2e-out"></div><p style="color:var(--muted);font-size:11px;margin-top:10px;">* Best with PDFs containing simple tabular data.</p>`,
     init(){ setupDropzone('p2e-file','p2e-list','p2e-btn',false,'application/pdf'); }
   },
 
@@ -1901,8 +2188,11 @@ function generatePW(){
   if(document.getElementById('pw-u').checked)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   if(document.getElementById('pw-n').checked)chars+='0123456789';
   if(document.getElementById('pw-s').checked)chars+='!@#$%^&*()_+-=[]{}|;:,.?';
-  let pw='';for(let i=0;i<len;i++)pw+=chars[Math.floor(Math.random()*chars.length)];
-  document.getElementById('pw-out').innerHTML=`<div class="result-box" style="margin-top:16px;font-family:monospace;font-size:15px;word-break:break-all;"><div class="result-label">Password</div><div style="color:var(--accent);font-weight:700;margin:6px 0;">${pw}</div><button class="btn btn-sec" onclick="navigator.clipboard.writeText('${pw}');this.textContent='✓ Copied!'">Copy</button></div>`;
+  const values=new Uint32Array(len);
+  crypto.getRandomValues(values);
+  let pw=''; for(let i=0;i<len;i++) pw+=chars[values[i]%chars.length];
+  window._lastGeneratedPassword=pw;
+  document.getElementById('pw-out').innerHTML=`<div class="result-box" style="margin-top:16px;font-family:monospace;font-size:15px;word-break:break-all;"><div class="result-label">Password</div><div style="color:var(--accent);font-weight:700;margin:6px 0;">${escapeHtml(pw)}</div><button class="btn btn-sec" onclick="navigator.clipboard.writeText(window._lastGeneratedPassword);this.textContent='✓ Copied!'">Copy</button></div>`;
 }
 
 // ── COLOR ─────────────────────────────────────────────────────────────────────
@@ -2285,64 +2575,36 @@ function fmtSize(b){
 }
 
 // Generates the HTML for a dropzone + hidden file input
+function tnAcceptLabel(accept){if(accept==='application/pdf')return 'PDF';if(accept==='.docx')return 'DOCX';if(String(accept).includes('image'))return 'JPG · PNG · WEBP';return String(accept).replace(/\*/g,'').toUpperCase()}
+function tnUploadIcon(accept){if(accept==='application/pdf')return '📄';if(accept==='.docx')return '📝';if(String(accept).includes('image'))return '🖼️';return '📁'}
 function fileDropzone(id, accept, multiple){
-  return `<div class="dropzone" id="${id}-zone">
-    <span class="dropzone-icon">📁</span>
-    <div class="dropzone-text">Click to upload or drag & drop</div>
-    <div class="dropzone-sub">${multiple?'You can select multiple files':'Select a file'} — ${accept==='application/pdf'?'PDF':accept==='.docx'?'DOCX':accept.includes('image')?'JPG, PNG, WEBP':accept}</div>
-    <input type="file" id="${id}" accept="${accept}" ${multiple?'multiple':''}>
-  </div>`;
+  const label=tnAcceptLabel(accept),icon=tnUploadIcon(accept);
+  return `<div class="dropzone" id="${id}-zone"><span class="dropzone-icon">${icon}</span><div class="dropzone-text">Drop ${multiple?'your files':'a file'} here</div><div class="dropzone-sub">or click anywhere in this area to browse from your device</div><div class="tn-upload-cta">＋ Choose ${multiple?'files':'file'}</div><div class="tn-format-row"><span>${label}</span><span>${multiple?'Multiple files':'Single file'}</span><span>Private processing</span></div><input type="file" id="${id}" accept="${accept}" ${multiple?'multiple':''}></div>`;
 }
 
 // Wires up a dropzone: drag/drop, click-to-upload, file chip list, reveal target button/panel.
 // onFilesReady(files) optional extra callback fired after files stored.
+function tnFileMatchesAccept(file,accept){if(!accept||accept==='*/*')return true;if(accept==='application/pdf')return file.type==='application/pdf'||/\.pdf$/i.test(file.name);if(accept==='.docx')return /\.docx$/i.test(file.name);if(accept.includes('image'))return file.type.startsWith('image/');return true}
 function setupDropzone(inputId, listId, revealId, multiple, accept, onFilesReady){
-  const zone=document.getElementById(inputId+'-zone');
-  const input=document.getElementById(inputId);
-  const list=document.getElementById(listId);
-  if(!zone||!input)return;
-  zone._files=[];
-
+  const zone=document.getElementById(inputId+'-zone'),input=document.getElementById(inputId),list=document.getElementById(listId);if(!zone||!input)return;zone._files=[];
   function renderList(){
-    list.innerHTML=zone._files.map((f,i)=>`
-      <div class="file-chip">
-        <span class="fc-icon">${f.type.includes('pdf')?'📄':f.type.includes('image')?'🖼️':'📝'}</span>
-        <span class="fc-name">${f.name}</span>
-        <span class="fc-size">${fmtSize(f.size)}</span>
-        <span class="fc-x" onclick="removeDzFile('${inputId}','${listId}','${revealId||''}',${i})">✕</span>
-      </div>`).join('');
-    if(revealId){
-      const rev=document.getElementById(revealId);
-      if(rev) rev.style.display = zone._files.length ? '' : 'none';
-    }
+    list.innerHTML=zone._files.map((f,i)=>{const isImg=f.type.startsWith('image/'),visual=isImg&&f._tnPreview?`<img src="${f._tnPreview}" alt="">`:`<span>${f.type.includes('pdf')?'📄':isImg?'🖼️':'📝'}</span>`;return `<div class="file-chip" draggable="${multiple?'true':'false'}" data-index="${i}"><span class="fc-visual">${visual}</span><span class="fc-meta"><span class="fc-name" title="${escapeHtml(f.name)}">${escapeHtml(f.name)}</span><span class="fc-ready">● Ready to process${multiple?' · drag to reorder':''}</span></span><span class="fc-size">${fmtSize(f.size)}</span><span class="fc-x" role="button" tabindex="0" aria-label="Remove ${escapeHtml(f.name)}" onclick="removeDzFile('${inputId}','${listId}','${revealId||''}',${i})">✕</span></div>`}).join('')+(multiple&&zone._files.length>1?'<div class="tn-reorder-hint">Tip: drag files to change their processing order.</div>':'');
+    if(multiple){let dragIndex=null;list.querySelectorAll('.file-chip[draggable="true"]').forEach(chip=>{chip.addEventListener('dragstart',()=>{dragIndex=+chip.dataset.index;chip.classList.add('dragging')});chip.addEventListener('dragend',()=>{chip.classList.remove('dragging');list.querySelectorAll('.file-chip').forEach(x=>x.classList.remove('drag-target'))});chip.addEventListener('dragover',e=>{e.preventDefault();chip.classList.add('drag-target')});chip.addEventListener('dragleave',()=>chip.classList.remove('drag-target'));chip.addEventListener('drop',e=>{e.preventDefault();const to=+chip.dataset.index;if(dragIndex===null||dragIndex===to)return;const [moved]=zone._files.splice(dragIndex,1);zone._files.splice(to,0,moved);renderList();if(onFilesReady)onFilesReady(zone._files,inputId)})})}
+    if(revealId){const rev=document.getElementById(revealId);if(rev)rev.style.display=zone._files.length?'':'none'}if(zone._files.length)tnSetStep(2)
   }
   window['_dzRender_'+inputId]=renderList;
-
-  function addFiles(fl){
-    const arr=Array.from(fl);
-    if(!multiple){ zone._files=arr.slice(0,1); }
-    else { zone._files=zone._files.concat(arr); }
-    renderList();
-    if(onFilesReady) onFilesReady(zone._files, inputId);
-  }
-
-  input.addEventListener('change', e=>{ if(e.target.files.length) addFiles(e.target.files); e.target.value=''; });
-  zone.addEventListener('dragover', e=>{ e.preventDefault(); zone.classList.add('dragover'); });
-  zone.addEventListener('dragleave', ()=> zone.classList.remove('dragover'));
-  zone.addEventListener('drop', e=>{
-    e.preventDefault(); zone.classList.remove('dragover');
-    if(e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
-  });
-
-  zone.getFiles = ()=> zone._files;
+  function addFiles(fl){let arr=Array.from(fl).filter(f=>{const ok=tnFileMatchesAccept(f,accept);if(!ok)showToast(`Unsupported file: ${f.name}`);return ok});if(!arr.length)return;arr.forEach(f=>{if(f.type.startsWith('image/')&&!f._tnPreview){try{f._tnPreview=URL.createObjectURL(f)}catch(e){}}});if(!multiple)zone._files=arr.slice(0,1);else{const sig=new Set(zone._files.map(f=>f.name+'|'+f.size+'|'+f.lastModified));arr=arr.filter(f=>!sig.has(f.name+'|'+f.size+'|'+f.lastModified));zone._files=zone._files.concat(arr)}renderList();if(onFilesReady)onFilesReady(zone._files,inputId)}
+  input.addEventListener('change',e=>{if(e.target.files.length)addFiles(e.target.files);e.target.value=''});zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('dragover')});zone.addEventListener('dragleave',()=>zone.classList.remove('dragover'));zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');if(e.dataTransfer.files.length)addFiles(e.dataTransfer.files)});zone.getFiles=()=>zone._files;
 }
 
 function removeDzFile(inputId, listId, revealId, idx){
   const zone=document.getElementById(inputId+'-zone');
+  const removed=zone._files[idx]; if(removed&&removed._tnPreview){try{URL.revokeObjectURL(removed._tnPreview)}catch(e){}}
   zone._files.splice(idx,1);
   window['_dzRender_'+inputId]();
+  if(!zone._files.length)tnSetStep(1);
   if(zone._files.length===0){
-    ['merge-out','split-out','compress-out','rotate-out','del-out','ext-out','sign-out','txt-out','i2p-out','p2j-out','p2n-out','p2t-out','ocr-out','socr-out','p2w-out','w2p-out','p2e-out'].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML='';});
+    ['merge-out','split-out','compress-out','rotate-out','del-out','ext-out','sign-out','txt-out','i2p-out','p2j-out','p2n-out','p2t-out','ocr-out','socr-out','scanner-out','p2w-out','w2p-out','p2e-out'].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML='';});
   }
 }
 
@@ -2352,6 +2614,7 @@ function getFiles(inputId){
 }
 
 function downloadBlob(blob, filename){
+  window.__tnLastDownload={blob,filename};
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   a.href=url; a.download=filename; a.click();
@@ -2365,6 +2628,7 @@ function setProgress(id, pct){
   const b=document.getElementById(id+'-bar'); if(b) b.style.width=Math.min(100,pct)+'%';
 }
 function btnLoading(btn, text){
+  tnSetStep(2);
   btn._orig = btn._orig || btn.textContent;
   btn.disabled = true;
   btn.innerHTML = `<span class="spinner"></span>${text}`;
@@ -2442,33 +2706,88 @@ function parsePageRange(str, max){
   });
   return Array.from(pages).sort((a,b)=>a-b);
 }
-async function doSplitPDF(){
-  const files=getFiles('split-file');
-  if(!files.length){alert('Please upload a PDF.');return;}
-  const rangeStr=document.getElementById('split-range').value.trim();
-  if(!rangeStr){alert('Enter a page range, e.g. 1-3,5');return;}
-  const out=document.getElementById('split-out');
-  out.innerHTML=progressHTML('split-prog','Splitting PDF...');
+async function renderAdvancedSplitWorkspace(files){
+  const host=document.getElementById('split-workspace');
+  if(!host) return;
+  host.innerHTML='<div class="result-box">Loading page previews…</div>';
+  window._splitModel=[];
   try{
-    const { PDFDocument } = PDFLib;
-    const bytes = await fileToArrayBuffer(files[0]);
-    const src = await PDFDocument.load(bytes, {ignoreEncryption:true});
-    const max=src.getPageCount();
-    const pages=parsePageRange(rangeStr, max);
-    if(!pages.length){ out.innerHTML='<div class="result-box" style="color:#c0392b;">No valid pages found in that range.</div>'; return; }
-    setProgress('split-prog',40);
-    const newDoc = await PDFDocument.create();
-    const copied = await newDoc.copyPages(src, pages.map(p=>p-1));
-    copied.forEach(p=>newDoc.addPage(p));
-    setProgress('split-prog',90);
-    const outBytes = await newDoc.save();
-    setProgress('split-prog',100);
-    window._splitPdfBytes = outBytes;
-    out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Split Complete</div><div style="margin:10px 0;color:var(--muted);font-size:13px;">${pages.length} of ${max} pages extracted.</div><div id="split-preview"></div><button class="btn" style="margin-top:12px;" onclick="downloadBlob(new Blob([window._splitPdfBytes],{type:'application/pdf'}),'split.pdf');showToast('Downloaded!')">⬇ Download split.pdf</button></div>`;
-    renderPdfThumbPreview(outBytes, 'split-preview');
-  }catch(err){
-    out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${err.message||'Could not read this PDF.'}</div>`;
-  }
+    for(let fi=0; fi<files.length; fi++){
+      const file=files[fi];
+      const buf=await fileToArrayBuffer(file);
+      const pdf=await pdfjsLib.getDocument({data:buf.slice(0)}).promise;
+      const entry={file,buffer:buf,pageCount:pdf.numPages,selected:new Set(Array.from({length:pdf.numPages},(_,i)=>i+1)),canvases:[]};
+      window._splitModel.push(entry);
+      for(let p=1;p<=pdf.numPages;p++){
+        const page=await pdf.getPage(p);
+        const vp=page.getViewport({scale:0.28});
+        const c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+        await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+        entry.canvases.push(c.toDataURL('image/jpeg',0.72));
+      }
+    }
+    renderSplitModel();
+  }catch(err){ host.innerHTML=`<div class="result-box" style="color:#c0392b;">Could not build previews: ${escapeHtml(err.message||'Invalid PDF')}</div>`; }
+}
+function renderSplitModel(){
+  const host=document.getElementById('split-workspace'); if(!host) return;
+  const model=window._splitModel||[];
+  host.innerHTML=model.map((m,fi)=>`<section class="split-file-group"><div class="split-file-head"><div><div class="split-file-name">${escapeHtml(m.file.name)}</div><div style="font-size:11px;color:var(--muted);">${m.pageCount} pages · ${fmtSize(m.file.size)} · <span id="split-count-${fi}">${m.selected.size}</span> selected</div></div><div class="split-actions"><button class="mini-btn" type="button" onclick="splitSelectAll(${fi},true)">All</button><button class="mini-btn" type="button" onclick="splitSelectAll(${fi},false)">None</button><button class="mini-btn" type="button" onclick="splitInvert(${fi})">Invert</button></div></div><div style="display:flex;gap:7px;margin-top:9px;"><input id="split-range-${fi}" placeholder="Range: 1-3,5,7" style="margin:0;flex:1"><button class="mini-btn" type="button" onclick="splitApplyRange(${fi})">Apply range</button></div><div class="split-thumbs">${m.canvases.map((src,i)=>`<button type="button" class="split-thumb ${m.selected.has(i+1)?'selected':''}" data-fi="${fi}" data-page="${i+1}" onclick="toggleSplitPage(${fi},${i+1},this)" aria-pressed="${m.selected.has(i+1)}"><span class="split-check">${m.selected.has(i+1)?'✓':''}</span><img src="${src}" alt="Page ${i+1} preview" style="width:100%;display:block;border-radius:6px"><div class="split-page-label">Page ${i+1}</div></button>`).join('')}</div></section>`).join('');
+}
+function updateSplitCount(fi){const m=(window._splitModel||[])[fi];const el=document.getElementById('split-count-'+fi);if(el&&m)el.textContent=m.selected.size;}
+function toggleSplitPage(fi,page,btn){const m=window._splitModel[fi];if(m.selected.has(page))m.selected.delete(page);else m.selected.add(page);btn.classList.toggle('selected',m.selected.has(page));btn.setAttribute('aria-pressed',String(m.selected.has(page)));const ck=btn.querySelector('.split-check');if(ck)ck.textContent=m.selected.has(page)?'✓':'';updateSplitCount(fi);}
+function splitSelectAll(fi,on){const m=window._splitModel[fi];m.selected=new Set(on?Array.from({length:m.pageCount},(_,i)=>i+1):[]);renderSplitModel();}
+function splitInvert(fi){const m=window._splitModel[fi];const next=new Set();for(let p=1;p<=m.pageCount;p++)if(!m.selected.has(p))next.add(p);m.selected=next;renderSplitModel();}
+function splitApplyRange(fi){const m=window._splitModel[fi];const val=document.getElementById('split-range-'+fi).value.trim();const pages=parsePageRange(val,m.pageCount);m.selected=new Set(pages);renderSplitModel();}
+function safeBaseName(v){return (v||'toolnova-selected-pages').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,80)||'toolnova-selected-pages';}
+async function doSplitPDF(){
+  const model=window._splitModel||[];
+  if(!model.length){alert('Please upload one or more PDFs.');return;}
+  const selectedTotal=model.reduce((n,m)=>n+m.selected.size,0);
+  if(!selectedTotal){alert('Select at least one page.');return;}
+  const out=document.getElementById('split-out');
+  const btn=document.getElementById('split-btn');
+  btnLoading(btn,'Creating…'); out.innerHTML=progressHTML('split-prog','Building your download…');
+  const mode=document.getElementById('split-mode').value;
+  const name=safeBaseName(document.getElementById('split-name').value);
+  try{
+    const {PDFDocument}=PDFLib;
+    if(mode==='combined'){
+      const dest=await PDFDocument.create();
+      for(let fi=0;fi<model.length;fi++){
+        const m=model[fi]; const src=await PDFDocument.load(m.buffer.slice(0),{ignoreEncryption:true});
+        const indices=Array.from(m.selected).sort((a,b)=>a-b).map(p=>p-1);
+        const copied=await dest.copyPages(src,indices); copied.forEach(p=>dest.addPage(p));
+        setProgress('split-prog',10+(fi+1)/model.length*80);
+      }
+      const bytes=await dest.save(); window._splitPdfBytes=bytes; setProgress('split-prog',100);
+      out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ ${selectedTotal} selected pages ready</div><div id="split-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._splitPdfBytes],{type:'application/pdf'}),'${name}.pdf');showToast('Downloaded!')">⬇ Download ${name}.pdf</button></div>`;
+      renderPdfThumbPreview(bytes,'split-preview');
+    }else{
+      if(!window.JSZip) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+      const zip=new JSZip(); let completed=0;
+      if(mode==='perfile'){
+        for(let fi=0;fi<model.length;fi++){
+          const m=model[fi]; if(!m.selected.size)continue;
+          const src=await PDFDocument.load(m.buffer.slice(0),{ignoreEncryption:true}); const dest=await PDFDocument.create();
+          const indices=Array.from(m.selected).sort((a,b)=>a-b).map(p=>p-1); const copied=await dest.copyPages(src,indices);copied.forEach(p=>dest.addPage(p));
+          const bytes=await dest.save(); zip.file(`${safeBaseName(m.file.name.replace(/\.pdf$/i,''))}-selected.pdf`,bytes); completed++;
+          setProgress('split-prog',20+completed/model.length*65);
+        }
+      }else{
+        for(let fi=0;fi<model.length;fi++){
+          const m=model[fi]; const src=await PDFDocument.load(m.buffer.slice(0),{ignoreEncryption:true});
+          for(const pageNo of Array.from(m.selected).sort((a,b)=>a-b)){
+            const dest=await PDFDocument.create(); const [page]=await dest.copyPages(src,[pageNo-1]);dest.addPage(page);const bytes=await dest.save();
+            zip.file(`${safeBaseName(m.file.name.replace(/\.pdf$/i,''))}-page-${pageNo}.pdf`,bytes); completed++; setProgress('split-prog',15+completed/selectedTotal*75);
+          }
+        }
+      }
+      const blob=await zip.generateAsync({type:'blob'});window._splitZipBlob=blob;setProgress('split-prog',100);
+      out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ ZIP ready</div><div style="margin:8px 0;color:var(--muted);font-size:13px;">${selectedTotal} selected page${selectedTotal===1?'':'s'} processed.</div><button class="btn" onclick="downloadBlob(window._splitZipBlob,'${name}.zip');showToast('Downloaded!')">⬇ Download ${name}.zip</button></div>`;
+    }
+  }catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not process the selected pages.')}</div>`;}
+  btnReset(btn);
 }
 
 // ── COMPRESS PDF ──────────────────────────────────────────────────────────────
@@ -2958,34 +3277,10 @@ async function doAddTextToPDF(){
 
 // ── IMAGES → PDF ──────────────────────────────────────────────────────────────
 async function doImagesToPDF(){
-  const files=getFiles('i2p-files');
-  if(!files.length){alert('Please add at least 1 image.');return;}
-  const btn=document.getElementById('i2p-btn');
-  const out=document.getElementById('i2p-out');
-  btnLoading(btn,'Creating PDF...');
-  out.innerHTML=progressHTML('i2p-prog','Building PDF...');
-  try{
-    const { PDFDocument } = PDFLib;
-    const doc=await PDFDocument.create();
-    for(let i=0;i<files.length;i++){
-      const f=files[i];
-      const bytes=await fileToArrayBuffer(f);
-      let img;
-      if(f.type.includes('png')) img=await doc.embedPng(bytes);
-      else img=await doc.embedJpg(await convertToJpegBytes(f));
-      const page=doc.addPage([img.width,img.height]);
-      page.drawImage(img,{x:0,y:0,width:img.width,height:img.height});
-      setProgress('i2p-prog',(i+1)/files.length*90);
-    }
-    const outBytes=await doc.save();
-    setProgress('i2p-prog',100);
-    window._i2pBytes=outBytes;
-    out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ PDF Created (${files.length} pages)</div><div id="i2p-preview"></div><button class="btn" style="margin-top:12px;" onclick="downloadBlob(new Blob([window._i2pBytes],{type:'application/pdf'}),'images.pdf');showToast('Downloaded!')">⬇ Download images.pdf</button></div>`;
-    renderPdfThumbPreview(outBytes, 'i2p-preview');
-  }catch(err){
-    out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${err.message}</div>`;
-  }
-  btnReset(btn);
+  const files=getFiles('i2p-files');if(!files.length){alert('Please add at least one image.');return}const btn=document.getElementById('i2p-btn'),out=document.getElementById('i2p-out');btnLoading(btn,'Creating PDF…');out.innerHTML=progressHTML('i2p-prog','Building pages…');
+  try{const {PDFDocument}=PDFLib,doc=await PDFDocument.create(),sizeOpt=document.getElementById('i2p-size')?.value||'auto',orient=document.getElementById('i2p-orient')?.value||'auto',margin=+(document.getElementById('i2p-margin')?.value||0),fit=document.getElementById('i2p-fit')?.value||'contain';
+    for(let i=0;i<files.length;i++){const file=files[i],bytes=new Uint8Array(await file.arrayBuffer()),isPng=file.type.includes('png'),img=isPng?await doc.embedPng(bytes):await doc.embedJpg(bytes);let pw=img.width,ph=img.height;if(sizeOpt==='a4'){pw=595.28;ph=841.89}else if(sizeOpt==='letter'){pw=612;ph=792}if(orient==='landscape'&&ph>pw)[pw,ph]=[ph,pw];if(orient==='portrait'&&pw>ph)[pw,ph]=[ph,pw];const page=doc.addPage([pw,ph]),availW=Math.max(1,pw-margin*2),availH=Math.max(1,ph-margin*2),scale=fit==='cover'?Math.max(availW/img.width,availH/img.height):Math.min(availW/img.width,availH/img.height),dw=img.width*scale,dh=img.height*scale;page.drawImage(img,{x:(pw-dw)/2,y:(ph-dh)/2,width:dw,height:dh});setProgress('i2p-prog',((i+1)/files.length)*90)}const outBytes=await doc.save();window._i2pBytes=outBytes;setProgress('i2p-prog',100);out.innerHTML=`<div class="result-box green"><div class="result-label">✓ Professional PDF created · ${files.length} page${files.length===1?'':'s'}</div><div id="i2p-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._i2pBytes],{type:'application/pdf'}),'images.pdf');showToast('Downloaded!')">↓ Download images.pdf</button></div>`;renderPdfThumbPreview(outBytes,'i2p-preview')
+  }catch(err){out.innerHTML=`<div class="result-box" style="color:#c0392b">Error: ${escapeHtml(err.message||'Could not create PDF.')}</div>`}btnReset(btn)
 }
 // Helper: ensure non-JPEG raster images (e.g. webp) get converted to real JPEG bytes for pdf-lib
 async function convertToJpegBytes(file){
@@ -3152,28 +3447,160 @@ async function doScanOCR(){
   btnReset(btn);
 }
 
-// ── PDF → WORD (text-based .doc) ──────────────────────────────────────────────
-async function doPdfToWord(){
-  const files=getFiles('p2w-file');
-  if(!files.length){alert('Please upload a PDF.');return;}
-  const btn=document.getElementById('p2w-btn');
-  const out=document.getElementById('p2w-out');
-  btnLoading(btn,'Converting...');
-  out.innerHTML=progressHTML('p2w-prog','Extracting content...');
-  try{
-    const text=await extractTextFromPdf(files[0], pct=>setProgress('p2w-prog',pct));
-    const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-      <head><meta charset="utf-8"><title>Document</title></head>
-      <body>${text.split('\n\n').map(p=>`<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('')}</body></html>`;
-    const blob=new Blob(['\ufeff', html], {type:'application/msword'});
-    window._wordBlob=blob;
-    setProgress('p2w-prog',100);
-    const snippet = escapeHtml(text.slice(0,400)) + (text.length>400 ? '…' : '');
-    out.innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">✓ Converted to Word</div><div style="background:var(--surface2);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:12.5px;color:var(--muted);max-height:120px;overflow-y:auto;white-space:pre-wrap;">${snippet||'(no extractable text found)'}</div><button class="btn" onclick="downloadBlob(window._wordBlob,'converted.doc');showToast('Downloaded!')">⬇ Download converted.doc</button></div>`;
-  }catch(err){
-    out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${err.message||'Could not extract this PDF — it may be scanned. Try Scan PDF to Text first.'}</div>`;
+// ── DOCUMENT SCANNER ─────────────────────────────────────────────────────────
+window._scannerPages=[];
+function initDocumentScanner(){
+  window._scannerPages=[];const imageInput=document.getElementById('scanner-images'),cameraInput=document.getElementById('scanner-camera');if(!imageInput&&!cameraInput)return;
+  const add=async files=>{for(const f of Array.from(files||[])){if(!f.type.startsWith('image/'))continue;const url=URL.createObjectURL(f);try{const img=await new Promise((res,rej)=>{const x=new Image();x.onload=()=>res(x);x.onerror=rej;x.src=url});window._scannerPages.push({file:f,img,rotation:0,corners:null})}finally{URL.revokeObjectURL(url)}}renderScannerPages();if(window._scannerPages.length)tnSetStep(2)};
+  [imageInput,cameraInput].filter(Boolean).forEach(input=>input.addEventListener('change',e=>{add(e.target.files);e.target.value=''}));renderScannerPages();
+}
+// Bilinear-sampled perspective warp: maps a quadrilateral (4 corner points, clockwise from
+// top-left) in the source image onto a straight output rectangle. This is what gives the
+// "straighten a photographed page" effect real scanner apps use — canvas 2D's built-in
+// transforms only do translate/rotate/scale/skew, not true projective (4-point) warps, so
+// this computes the homography and resamples pixel-by-pixel.
+function scannerComputeHomography(src,dst){
+  // Solves for the 3x3 homography H mapping src[i] -> dst[i] for 4 point pairs via direct
+  // linear solve of the 8-unknown system (h33 fixed to 1).
+  const A=[],b=[];
+  for(let i=0;i<4;i++){
+    const [x,y]=src[i],[u,v]=dst[i];
+    A.push([x,y,1,0,0,0,-x*u,-y*u]); b.push(u);
+    A.push([0,0,0,x,y,1,-x*v,-y*v]); b.push(v);
   }
-  btnReset(btn);
+  for(let col=0;col<8;col++){
+    let piv=col; for(let r=col+1;r<8;r++) if(Math.abs(A[r][col])>Math.abs(A[piv][col])) piv=r;
+    [A[col],A[piv]]=[A[piv],A[col]]; [b[col],b[piv]]=[b[piv],b[col]];
+    const pv=A[col][col]||1e-9;
+    for(let c=col;c<8;c++) A[col][c]/=pv; b[col]/=pv;
+    for(let r=0;r<8;r++){ if(r===col) continue; const f=A[r][col]; if(!f) continue; for(let c=col;c<8;c++) A[r][c]-=f*A[col][c]; b[r]-=f*b[col]; }
+  }
+  return [b[0],b[1],b[2],b[3],b[4],b[5],b[6],b[7],1];
+}
+function scannerWarpToCanvas(img,corners,outW,outH){
+  const srcCanvas=document.createElement('canvas');srcCanvas.width=img.naturalWidth;srcCanvas.height=img.naturalHeight;
+  const sx=srcCanvas.getContext('2d');sx.drawImage(img,0,0);
+  const srcData=sx.getImageData(0,0,srcCanvas.width,srcCanvas.height).data;
+  const dst=[[0,0],[outW,0],[outW,outH],[0,outH]];
+  const H=scannerComputeHomography(dst,corners); // dst->src, so we can sample per output pixel
+  const out=document.createElement('canvas');out.width=outW;out.height=outH;
+  const ox=out.getContext('2d');const outImg=ox.createImageData(outW,outH);const od=outImg.data;
+  const sw=srcCanvas.width,sh=srcCanvas.height;
+  for(let y=0;y<outH;y++){
+    for(let x=0;x<outW;x++){
+      const denom=H[6]*x+H[7]*y+H[8]||1e-9;
+      const sxp=(H[0]*x+H[1]*y+H[2])/denom, syp=(H[3]*x+H[4]*y+H[5])/denom;
+      const di=(y*outW+x)*4;
+      if(sxp<0||syp<0||sxp>=sw-1||syp>=sh-1){ od[di]=255;od[di+1]=255;od[di+2]=255;od[di+3]=255; continue; }
+      const x0=Math.floor(sxp),y0=Math.floor(syp),fx=sxp-x0,fy=syp-y0;
+      for(let ch=0;ch<3;ch++){
+        const p00=srcData[(y0*sw+x0)*4+ch],p10=srcData[(y0*sw+x0+1)*4+ch],p01=srcData[((y0+1)*sw+x0)*4+ch],p11=srcData[((y0+1)*sw+x0+1)*4+ch];
+        od[di+ch]=(p00*(1-fx)+p10*fx)*(1-fy)+(p01*(1-fx)+p11*fx)*fy;
+      }
+      od[di+3]=255;
+    }
+  }
+  ox.putImageData(outImg,0,0);
+  return out;
+}
+function scannerProcessedCanvas(page,mode){
+  const img=page.img,rot=((page.rotation%360)+360)%360,swap=rot===90||rot===270;const max=1700,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));const sw=Math.round(img.naturalWidth*scale),sh=Math.round(img.naturalHeight*scale);const c=document.createElement('canvas');c.width=swap?sh:sw;c.height=swap?sw:sh;const x=c.getContext('2d');x.save();x.translate(c.width/2,c.height/2);x.rotate(rot*Math.PI/180);x.drawImage(img,-sw/2,-sh/2,sw,sh);x.restore();
+  if(mode==='original')return c;const brightEl=document.getElementById('scanner-bright'),contrastEl=document.getElementById('scanner-contrast');const bright=brightEl?+brightEl.value:7,contrast=contrastEl?+contrastEl.value/100:1.24;const data=x.getImageData(0,0,c.width,c.height),d=data.data;for(let i=0;i<d.length;i+=4){let r=d[i],g=d[i+1],b=d[i+2];const gray=.299*r+.587*g+.114*b;if(mode==='bw'){const v=gray>178?255:0;d[i]=d[i+1]=d[i+2]=v;}else{d[i]=Math.max(0,Math.min(255,(r-128)*contrast+128+bright));d[i+1]=Math.max(0,Math.min(255,(g-128)*contrast+128+bright));d[i+2]=Math.max(0,Math.min(255,(b-128)*contrast+128+bright));}}x.putImageData(data,0,0);return c;
+}
+function renderScannerPages(){const host=document.getElementById('scanner-grid');if(!host)return;const mode=document.getElementById('scanner-mode')?.value||'document';host.innerHTML='';(window._scannerPages||[]).forEach((p,i)=>{const wrap=document.createElement('div');wrap.className='scanner-page';const c=scannerProcessedCanvas(p,mode);c.setAttribute('aria-label',`Scanned page ${i+1}`);wrap.appendChild(c);const actions=document.createElement('div');actions.className='scanner-page-actions';actions.innerHTML=`<button class="mini-btn" type="button" onclick="scannerOpenCrop(${i})">✂ Straighten</button><button class="mini-btn" type="button" onclick="scannerRotate(${i})">↻ Rotate</button><button class="mini-btn" type="button" ${i===0?'disabled':''} onclick="scannerMoveUp(${i})">↑</button><button class="mini-btn" type="button" ${i===(window._scannerPages.length-1)?'disabled':''} onclick="scannerMoveDown(${i})">↓</button><button class="mini-btn" type="button" onclick="scannerRemove(${i})">Delete</button>`;wrap.appendChild(actions);host.appendChild(wrap);});const exp=document.getElementById('scanner-export');if(exp)exp.style.display=window._scannerPages.length?'':'none';const st=document.getElementById('scanner-status');if(st)st.textContent=window._scannerPages.length?`${window._scannerPages.length} page${window._scannerPages.length===1?'':'s'} ready. Add more photos any time.`:'Take a photo or choose document images to begin.';}
+function scannerRotate(i){window._scannerPages[i].rotation=(window._scannerPages[i].rotation+90)%360;renderScannerPages();}
+function scannerRemove(i){window._scannerPages.splice(i,1);renderScannerPages();}
+function scannerMoveUp(i){if(i<=0)return;const arr=window._scannerPages;[arr[i-1],arr[i]]=[arr[i],arr[i-1]];renderScannerPages();}
+function scannerMoveDown(i){const arr=window._scannerPages;if(i>=arr.length-1)return;[arr[i+1],arr[i]]=[arr[i],arr[i+1]];renderScannerPages();}
+// ── Straighten & crop (manual 4-corner perspective correction) ─────────────────
+function scannerOpenCrop(i){
+  const page=window._scannerPages[i]; if(!page) return;
+  window._scannerCropIndex=i;
+  const img=page.img,w=img.naturalWidth,h=img.naturalHeight;
+  const inset=0.06;
+  window._scannerCropCorners=page.corners?page.corners.map(p=>p.slice()):[[w*inset,h*inset],[w*(1-inset),h*inset],[w*(1-inset),h*(1-inset)],[w*inset,h*(1-inset)]];
+  const overlay=document.getElementById('scanner-crop-overlay'); overlay.style.display='flex';
+  scannerRenderCropStage();
+}
+function scannerCloseCrop(){const overlay=document.getElementById('scanner-crop-overlay');if(overlay)overlay.style.display='none';window._scannerCropIndex=null;}
+function scannerResetCorners(){
+  const i=window._scannerCropIndex; if(i==null) return;
+  const img=window._scannerPages[i].img,w=img.naturalWidth,h=img.naturalHeight,inset=0.06;
+  window._scannerCropCorners=[[w*inset,h*inset],[w*(1-inset),h*inset],[w*(1-inset),h*(1-inset)],[w*inset,h*(1-inset)]];
+  scannerRenderCropStage();
+}
+function scannerRenderCropStage(){
+  const i=window._scannerCropIndex; if(i==null) return;
+  const page=window._scannerPages[i],img=page.img;
+  const stage=document.getElementById('scanner-crop-stage'); if(!stage) return;
+  stage.innerHTML='';
+  const imgEl=document.createElement('img'); imgEl.src=img.src; imgEl.draggable=false;
+  stage.appendChild(imgEl);
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.setAttribute('viewBox',`0 0 ${img.naturalWidth} ${img.naturalHeight}`);
+  const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  poly.setAttribute('fill','rgba(79,99,210,0.22)'); poly.setAttribute('stroke','#4f63d2'); poly.setAttribute('stroke-width', String(Math.max(2,img.naturalWidth*0.004)));
+  svg.appendChild(poly); stage.appendChild(svg);
+  const corners=window._scannerCropCorners;
+  const updatePoly=()=>poly.setAttribute('points',corners.map(p=>p.join(',')).join(' '));
+  updatePoly();
+  corners.forEach((pt,ci)=>{
+    const handle=document.createElement('div'); handle.className='scanner-crop-handle';
+    const place=()=>{
+      const rect=stage.getBoundingClientRect();
+      const px=(pt[0]/img.naturalWidth)*rect.width, py=(pt[1]/img.naturalHeight)*rect.height;
+      handle.style.left=px+'px'; handle.style.top=py+'px';
+    };
+    place();
+    let dragging=false;
+    const pointerMove=e=>{
+      if(!dragging) return;
+      const rect=stage.getBoundingClientRect();
+      const cx=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
+      const cy=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
+      const nx=Math.max(0,Math.min(rect.width,cx)), ny=Math.max(0,Math.min(rect.height,cy));
+      corners[ci]=[(nx/rect.width)*img.naturalWidth,(ny/rect.height)*img.naturalHeight];
+      handle.style.left=nx+'px'; handle.style.top=ny+'px';
+      updatePoly();
+    };
+    const pointerUp=()=>{dragging=false;window.removeEventListener('mousemove',pointerMove);window.removeEventListener('mouseup',pointerUp);window.removeEventListener('touchmove',pointerMove);window.removeEventListener('touchend',pointerUp);};
+    const pointerDown=e=>{dragging=true;window.addEventListener('mousemove',pointerMove);window.addEventListener('mouseup',pointerUp);window.addEventListener('touchmove',pointerMove,{passive:true});window.addEventListener('touchend',pointerUp);e.preventDefault();};
+    handle.addEventListener('mousedown',pointerDown); handle.addEventListener('touchstart',pointerDown,{passive:false});
+    stage.appendChild(handle);
+  });
+  window._scannerCropReposition=()=>{corners.forEach((pt,ci)=>{const handle=stage.children[ci+2];if(!handle)return;const rect=stage.getBoundingClientRect();handle.style.left=((pt[0]/img.naturalWidth)*rect.width)+'px';handle.style.top=((pt[1]/img.naturalHeight)*rect.height)+'px';});updatePoly();};
+}
+function scannerApplyCrop(){
+  const i=window._scannerCropIndex; if(i==null) return;
+  const page=window._scannerPages[i]; const corners=window._scannerCropCorners;
+  const widthTop=Math.hypot(corners[1][0]-corners[0][0],corners[1][1]-corners[0][1]);
+  const widthBottom=Math.hypot(corners[2][0]-corners[3][0],corners[2][1]-corners[3][1]);
+  const heightLeft=Math.hypot(corners[3][0]-corners[0][0],corners[3][1]-corners[0][1]);
+  const heightRight=Math.hypot(corners[2][0]-corners[1][0],corners[2][1]-corners[1][1]);
+  const outW=Math.max(60,Math.round(Math.max(widthTop,widthBottom))), outH=Math.max(60,Math.round(Math.max(heightLeft,heightRight)));
+  const warped=scannerWarpToCanvas(page.img,corners,Math.min(outW,2200),Math.min(outH,2200));
+  const warpedImg=new Image(); warpedImg.onload=()=>{ page.img=warpedImg; page.rotation=0; page.corners=null; scannerCloseCrop(); renderScannerPages(); };
+  warpedImg.src=warped.toDataURL('image/jpeg',0.92);
+}
+async function exportScannedPDF(){const pages=window._scannerPages||[];if(!pages.length){alert('Add at least one page.');return;}const btn=document.getElementById('scanner-export'),out=document.getElementById('scanner-out');btnLoading(btn,'Building PDF…');out.innerHTML=progressHTML('scanner-prog','Enhancing pages…');try{const {PDFDocument,rgb}=PDFLib;const doc=await PDFDocument.create(),mode=document.getElementById('scanner-mode').value,doOcr=document.getElementById('scanner-ocr').checked,lang=document.getElementById('scanner-lang').value;for(let i=0;i<pages.length;i++){const c=scannerProcessedCanvas(pages[i],mode),jpg=await new Promise(res=>c.toBlob(res,'image/jpeg',0.9)),bytes=new Uint8Array(await jpg.arrayBuffer()),img=await doc.embedJpg(bytes),pdfPage=doc.addPage([img.width,img.height]);pdfPage.drawImage(img,{x:0,y:0,width:img.width,height:img.height});if(doOcr&&window.Tesseract){setProgress('scanner-prog',((i+.2)/pages.length)*90);try{const {data:{text}}=await Tesseract.recognize(c,lang,{logger:m=>{if(m.status==='recognizing text')setProgress('scanner-prog',((i+m.progress)/pages.length)*90)}});if(text.trim())pdfPage.drawText(text.replace(/[^\x20-\x7E\n]/g,' ').slice(0,8000),{x:8,y:8,size:1,color:rgb(1,1,1),opacity:.01,maxWidth:Math.max(10,img.width-16),lineHeight:1.2});}catch(ocrErr){console.warn('OCR page failed',ocrErr);}}setProgress('scanner-prog',((i+1)/pages.length)*90);}const outBytes=await doc.save();window._scannerPdfBytes=outBytes;setProgress('scanner-prog',100);out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Scanned PDF ready</div><div id="scanner-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._scannerPdfBytes],{type:'application/pdf'}),'scanned-document.pdf');showToast('Downloaded!')">⬇ Download scanned-document.pdf</button></div>`;renderPdfThumbPreview(outBytes,'scanner-preview');}catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not create the scanned PDF.')}</div>`;}btnReset(btn);}
+
+// ── PDF → WORD (.docx, text-focused) ───────────────────────────────────────────
+function xmlEscape(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));}
+async function createSimpleDocxFromText(text){
+  if(!window.JSZip) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+  const zip=new JSZip();
+  const paras=String(text||'').split(/\n{2,}/).map(p=>`<w:p><w:r><w:t xml:space="preserve">${xmlEscape(p.replace(/\n/g,' '))}</w:t></w:r></w:p>`).join('');
+  zip.file('[Content_Types].xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>`);
+  zip.folder('_rels').file('.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`);
+  zip.folder('word').file('document.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${paras}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr></w:body></w:document>`);
+  zip.folder('word').file('styles.xml',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:rPr><w:sz w:val="22"/></w:rPr></w:style></w:styles>`);
+  zip.folder('word').folder('_rels').file('document.xml.rels',`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`);
+  return zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+async function doPdfToWord(){
+  const files=getFiles('p2w-file'); if(!files.length){alert('Please upload a PDF.');return;}
+  const btn=document.getElementById('p2w-btn'),out=document.getElementById('p2w-out'); btnLoading(btn,'Converting…');out.innerHTML=progressHTML('p2w-prog','Extracting text and building DOCX…');
+  try{const text=await extractTextFromPdf(files[0],pct=>setProgress('p2w-prog',pct*.75));if(!text.trim())throw new Error('No selectable text was found. For scanned PDFs, use Scan PDF to Text first.');const blob=await createSimpleDocxFromText(text);window._wordBlob=blob;setProgress('p2w-prog',100);const snippet=escapeHtml(text.slice(0,400))+(text.length>400?'…':'');out.innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">✓ Real .docx created</div><div style="background:var(--surface2);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:12.5px;color:var(--muted);max-height:120px;overflow-y:auto;white-space:pre-wrap;">${snippet}</div><button class="btn" onclick="downloadBlob(window._wordBlob,'converted.docx');showToast('Downloaded!')">⬇ Download converted.docx</button></div>`;}catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not convert this PDF.')}</div>`;}btnReset(btn);
 }
 
 // ── WORD → PDF (text-based) ───────────────────────────────────────────────────
@@ -3222,41 +3649,21 @@ async function doWordToPdf(){
   btnReset(btn);
 }
 
-// ── PDF → EXCEL (CSV of text lines) ───────────────────────────────────────────
+// ── PDF → EXCEL (.xlsx) ──────────────────────────────────────────────────────
 async function doPdfToExcel(){
-  const files=getFiles('p2e-file');
-  if(!files.length){alert('Please upload a PDF.');return;}
-  const btn=document.getElementById('p2e-btn');
-  const out=document.getElementById('p2e-out');
-  btnLoading(btn,'Converting...');
-  out.innerHTML=progressHTML('p2e-prog','Extracting rows...');
+  const files=getFiles('p2e-file');if(!files.length){alert('Please upload a PDF.');return;}
+  const btn=document.getElementById('p2e-btn'),out=document.getElementById('p2e-out');btnLoading(btn,'Converting…');out.innerHTML=progressHTML('p2e-prog','Detecting rows and building Excel workbook…');
   try{
-    const buf=await fileToArrayBuffer(files[0]);
-    const pdf=await pdfjsLib.getDocument({data:buf}).promise;
-    let rows=[];
+    if(!window.XLSX) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+    const buf=await fileToArrayBuffer(files[0]);const pdf=await pdfjsLib.getDocument({data:buf}).promise;const allRows=[];
     for(let i=1;i<=pdf.numPages;i++){
-      const page=await pdf.getPage(i);
-      const content=await page.getTextContent();
-      // group items by approx Y position to form rows
-      const lineMap={};
-      content.items.forEach(it=>{
-        const y=Math.round(it.transform[5]);
-        if(!lineMap[y]) lineMap[y]=[];
-        lineMap[y].push(it.str);
-      });
-      Object.keys(lineMap).sort((a,b)=>b-a).forEach(y=>{
-        rows.push(lineMap[y].join(' , '));
-      });
-      setProgress('p2e-prog',(i/pdf.numPages)*90);
+      const page=await pdf.getPage(i),content=await page.getTextContent(),lineMap={};
+      content.items.forEach(it=>{const y=Math.round(it.transform[5]/3)*3;(lineMap[y]||(lineMap[y]=[])).push({x:it.transform[4],text:it.str});});
+      Object.keys(lineMap).sort((a,b)=>b-a).forEach(y=>{const items=lineMap[y].sort((a,b)=>a.x-b.x);allRows.push(items.map(x=>x.text.trim()).filter(Boolean));});
+      if(i<pdf.numPages) allRows.push([]);setProgress('p2e-prog',10+(i/pdf.numPages)*75);
     }
-    const csv = rows.map(r=>r.split(',').map(c=>`"${c.trim().replace(/"/g,'""')}"`).join(',')).join('\n');
-    window._csvBlob=new Blob([csv],{type:'text/csv'});
-    setProgress('p2e-prog',100);
-    out.innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">✓ Converted to CSV</div><div style="margin:8px 0;color:var(--muted);font-size:13px;">${rows.length} rows extracted — open in Excel/Sheets.</div><button class="btn" onclick="downloadBlob(window._csvBlob,'converted.csv');showToast('Downloaded!')">⬇ Download converted.csv</button></div>`;
-  }catch(err){
-    out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${err.message||'Could not extract table data from this PDF.'}</div>`;
-  }
-  btnReset(btn);
+    const ws=XLSX.utils.aoa_to_sheet(allRows.length?allRows:[['No extractable table text found']]);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Extracted Data');const arr=XLSX.write(wb,{bookType:'xlsx',type:'array'});window._xlsxBlob=new Blob([arr],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});setProgress('p2e-prog',100);out.innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">✓ Excel workbook created</div><div style="margin:8px 0;color:var(--muted);font-size:13px;">${allRows.filter(r=>r.length).length} text rows detected. Review complex tables after download.</div><button class="btn" onclick="downloadBlob(window._xlsxBlob,'converted.xlsx');showToast('Downloaded!')">⬇ Download converted.xlsx</button></div>`;
+  }catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not build an Excel file from this PDF.')}</div>`;}btnReset(btn);
 }
 
 // ── FAVORITES (heart button on tool cards, saved in localStorage) ─────────────

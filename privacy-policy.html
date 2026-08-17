@@ -1,144 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy | toolnova.tools</title>
-<meta name="description" content="How toolnova.tools handles data, cookies, and third-party advertising like Google AdSense.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://toolnova.tools/privacy-policy.html">
-<meta property="og:title" content="Privacy Policy | toolnova.tools">
-<meta property="og:description" content="How toolnova.tools handles data, cookies, and third-party advertising like Google AdSense.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://toolnova.tools/privacy-policy.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235B5BF7'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial,sans-serif' font-weight='800' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#5B5BF7">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Privacy Policy | Toolnova</title>
+<meta content="How toolnova.tools handles your files and data: client-side file processing, what analytics and advertising cookies are used, and your choices." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://toolnova.tools/privacy-policy.html" rel="canonical"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    background:
-      radial-gradient(circle at 6% 8%,rgba(255,214,102,0.30) 0%,transparent 42%),
-      radial-gradient(circle at 94% 12%,rgba(126,200,255,0.28) 0%,transparent 42%),
-      radial-gradient(circle at 12% 92%,rgba(255,159,205,0.26) 0%,transparent 42%),
-      radial-gradient(circle at 92% 90%,rgba(126,232,184,0.26) 0%,transparent 42%),
-      #F7F8FC;
-    color:#111827;min-height:100vh;display:flex;flex-direction:column;line-height:1.65;
-  }
-  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 32px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);border-bottom:1px solid #E5E8F0;position:sticky;top:0;z-index:20;flex-wrap:wrap;}
-  .nav-left{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
-  .logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:#111827;text-decoration:none;letter-spacing:-.02em;}
-  .logo span{background:linear-gradient(100deg,#5B5BF7,#8B5CF6,#08A8C7);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .nav-cats{display:flex;gap:8px;flex-wrap:wrap;}
-  .cat-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:9px;background:#fff;color:#3F4859;border:1.3px solid #E5E8F0;text-decoration:none;font-size:12.5px;font-weight:700;transition:all .2s;}
-  .cat-btn:hover{border-color:#5B5BF7;color:#5B5BF7;background:#EEEEFF;}
-  #google_translate_element{font-size:12px;}
-  .goog-te-gadget{font-family:'Inter',sans-serif!important;font-size:0!important;}
-  .goog-te-gadget .goog-te-combo{font-size:12.5px;padding:5px 8px;border-radius:8px;border:1.3px solid #E5E8F0;font-family:'Inter',sans-serif;}
-  main{flex:1;max-width:760px;margin:0 auto;padding:48px 24px 64px;width:100%;}
-  .back-link{display:inline-flex;align-items:center;gap:6px;color:#5B5BF7;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:28px;}
-  .back-link:hover{text-decoration:underline;}
-  h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:34px;font-weight:800;margin-bottom:14px;color:#111827;letter-spacing:-.02em;}
-  h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:750;margin:30px 0 10px;color:#111827;}
-  h3{font-size:15.5px;font-weight:700;margin:18px 0 6px;color:#111827;}
-  p{color:#3F4859;font-size:15px;margin-bottom:12px;}
-  ul,ol{color:#3F4859;font-size:15px;margin:0 0 12px 22px;}
-  li{margin-bottom:6px;}
-  a{color:#5B5BF7;}
-  .muted{color:#8A93A6;font-size:13px;}
-  .badge{display:inline-flex;background:#EEEEFF;color:#5B5BF7;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:16px;}
-  .content-box{background:#fff;border:1px solid #E5E8F0;border-radius:18px;padding:32px;margin-top:8px;box-shadow:0 4px 20px rgba(15,23,42,.05);}
-  table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:14px;}
-  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E5E8F0;}
-  th{color:#111827;font-weight:700;}
-  details{background:#fff;border:1px solid #E5E8F0;border-radius:12px;padding:14px 18px;margin-bottom:10px;}
-  summary{font-weight:700;cursor:pointer;color:#111827;font-size:14.5px;}
-  details p{margin-top:10px;margin-bottom:0;}
-  .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:10px 0 24px;}
-  .tool-grid a{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E5E8F0;border-radius:10px;padding:10px 14px;text-decoration:none;color:#111827;font-size:13.5px;font-weight:600;transition:border-color .15s,transform .15s;}
-  .tool-grid a:hover{border-color:#5B5BF7;transform:translateY(-2px);}
-  .page-grid{display:flex;flex-wrap:wrap;gap:8px 24px;margin:10px 0 24px;}
-  .page-grid a{color:#5B5BF7;font-weight:600;font-size:14.5px;text-decoration:none;}
-  .page-grid a:hover{text-decoration:underline;}
-  footer{background:#101728;color:#AEB8CB;text-align:center;padding:32px 20px;font-size:13px;margin-top:auto;}
-  footer a{color:#BAC4D5;text-decoration:none;margin:0 8px;}
-  footer a:hover{color:#fff;text-decoration:underline;}
-  .footer-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;}
-  @media(max-width:640px){nav{padding:12px 16px;}.nav-cats{display:none;}main{padding:32px 16px 48px;}h1{font-size:27px;}.content-box{padding:22px;}}
+:root{--bg:#F7F8FC;--surface:#FFFFFF;--surface2:#F4F6FA;--border:#E5E8F0;--accent:#5B5BF7;--accent-dark:#3D3DD6;--accent-light:#EEEEFF;--text:#111827;--muted:#536179;--radius:16px;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.75;}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;color:var(--accent);text-decoration:none;}
+.backlink{color:var(--accent);text-decoration:none;font-weight:700;font-size:14px;}
+main{max-width:760px;margin:0 auto;padding:48px 20px 64px;}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,4.4vw,38px);line-height:1.2;margin:0 0 8px;}
+.updated{color:var(--muted);font-size:13px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:21px;margin:34px 0 12px;color:#101828;}
+h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;margin:22px 0 8px;color:#101828;}
+p{margin:0 0 16px;color:#344054;}
+ul,ol{margin:0 0 16px;padding-left:22px;color:#344055;}
+li{margin-bottom:7px;}
+a{color:var(--accent);}
+strong{color:var(--text);}
+.callout{background:var(--accent-light);border:1px solid rgba(91,91,247,.2);border-radius:var(--radius);padding:20px 24px;margin:0 0 28px;}
+.callout p{margin:0;color:#1e2233;}
+footer{border-top:1px solid var(--border);padding:32px 20px;text-align:center;color:var(--muted);font-size:13px;margin-top:24px;}
+footer a{color:var(--muted);margin:0 8px;text-decoration:none;}
+footer a:hover{color:var(--text);}
 </style>
 </head>
 <body>
-<nav>
-  <div class="nav-left">
-    <a class="logo" href="/">tool<span>nova.tools</span></a>
-    <div class="nav-cats">
-      <a href="/#pdf-converter" class="cat-btn">📄 PDF</a>
-      <a href="/#ocr-tools" class="cat-btn">🔍 OCR</a>
-      <a href="/#calculators" class="cat-btn">🧮 Calculators</a>
-      <a href="/#converters" class="cat-btn">🔄 Converters</a>
-      <a href="/#generators" class="cat-btn">🔧 Generators</a>
-    </div>
-  </div>
-  <div class="nav-lang" id="google_translate_element"></div>
-</nav>
+<header><a class="logo" href="/">toolnova<span style="color:var(--accent-dark)">.tools</span></a><a class="backlink" href="/">&larr; Back to tools</a></header>
 <main>
-<a class="back-link" href="/">&larr; Back to Home</a>
-
-<span class="badge">Privacy Policy</span>
 <h1>Privacy Policy</h1>
-<p class="muted">Last updated: 2026</p>
-<div class="content-box">
-<h2>Overview</h2>
-<p>toolnova.tools ("we", "our", "the site") respects your privacy. This policy explains what data is and isn't collected when you use our free online tools.</p>
-<h2>Files You Process</h2>
-<p>All tools on this site (PDF converters, image tools, calculators, etc.) run entirely in your browser using client-side JavaScript. Files you upload are never transmitted to, or stored on, our servers.</p>
-<h2>Cookies &amp; Local Storage</h2>
-<p>We use browser local storage to remember small preferences (such as favorited tools). See our <a href="/cookie-policy.html">Cookie Policy</a> for details.</p>
-<h2>Analytics</h2>
-<p>We use Google Analytics to understand aggregate site usage (pages visited, approximate location, device type). This data is anonymized and does not identify you personally.</p>
-<h2>Advertising &mdash; Google AdSense</h2>
-<p>This site displays ads served by Google AdSense. Google and its partners may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
-<h2>Children's Privacy</h2>
-<p>toolnova.tools is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
-<h2>Third-Party Links</h2>
-<p>Our site may link to third-party services. We are not responsible for the privacy practices of external sites.</p>
-<h2>Your Rights</h2>
-<p>You may reach out at any time via our <a href="/contact.html">Contact page</a> with privacy-related questions or requests, including access, correction, or deletion of any data you've submitted to us.</p>
-<h2>Changes to This Policy</h2>
-<p>We may update this Privacy Policy periodically. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
-</div>
-</main>
+<div class="updated">Last updated: August 17, 2026</div>
 
+<div class="callout">
+<p><strong>The short version:</strong> The files you open with Toolnova's PDF, image and OCR tools are processed locally in your browser and are not uploaded to a Toolnova server. This page explains that in detail, along with the separate, more conventional data Toolnova does collect — like standard analytics and, once approved, advertising — so you know exactly where you stand.</p>
+</div>
+
+<h2>1. Files you process with Toolnova's tools</h2>
+<p>Tools such as Merge PDF, Split PDF, PDF to Word, Image to PDF, OCR and the Document Scanner run entirely inside your browser tab using JavaScript libraries downloaded to your device. When you select or drop a file into one of these tools:</p>
+<ul>
+<li>The file's contents are read and processed using your browser's own memory and processing power.</li>
+<li>The file is <strong>not</strong> transmitted to a Toolnova server as part of using the tool.</li>
+<li>Nothing about the file's contents is logged, stored or retained by Toolnova once you close the browser tab or navigate away.</li>
+</ul>
+<p>You can verify this yourself: open your browser's developer tools (Network tab) while using any file-based tool, and you'll see requests only for the page's own code and, on first use, a one-time download of the processing library — never a request carrying your file's contents.</p>
+<p>This also means Toolnova has no ability to recover a file for you if you lose it, and no ability to see, moderate or remove file contents processed through the tools, because that content was never received by Toolnova in the first place.</p>
+
+<h2>2. Information collected automatically</h2>
+<p>Separately from file processing, like most websites, Toolnova may collect standard technical information when you visit, such as your approximate location (derived from IP address), browser type, device type, referring page, and the pages you view. This is used in aggregate to understand traffic and improve the site — it is not linked to any files you process with the tools.</p>
+<h3>Analytics</h3>
+<p>Toolnova uses Google Analytics to understand aggregate site usage. Analytics and advertising cookies are set to <strong>denied by default</strong> under Google's Consent Mode, and only load after you interact with the page (or, for visitors in regions requiring opt-in consent, after you provide consent through the site's consent tools). You can control cookies generally through your browser's settings, and opt out of Google Analytics specifically using Google's <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Analytics opt-out browser add-on</a>.</p>
+
+<h2>3. Advertising and third-party cookies</h2>
+<p>Toolnova may display advertising served by Google AdSense to help keep the tools free to use. If and when ads are shown:</p>
+<ul>
+<li>Google and its advertising partners may use cookies (including the DoubleClick cookie) to serve ads based on your prior visits to this and other websites.</li>
+<li>Google's use of advertising cookies enables it and its partners to serve ads based on your visits to Toolnova and/or other sites on the internet.</li>
+<li>You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" rel="noopener" target="_blank">Google Ads Settings</a>, or opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices" rel="noopener" target="_blank">www.aboutads.info</a>.</li>
+<li>Advertising cookies are unrelated to, and never have access to, the contents of any file you process with Toolnova's tools.</li>
+</ul>
+
+<h2>4. What Toolnova does not do</h2>
+<ul>
+<li>Toolnova does not sell personal information.</li>
+<li>Toolnova does not require an account, email address or payment to use the free tools on the site.</li>
+<li>Toolnova does not store the content of files you process with its client-side tools.</li>
+</ul>
+
+<h2>5. Children's privacy</h2>
+<p>Toolnova's tools are general-purpose utilities not directed at children under 13, and the site does not knowingly collect personal information from children under 13.</p>
+
+<h2>6. Your choices</h2>
+<ul>
+<li>You can clear cookies and site data at any time through your browser settings.</li>
+<li>You can use your browser's private/incognito mode to avoid persistent cookies for a session.</li>
+<li>You can opt out of personalized advertising and analytics using the links in sections 2 and 3 above.</li>
+</ul>
+
+<h2>7. Changes to this policy</h2>
+<p>This page may be updated from time to time to reflect changes in the tools offered or applicable regulations. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of Toolnova after a change constitutes acceptance of the updated policy.</p>
+
+<h2>8. Contact</h2>
+<p>Questions about this policy can be sent through the <a href="/contact.html">Contact page</a>.</p>
+
+</main>
 <footer>
-  <div class="footer-logo">toolnova.tools</div>
-  <div><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div>
-  <div style="margin-top:6px;"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms</a><a href="/cookie-policy.html">Cookie Policy</a><a href="/faq.html">FAQ</a><a href="/sitemap.html">Sitemap</a></div>
-  <p style="margin-top:14px;">&copy; 2026 toolnova.tools &mdash; Free browser-based online tools.</p>
-  <p style="margin-top:8px;max-width:640px;margin-left:auto;margin-right:auto;color:#7C87A0;">Toolnova may display advertising to support free access. Advertising does not change calculator results or file-processing output. Review our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/cookie-policy.html">Cookie Policy</a> for information about third-party services.</p>
+<p><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/terms.html">Terms</a><a href="/cookie-policy.html">Cookie Policy</a></p>
+<p>&copy; 2026 toolnova.tools — Free browser-based online tools.</p>
 </footer>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,ceb,zh-CN,zh-TW,co,hr,cs,da,nl,eo,et,fi,fr,fy,gl,ka,de,el,gu,ht,ha,haw,he,hi,hmn,hu,is,ig,id,ga,it,ja,jw,kn,kk,km,ko,ku,ky,lo,la,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,my,ne,no,ny,or,ps,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,sn,sd,si,sk,sl,so,es,su,sw,sv,tl,tg,ta,te,th,tr,uk,ur,ug,uz,vi,cy,xh,yi,yo,zu',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-function toolnovaLoadTranslateWidget(){
-  if(window.__toolnovaTranslateLoaded) return;
-  window.__toolnovaTranslateLoaded = true;
-  const s = document.createElement('script');
-  s.type = 'text/javascript';
-  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-  document.head.appendChild(s);
-}
-const toolnovaBrowserLang = (navigator.language || navigator.userLanguage || 'en').split('-')[0].toLowerCase();
-if (toolnovaBrowserLang !== 'en') { toolnovaLoadTranslateWidget(); }
-else { window.addEventListener('load', function(){ setTimeout(toolnovaLoadTranslateWidget, 4000); }); }
-</script>
 </body>
 </html>

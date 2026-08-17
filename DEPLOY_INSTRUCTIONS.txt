@@ -1,0 +1,73 @@
+TOOLNOVA COMPLETE UPDATE — v2, 2026-08-17
+(This replaces the 2026-08-14 version of this file, which described some
+files — sitemap.xml, robots.txt, ads.txt, and 20 blog articles — that were
+NOT actually included in that package. Everything listed below has been
+verified to actually exist and load without errors before this file was
+written.)
+
+UPLOAD/REPLACE — everything in this zip goes at the site root, preserving
+folder structure:
+1. index.html
+2. all 37 individual tool landing pages (merge-pdf.html, pdf-to-word.html, etc.)
+3. sitemap.html (human-readable) and sitemap.xml (machine-readable, submit this one to Search Console)
+4. robots.txt and ads.txt — NEW in this update, did not exist before
+5. privacy-policy.html — NEW in this update, did not exist before
+6. /blog/index.html and 12 real, unique blog articles (was falsely claiming 20 before; 12 real ones now, all verified to load)
+
+IMPORTANT — things this version actually fixes that the prior package did not:
+- ads.txt did not exist at all. Without it, Google AdSense can show "ads.txt
+  issues" warnings and may limit ad revenue. Now present at the root:
+  https://toolnova.tools/ads.txt
+- sitemap.xml did not exist — only the human-readable sitemap.html did.
+  Google Search Console wants the .xml version submitted directly. Now present.
+- robots.txt did not exist. Now present and points to sitemap.xml.
+- sitemap.html linked to 20 blog article URLs that did not exist anywhere in
+  the previous package — every one of those links was a 404. This is exactly
+  the kind of broken-link/crawl-error signal that hurts both Search Console
+  health and AdSense's view of site quality. Fixed by replacing that list with
+  12 blog articles that actually exist and were verified to load.
+- None of the 37 individual tool pages had Google AdSense's ad script, ad
+  units, or the Google Translate auto-language widget — only index.html did.
+  Anyone landing directly on a tool page from a Google search result (which is
+  the whole point of having separate pages) saw no ads and no language switcher.
+  Fixed on all 37 pages: AdSense loader script + two commented-out ad slots
+  (see below) + full Translate widget + Open Graph tags.
+- index.html had regressed to an older base that was missing the
+  per-category explanatory content (2000+ words of real, non-duplicated text
+  across the 6 tool categories, with FAQs) that was specifically written to
+  address AdSense's prior "Low value content" rejection, plus the mobile
+  Google-Translate "gap above the banner" fix, plus the H1→H2→H3 heading-order
+  fix for accessibility/SEO. All three have been restored.
+
+AD SLOTS ARE INTENTIONALLY COMMENTED OUT:
+Every ad placement (2 per tool page, 2 on index.html) is left as an HTML
+comment with data-ad-slot="REPLACE_WITH_REAL_AD_SLOT_ID". Do not uncomment
+until you have created real ad units in your AdSense dashboard and have their
+real slot IDs — a placeholder/fake slot ID causes Google's ad server to
+reject the request with a visible error, which is worse than showing nothing.
+
+AFTER DEPLOYING:
+1. Open https://toolnova.tools/sitemap.xml directly in a browser and confirm
+   it loads as XML with no errors.
+2. In Google Search Console → Sitemaps, submit https://toolnova.tools/sitemap.xml.
+3. In Search Console → URL Inspection, manually request indexing for your
+   highest-priority pages (homepage, merge-pdf.html, pdf-to-word.html,
+   compress-pdf.html, split-pdf.html) to speed up initial discovery — new
+   pages can otherwise take days to weeks to get crawled on their own.
+4. Test several tools on an actual phone and desktop browser after deploying,
+   not just locally.
+5. Do not request a new AdSense review until: the site is live with this
+   update, ads.txt returns 200, sitemap.xml is submitted, and you've spot
+   checked a few tool pages actually load content (not just the homepage).
+6. Configure Google AdSense Privacy & Messaging/CMP in the AdSense dashboard —
+   this is separate from anything in this codebase and must be done inside
+   the AdSense account settings.
+
+REALISTIC EXPECTATIONS:
+None of this guarantees AdSense approval on the first re-submission — that
+process also factors in traffic history and manual review. What this update
+does is remove every concrete, checkable reason in Google's own published
+policies for a "Low value content" or indexing rejection: thin/duplicate
+pages, broken internal links, missing ads.txt, and orphaned pages with no
+sitemap path to them. The rest (traffic building, waiting for initial
+indexing) takes real time and cannot be fully compressed into a code change.
