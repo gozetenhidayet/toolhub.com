@@ -579,6 +579,16 @@ footer a:hover{color:var(--text);}
 .cat-guide p.cat-guide-links a{display:inline-flex;align-items:center;background:var(--surface);border:1px solid color-mix(in srgb,var(--cat,var(--accent)) 25%,#E5E7EB);border-radius:999px;padding:5px 13px;color:var(--text);text-decoration:none;font-weight:600;transition:border-color .15s,transform .15s,box-shadow .15s;}
 .cat-guide p.cat-guide-links a:hover{border-color:var(--cat,var(--accent));box-shadow:0 4px 10px color-mix(in srgb,var(--cat,var(--accent)) 25%,transparent);transform:translateY(-1px);}
 @media(max-width:640px){.cat-guide{padding:24px 22px;border-radius:16px;}.cat-guide::after{width:160px;height:160px;top:-60px;right:-60px;}}
+/* GUIDE COLLAPSE — long guide text is shortened visually; full text stays in the HTML for SEO */
+.cat-guide-body{position:relative;}
+.cat-guide.is-collapsible .cat-guide-body{max-height:158px;overflow:hidden;}
+.cat-guide.is-collapsible .cat-guide-body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,transparent,var(--surface));pointer-events:none;}
+.cat-guide.is-collapsible.expanded .cat-guide-body{max-height:none;overflow:visible;}
+.cat-guide.is-collapsible.expanded .cat-guide-body::after{display:none;}
+.cat-guide-toggle{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:9px 18px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--cat,var(--accent)) 30%,#E5E7EB);background:var(--surface);color:var(--cat,var(--accent));font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;}
+.cat-guide-toggle:hover{border-color:var(--cat,var(--accent));box-shadow:0 4px 10px color-mix(in srgb,var(--cat,var(--accent)) 20%,transparent);transform:translateY(-1px);}
+.cat-guide-toggle svg{width:13px;height:13px;transition:transform .2s;}
+.cat-guide.expanded .cat-guide-toggle svg{transform:rotate(180deg);}
 .trust-note{max-width:820px;margin:22px auto 0;background:var(--accent-light);border:1px solid rgba(79,99,210,.2);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:12.5px;line-height:1.6;}
 .tool-notice{margin-top:18px;padding:11px 13px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:11.5px;line-height:1.55;}
 .footer-disclosure{max-width:760px;margin:14px auto 0;line-height:1.6;font-size:12px;}
@@ -3862,6 +3872,37 @@ window.addEventListener('DOMContentLoaded',function(){
     },{rootMargin:'-20% 0px -68% 0px',threshold:[0,.1,.25]});
     sections.forEach(s=>spy.observe(s));
   }
+
+  // GUIDE COLLAPSE — the long "guide" text under each category is shortened
+  // visually behind a "Devamını oku" toggle so the page reads shorter. The
+  // paragraphs stay in the HTML exactly as before (just re-wrapped), so search
+  // engines still see and index the full text — only the on-screen height changes.
+  document.querySelectorAll('.cat-guide').forEach(function(guide){
+    const label=guide.querySelector('.cat-guide-label');
+    const rest=[...guide.children].filter(function(el){return el!==label;});
+    if(!label||!rest.length) return;
+    const body=document.createElement('div');
+    body.className='cat-guide-body';
+    rest.forEach(function(el){body.appendChild(el);});
+    guide.appendChild(body);
+    const COLLAPSED_HEIGHT=158;
+    if(body.scrollHeight<=COLLAPSED_HEIGHT+40) return; // already short enough, no toggle needed
+    guide.classList.add('is-collapsible');
+    const toggle=document.createElement('button');
+    toggle.type='button';
+    toggle.className='cat-guide-toggle';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.innerHTML='<span class="cat-guide-toggle-label">Devamını oku</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>';
+    toggle.addEventListener('click',function(){
+      const expanded=guide.classList.toggle('expanded');
+      toggle.setAttribute('aria-expanded',expanded?'true':'false');
+      toggle.querySelector('.cat-guide-toggle-label').textContent=expanded?'Daha az göster':'Devamını oku';
+      if(!expanded){
+        guide.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+    body.insertAdjacentElement('afterend',toggle);
+  });
 });
 </script></body>
 </html>
