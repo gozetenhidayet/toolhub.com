@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>OCR Tools Guide &amp; FAQ | Toolnova</title>
+<meta content="Optical character recognition (OCR) turns pixels — a photo of a receipt, a scanned contract, a screenshot of a paragraph — into text you can copy, search a…" name="description"/>
+<meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
+<link href="https://toolnova.tools/guide/ocr-tools.html" rel="canonical"/>
+<meta content="OCR Tools Guide &amp; FAQ | Toolnova" property="og:title"/>
+<meta content="Optical character recognition (OCR) turns pixels — a photo of a receipt, a scanned contract, a screenshot of a paragraph — into text you can copy, search a…" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://toolnova.tools/guide/ocr-tools.html" property="og:url"/>
+<meta content="toolnova.tools" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234f63d2'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Arial,sans-serif' font-weight='800' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does OCR work on handwriting?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Only unreliably. Tesseract, like most OCR engines, is trained primarily on printed text; cursive or messy handwriting often produces garbled results. For handwritten notes, manual transcription is still more accurate."}
+    },
+    {
+      "@type": "Question",
+      "name": "Which languages does OCR support?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The default is English. Recognition quality for other languages depends on which language data the underlying engine loads — accented characters and non-Latin scripts are more error-prone than plain English text."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why is OCR slower than the other tools?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Recognition happens page-by-page on your own device's CPU rather than a server, so a 20-page scanned PDF genuinely takes longer than a 1-page photo. Large or high-resolution files take proportionally longer."}
+    }
+  ]
+}
+</script>
+<style>
+:root{--bg:#F7F8FC;--surface:#FFFFFF;--surface2:#F4F6FA;--border:#E5E8F0;--text:#111827;--muted:#536179;--radius:20px;--shadow:0 18px 50px rgba(30,41,59,.08);--cat:#D47A00;--cat2:#F5B62E;--cat-soft:#FFF7E7;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;}
+a{color:inherit;}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,32px);background:var(--surface);border-bottom:1px solid var(--border);}
+.logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#5B5BF7;text-decoration:none;letter-spacing:-.5px;}
+.logo span{color:#08728A;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;color:var(--cat);text-decoration:none;padding:8px 16px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--cat) 28%,#E5E7EB);background:var(--surface);transition:border-color .15s,transform .15s;}
+.back-link:hover{border-color:var(--cat);transform:translateX(-2px);}
+.back-link svg{width:15px;height:15px;}
+main{max-width:760px;margin:0 auto;padding:40px 20px 72px;}
+.g-header{display:flex;align-items:center;gap:16px;margin-bottom:6px;}
+.g-icon{width:52px;height:52px;border-radius:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--cat),color-mix(in srgb,var(--cat2) 80%,#fff));color:#fff;box-shadow:0 8px 20px color-mix(in srgb,var(--cat) 35%,transparent);}
+.g-icon svg{width:26px;height:26px;}
+h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(24px,4vw,32px);font-weight:800;margin:0;}
+.g-sub{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-top:2px;}
+.g-body{margin-top:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px clamp(20px,4vw,38px);box-shadow:var(--shadow);}
+.g-body p{color:var(--text);font-size:15px;line-height:1.85;margin:0 0 18px;}
+.g-body p:last-of-type{margin-bottom:0;}
+.g-body p strong{background:color-mix(in srgb,var(--cat) 12%,transparent);padding:1.5px 7px;border-radius:6px;font-weight:700;white-space:nowrap;}
+.g-body p.cat-guide-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);padding-top:18px;margin-top:18px;border-top:1px solid var(--border);}
+.g-body p.cat-guide-links::before{content:"Further reading";flex-shrink:0;font-weight:800;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--cat);}
+.g-body p.cat-guide-links a{display:inline-flex;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:5px 13px;color:var(--text);text-decoration:none;font-weight:600;}
+.g-body p.cat-guide-links a:hover{border-color:var(--cat);}
+.g-faq-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:800;margin:36px 0 14px;}
+.faq-list{display:grid;gap:10px;}
+.faq-list details{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;}
+.faq-list summary{cursor:pointer;font-weight:700;line-height:1.4;}
+.faq-list details p{color:var(--muted);font-size:13.5px;margin:9px 0 0;}
+.g-cta{margin-top:32px;text-align:center;}
+.g-cta a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--cat),var(--cat2));color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:13px 26px;border-radius:999px;box-shadow:0 10px 25px color-mix(in srgb,var(--cat) 30%,transparent);}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:28px 16px;}
+footer a{color:var(--muted);}
+</style>
+</head>
+<body>
+<nav>
+<a class="logo" href="/">toolnova<span>.tools</span></a>
+<a class="back-link" href="/"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Ana sayfaya dön</a>
+</nav>
+<main>
+<div class="g-header">
+<span class="g-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span>
+<div><h1>OCR Tools</h1><div class="g-sub">Text recognition guide &amp; FAQ</div></div>
+</div>
+<div class="g-body">
+<p>Optical character recognition (OCR) turns pixels — a photo of a receipt, a scanned contract, a screenshot of a paragraph — into text you can copy, search and edit. Toolnova's OCR runs entirely in your browser using Tesseract, the same open-source recognition engine behind many commercial tools, downloaded on demand the first time you open an OCR tool. <strong>Image to Text</strong> handles single photos and screenshots directly. <strong>Scan PDF to Text</strong> does the same job for a scanned PDF, page by page, and is the tool to reach for when a PDF was produced by a physical scanner or a "photo saved as PDF" workflow rather than exported from a word processor — those PDFs contain an image of the text, not the text itself, so PDF to Text alone will return nothing useful on them.</p>
+<p>OCR accuracy depends heavily on the source image: straight, well-lit, high-contrast photos of clean typed text recognize best. Handwriting, low light, skewed angles and low resolution all reduce accuracy, and no OCR engine — Toolnova's included — gets everything right on a difficult scan. Always proofread OCR output before relying on it for anything official.</p>
+<p class="cat-guide-links"><a href="/blog/scan-documents-with-your-phone.html">How to scan documents with just your phone (no app required)</a></p>
+</div>
+<h2 class="g-faq-title">Frequently asked questions</h2>
+<div aria-label="OCR Tools FAQ" class="faq-list">
+<details><summary>Does OCR work on handwriting?</summary><p>Only unreliably. Tesseract, like most OCR engines, is trained primarily on printed text; cursive or messy handwriting often produces garbled results. For handwritten notes, manual transcription is still more accurate.</p></details>
+<details><summary>Which languages does OCR support?</summary><p>The default is English. Recognition quality for other languages depends on which language data the underlying engine loads — accented characters and non-Latin scripts are more error-prone than plain English text.</p></details>
+<details><summary>Why is OCR slower than the other tools?</summary><p>Recognition happens page-by-page on your own device's CPU rather than a server, so a 20-page scanned PDF genuinely takes longer than a 1-page photo. Large or high-resolution files take proportionally longer.</p></details>
+</div>
+<div class="g-cta">
+<a href="/#ocr-tools">OCR Tools araçlarını aç →</a>
+</div>
+</main>
+<footer>
+<a href="/">toolnova.tools</a> — free, private, browser-based tools.
+</footer>
+</body>
+</html>
