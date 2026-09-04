@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Free Online PDF Tools, Calculators & Converters | Toolnova</title>
-<meta content="Use 37+ free PDF tools, document scanning, OCR, calculators, converters and generators in your browser. No signup, no watermark, and no file uploads to our servers." name="description"/>
+<title>Free Online Tools for PDF, OCR, Calculators & Converters | Toolnova</title>
+<meta content="Use 36+ free online PDF tools, OCR, calculators, converters and generators. No signup, no watermark. Files process privately in your browser." name="description"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
 <meta content="Toolnova" name="author"/>
 <meta content="Toolnova" name="application-name"/>
@@ -17,14 +17,18 @@
 <link href="https://toolnova.tools/" hreflang="x-default" rel="alternate"/>
 <!-- Open Graph -->
 <meta content="Free Online PDF Tools, Calculators & Converters | Toolnova" property="og:title"/>
-<meta content="Use 37+ free browser-based PDF tools, document scanning, OCR, calculators, converters and generators. No signup and no watermark." property="og:description"/>
+<meta content="Use 36+ free browser-based PDF tools, document scanning, OCR, calculators, converters and generators. No signup and no watermark." property="og:description"/>
 <meta content="https://toolnova.tools/" property="og:url"/>
+<meta content="https://toolnova.tools/social-preview.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
 <meta content="website" property="og:type"/>
 <meta content="toolnova.tools" property="og:site_name"/>
 <!-- Twitter Card -->
-<meta content="summary" name="twitter:card"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://toolnova.tools/social-preview.jpg" name="twitter:image"/>
 <meta content="Free Online PDF Tools, Calculators & Converters | Toolnova" name="twitter:title"/>
-<meta content="Use 35+ free browser-based PDF tools, OCR, calculators, converters and generators." name="twitter:description"/>
+<meta content="Use 36+ free browser-based PDF tools, OCR, calculators, converters and generators." name="twitter:description"/>
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
@@ -888,7 +892,22 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 /* responsive */
 @media(max-width:960px){.overlay{padding:0}.modal,.modal.fullscreen{width:100vw;max-width:none;height:100dvh;max-height:100dvh;border-radius:0;border:0}.tn-tool-shell,.modal.fullscreen .tn-tool-shell{height:100dvh;min-height:0}.tn-workspace-grid{grid-template-columns:1fr}.tn-side{display:none}.tn-tool-hero{padding:calc(16px + env(safe-area-inset-top)) 112px 16px 16px}.tn-tool-icon{width:46px;height:46px;border-radius:14px;font-size:22px}.tn-tool-title{font-size:21px}.tn-tool-sub{font-size:13.5px}.tn-trust-row{margin-top:10px}.tn-trust-pill:nth-child(3){display:none}.tn-stepper{padding:0 16px}.tn-stage-scroll{padding:18px 16px calc(28px + env(safe-area-inset-bottom))}.modal-close,.modal-fullscreen-btn{top:calc(10px + env(safe-area-inset-top));position:absolute}.modal-fullscreen-btn{display:none}.tn-action-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tn-action-grid .tn-action:nth-child(4),.tn-action-grid .tn-action:nth-child(5){display:flex}}
 @media(max-width:600px){.tn-tool-heading{gap:11px}.tn-tool-icon{width:42px;height:42px}.tn-tool-title{font-size:18px}.tn-tool-sub{max-width:calc(100vw - 40px);line-height:1.45}.tn-tool-hero{padding-right:58px}.modal-close{right:10px}.tn-step{padding:10px 4px 10px 0;font-size:13.5px;gap:6px}.tn-step-num{width:21px;height:21px}.tn-step span:last-child{max-width:76px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tn-tool-stage .dropzone{min-height:180px;padding:23px 15px}.tn-scanner-capture{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}.file-chip{grid-template-columns:38px minmax(0,1fr) auto}.file-chip .fc-size{display:none}.fc-visual{width:38px;height:38px}.tn-action-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tn-action{min-height:40px}.tn-result-top{align-items:flex-start;flex-direction:column}.tn-output-meta{white-space:normal}.tn-tool-stage .result-box{padding:16px}.tn-trust-pill{font-size:13.5px;padding:5px 7px}.tn-trust-pill:nth-child(2){display:none}}
+.tn-capture-camera{width:100%;background:#fff;font:inherit;font-family:inherit}
+.scanner-live-camera{position:fixed;inset:0;z-index:9999;background:#0b0d12;display:flex;align-items:center;justify-content:center}
+.scanner-live-inner{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.scanner-live-inner video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.scanner-live-guide{position:absolute;inset:6% 8%;border:2px dashed rgba(255,255,255,.65);border-radius:16px;pointer-events:none;box-shadow:0 0 0 2000px rgba(0,0,0,.28)}
+.scanner-live-hint{position:absolute;top:22px;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,.6);padding:0 20px}
+.scanner-live-count{position:absolute;top:56px;left:0;right:0;text-align:center;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:600;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.scanner-live-bar{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:36px;padding:22px 20px calc(26px + env(safe-area-inset-bottom));background:linear-gradient(0deg,rgba(0,0,0,.55),transparent)}
+.scanner-live-shutter{width:76px;height:76px;border-radius:50%;background:transparent;border:4px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;padding:0}
+.scanner-live-shutter span{width:60px;height:60px;border-radius:50%;background:#fff;display:block;transition:.12s}
+.scanner-live-shutter:active span,.scanner-live-shutter.flash span{transform:scale(.82);background:var(--tn-tool-accent,#4f63d2)}
+.scanner-live-close,.scanner-live-switch{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px)}
+.scanner-live-close:hover,.scanner-live-switch:hover{background:rgba(255,255,255,.24)}
+@media(max-width:600px){.scanner-live-guide{inset:14% 5%}.scanner-live-bar{gap:28px}}
 @media(max-width:380px){.tn-tool-icon{display:none}.tn-tool-hero{padding-left:14px}.tn-stage-scroll{padding-left:12px;padding-right:12px}.tn-scanner-capture{grid-template-columns:1fr}}
+
 
 </style>
 </head>
@@ -936,17 +955,17 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div class="hero-shell">
 <div class="hero-copy">
 <div class="hero-badge"><span class="hero-badge-dot"></span> 100% Free · Private by design</div>
-<h1>Professional online tools.<br/><em>100% free. Zero friction.</em></h1>
-<p>Convert documents, extract text, edit PDFs, calculate results and create digital assets — in one fast, private workspace.</p>
+<h1>Free Online PDF Tools, OCR, Calculators &amp; Converters</h1>
+<p>Use 36+ free online tools to convert and edit PDFs, extract text with OCR, calculate results, convert units, generate QR codes and more. No signup, no watermark, and private browser-based processing.</p>
 <div class="search-wrap">
 <span class="search-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg></span>
-<input aria-label="Search Toolnova tools" autocomplete="off" enterkeyhint="search" id="search-input" oninput="filterTools(this.value)" placeholder="Search 35+ tools — PDF, OCR, QR, calculator..." type="search"/>
+<input aria-label="Search Toolnova tools" autocomplete="off" enterkeyhint="search" id="search-input" oninput="filterTools(this.value)" placeholder="Search 36+ tools — PDF, OCR, QR, calculator..." type="search"/>
 <span class="search-key">⌘ K</span>
 <div aria-live="polite" class="search-status" id="search-status" role="status"></div>
 </div>
 <div class="hero-actions">
 <a class="hero-primary" href="#pdf-converter">Explore all tools <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a class="hero-secondary" href="/#tool=pdf2word" onclick="return handleToolCardClick(event,this,'pdf2word')">Open PDF to Word</a>
+<a class="hero-secondary" href="/pdf-to-word.html" onclick="return handleToolCardClick(event,this,'pdf2word')">Open PDF to Word</a>
 </div>
 <div class="hero-trust">
 <span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Files stay on your device</span>
@@ -984,13 +1003,13 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 </div>
 </div>
 <div class="floating-chip chip-one"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg> Smart OCR</div>
-<div class="floating-chip chip-two"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg> 35+ tools</div>
+<div class="floating-chip chip-two"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg> 36+ tools</div>
 </div>
 </div>
 </div>
 <!-- STATS -->
 <div aria-label="Toolnova highlights" class="stats">
-<div class="stat"><span class="stat-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg></span><div><div class="stat-num">35+</div><div class="stat-label">Purpose-built tools</div></div></div>
+<div class="stat"><span class="stat-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m15 4 5 5L8 21H3v-5z"></path><path d="m14 5 5 5M6 4v3M4.5 5.5h3M19 16v4M17 18h4"></path></svg></span><div><div class="stat-num">36+</div><div class="stat-label">Purpose-built tools</div></div></div>
 <div class="stat"><span class="stat-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg></span><div><div class="stat-num">100%</div><div class="stat-label">Browser-based privacy</div></div></div>
 <div class="stat"><span class="stat-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M12 17v-6m-3 3 3-3 3 3"></path></svg></span><div><div class="stat-num">0</div><div class="stat-label">Server uploads required</div></div></div>
 <div class="stat"><span class="stat-icon"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"></path></svg></span><div><div class="stat-num">Free</div><div class="stat-label">No signup or watermark</div></div></div>
@@ -1032,52 +1051,52 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-pdf">
-<a class="tool-card" data-key="c1" href="/#tool=pdf2word" onclick="return handleToolCardClick(event,this,'pdf2word')">
+<a class="tool-card" data-key="c1" href="/pdf-to-word.html" onclick="return handleToolCardClick(event,this,'pdf2word')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c1')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c1')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-red"><span class="tool-icon anim-float"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M12 11v6m-3-3 3 3 3-3"></path></svg></span></div>
 <div class="tool-name">PDF to Word</div>
 <div class="tool-desc">Turn PDFs into editable Word files while keeping text, images and structure easy to work with.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c2" href="/#tool=word2pdf" onclick="return handleToolCardClick(event,this,'word2pdf')">
+<a class="tool-card" data-key="c2" href="/word-to-pdf.html" onclick="return handleToolCardClick(event,this,'word2pdf')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c2')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c2')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M12 17v-6m-3 3 3-3 3 3"></path></svg></span></div>
 <div class="tool-name">Word to PDF</div>
 <div class="tool-desc">Create a clean, share-ready PDF from your Word document in just a few clicks.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c3" href="/#tool=pdf2jpg" onclick="return handleToolCardClick(event,this,'pdf2jpg')">
+<a class="tool-card" data-key="c3" href="/pdf-to-jpg.html" onclick="return handleToolCardClick(event,this,'pdf2jpg')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c3')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c3')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-spin"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m21 15-5-5L5 20"></path></svg></span></div>
 <div class="tool-name">PDF to JPG</div>
 <div class="tool-desc">Export every PDF page as a sharp JPG image for sharing, publishing or reuse.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c4" href="/#tool=img2pdf" onclick="return handleToolCardClick(event,this,'img2pdf')">
+<a class="tool-card" data-key="c4" href="/image-to-pdf.html" onclick="return handleToolCardClick(event,this,'img2pdf')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c4')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c4')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-flip"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="14" rx="2" width="10" x="4" y="3"></rect><rect height="14" rx="2" width="10" x="10" y="7"></rect><path d="M7 11h4M13 13h4"></path></svg></span></div>
 <div class="tool-name">JPG to PDF</div>
 <div class="tool-desc">Combine one or more JPG images into a polished, organized PDF document.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c5" href="/#tool=pdf2excel" onclick="return handleToolCardClick(event,this,'pdf2excel')">
+<a class="tool-card" data-key="c5" href="/pdf-to-excel.html" onclick="return handleToolCardClick(event,this,'pdf2excel')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c5')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c5')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M3 9h18M8 9v11M15 9v11M8 14h13"></path></svg></span></div>
 <div class="tool-name">PDF to Excel</div>
 <div class="tool-desc">Pull tables from PDF files into editable Excel spreadsheets for faster analysis.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c6" href="/#tool=pdf2png" onclick="return handleToolCardClick(event,this,'pdf2png')">
+<a class="tool-card" data-key="c6" href="/pdf-to-png.html" onclick="return handleToolCardClick(event,this,'pdf2png')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c6')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c6')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-orange"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m21 15-5-5L5 20"></path></svg></span></div>
 <div class="tool-name">PDF to PNG</div>
 <div class="tool-desc">Convert PDF pages into crisp PNG images with transparent-friendly quality.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c7" href="/#tool=img2pdf" onclick="return handleToolCardClick(event,this,'img2pdf')">
+<a class="tool-card" data-key="c7" href="/image-to-pdf.html" onclick="return handleToolCardClick(event,this,'img2pdf')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c7')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c7')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-teal"><span class="tool-icon anim-spin"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="14" rx="2" width="10" x="4" y="3"></rect><rect height="14" rx="2" width="10" x="10" y="7"></rect><path d="M7 11h4M13 13h4"></path></svg></span></div>
 <div class="tool-name">PNG to PDF</div>
 <div class="tool-desc">Package PNG images into a compact, professional PDF that is easy to share.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c8" href="/#tool=pdf2text" onclick="return handleToolCardClick(event,this,'pdf2text')">
+<a class="tool-card" data-key="c8" href="/pdf-to-text.html" onclick="return handleToolCardClick(event,this,'pdf2text')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c8')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c8')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-gray"><span class="tool-icon anim-wobble"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path></svg></span></div>
 <div class="tool-name">PDF to Text</div>
@@ -1102,21 +1121,21 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-ocr">
-<a class="tool-card" data-key="c9" href="/#tool=ocr" onclick="return handleToolCardClick(event,this,'ocr')">
+<a class="tool-card" data-key="c9" href="/image-to-text.html" onclick="return handleToolCardClick(event,this,'ocr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c9')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c9')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-shake"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span></div>
 <div class="tool-name">Image to Text (OCR)</div>
 <div class="tool-desc">Capture editable text from photos and screenshots with private browser-based OCR.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c10" href="/#tool=scanocr" onclick="return handleToolCardClick(event,this,'scanocr')">
+<a class="tool-card" data-key="c10" href="/scan-pdf-to-text.html" onclick="return handleToolCardClick(event,this,'scanocr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c10')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c10')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-gray"><span class="tool-icon anim-wobble"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span></div>
 <div class="tool-name">Scan PDF to Text</div>
 <div class="tool-desc">Transform scanned PDF pages into searchable, reusable text with OCR.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
 
-<a class="tool-card" data-key="c10b" href="/#tool=docscanner" onclick="return handleToolCardClick(event,this,'docscanner')">
+<a class="tool-card" data-key="c10b" href="/document-scanner.html" onclick="return handleToolCardClick(event,this,'docscanner')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c10b')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c10b')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewBox="0 0 24 24"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3"/><rect x="7" y="6" width="10" height="12" rx="1.5"/><path d="M9 10h6M9 13h6"/></svg></span></div>
 <div class="tool-name">Document Scanner</div>
@@ -1142,54 +1161,54 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-edit">
-<a class="tool-card" data-key="c11" href="/#tool=merge" onclick="return handleToolCardClick(event,this,'merge')">
+<a class="tool-card" data-key="c11" href="/merge-pdf.html" onclick="return handleToolCardClick(event,this,'merge')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c11')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c11')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="14" rx="2" width="10" x="4" y="3"></rect><rect height="14" rx="2" width="10" x="10" y="7"></rect><path d="M7 11h4M13 13h4"></path></svg></span></div>
 <div class="tool-name">Merge PDF</div>
 <div class="tool-desc">Combine multiple PDFs into one organized document in the exact order you choose.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c12" href="/#tool=split" onclick="return handleToolCardClick(event,this,'split')">
+<a class="tool-card" data-key="c12" href="/split-pdf.html" onclick="return handleToolCardClick(event,this,'split')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c12')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c12')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-squeeze"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 3v18M8 7 4 3M8 17l-4 4M16 7l4-4M16 17l4 4"></path></svg></span></div>
 <div class="tool-name">Split PDF</div>
 <div class="tool-desc">Separate selected pages or page ranges into clean, individual PDF files.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c13" href="/#tool=compress" onclick="return handleToolCardClick(event,this,'compress')">
+<a class="tool-card" data-key="c13" href="/compress-pdf.html" onclick="return handleToolCardClick(event,this,'compress')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c13')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c13')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-squeeze"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m8 3-5 5M3 3v5h5M16 3l5 5M21 3v5h-5M8 21l-5-5M3 21v-5h5M16 21l5-5M21 21v-5h-5"></path></svg></span></div>
 <div class="tool-name">Compress PDF</div>
 <div class="tool-desc">Reduce PDF size when possible while preserving practical document quality.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c14" href="/#tool=rotate" onclick="return handleToolCardClick(event,this,'rotate')">
+<a class="tool-card" data-key="c14" href="/rotate-pdf.html" onclick="return handleToolCardClick(event,this,'rotate')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c14')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c14')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-purple"><span class="tool-icon anim-spin"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M20 7v5h-5"></path><path d="M18.4 18.4A9 9 0 1 1 20 12"></path></svg></span></div>
 <div class="tool-name">Rotate PDF</div>
 <div class="tool-desc">Fix page orientation instantly with precise 90°, 180° or 270° rotation.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c15" href="/#tool=deletepages" onclick="return handleToolCardClick(event,this,'deletepages')">
+<a class="tool-card" data-key="c15" href="/delete-pdf-pages.html" onclick="return handleToolCardClick(event,this,'deletepages')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c15')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c15')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-red"><span class="tool-icon anim-wobble"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 11v6M14 11v6"></path></svg></span></div>
 <div class="tool-name">Delete PDF Pages</div>
 <div class="tool-desc">Remove unwanted pages and keep only the content your final PDF needs.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c16" href="/#tool=extractpages" onclick="return handleToolCardClick(event,this,'extractpages')">
+<a class="tool-card" data-key="c16" href="/extract-pdf-pages.html" onclick="return handleToolCardClick(event,this,'extractpages')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c16')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c16')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-teal"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="18" rx="2" width="13" x="3" y="3"></rect><path d="M8 8h5M8 12h5M17 12h4m-2-2 2 2-2 2M17 18h4"></path></svg></span></div>
 <div class="tool-name">Extract PDF Pages</div>
 <div class="tool-desc">Select specific pages and save them as a brand-new PDF document.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c17" href="/#tool=sign" onclick="return handleToolCardClick(event,this,'sign')">
+<a class="tool-card" data-key="c17" href="/sign-pdf.html" onclick="return handleToolCardClick(event,this,'sign')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c17')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c17')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-write"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"></path></svg></span></div>
 <div class="tool-name">Sign PDF</div>
 <div class="tool-desc">Draw, type or upload a signature and place it precisely on any PDF page.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c17b" href="/#tool=addtext" onclick="return handleToolCardClick(event,this,'addtext')">
+<a class="tool-card" data-key="c17b" href="/add-text-to-pdf.html" onclick="return handleToolCardClick(event,this,'addtext')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c17b')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c17b')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-purple"><span class="tool-icon anim-write"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"></path><path d="M4 15h3M17 15h3"></path></svg></span></div>
 <div class="tool-name">Add Text to PDF</div>
@@ -1227,26 +1246,26 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-gen">
-<a class="tool-card" data-key="c18" href="/#tool=qr" onclick="return handleToolCardClick(event,this,'qr')">
+<a class="tool-card" data-key="c18" href="/qr-code-generator.html" onclick="return handleToolCardClick(event,this,'qr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c18')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c18')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><path d="M14 14h3v3h-3zM18 14h3M18 18h3v3M14 19v2"></path></svg></span></div>
 <div class="tool-name">QR Code Generator</div>
 <div class="tool-desc">Create a scannable QR code for any link or text and download it as PNG.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c19" href="/#tool=password" onclick="return handleToolCardClick(event,this,'password')">
+<a class="tool-card" data-key="c19" href="/password-generator.html" onclick="return handleToolCardClick(event,this,'password')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c19')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c19')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-orange"><span class="tool-icon anim-lock"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="m11 12 8-8M16 4l4 4M14 6l4 4"></path></svg></span></div>
 <div class="tool-name">Password Generator</div>
 <div class="tool-desc">Build strong, customizable passwords with letters, numbers and symbols.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c20" href="/#tool=color" onclick="return handleToolCardClick(event,this,'color')">
+<a class="tool-card" data-key="c20" href="/color-code-converter.html" onclick="return handleToolCardClick(event,this,'color')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c20')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c20')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-purple"><span class="tool-icon anim-hue"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.5a2.5 2.5 0 0 0 0-5H12a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14z"></path><circle cx="7.5" cy="10" r="1"></circle><circle cx="9.5" cy="6.5" r="1"></circle><circle cx="14" cy="6" r="1"></circle></svg></span></div>
 <div class="tool-name">Color Code Converter</div>
 <div class="tool-desc">Translate colors instantly between HEX, RGB and HSL formats.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c21" href="/#tool=hash" onclick="return handleToolCardClick(event,this,'hash')">
+<a class="tool-card" data-key="c21" href="/lorem-ipsum-generator.html" onclick="return handleToolCardClick(event,this,'hash')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c21')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c21')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-gray"><span class="tool-icon anim-float"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M4 6h16M4 10h12M4 14h16M4 18h10"></path></svg></span></div>
 <div class="tool-name">Lorem Ipsum Generator</div>
@@ -1271,60 +1290,60 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-calc">
-<a class="tool-card" data-key="c22" href="/#tool=age" onclick="return handleToolCardClick(event,this,'age')">
+<a class="tool-card" data-key="c22" href="/age-calculator.html" onclick="return handleToolCardClick(event,this,'age')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c22')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c22')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-pink"><span class="tool-icon anim-tick"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"></path></svg></span></div>
 <div class="tool-name">Age Calculator</div>
 <div class="tool-desc">See your exact age in years, months, days and hours from any birth date.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c23" href="/#tool=bmi" onclick="return handleToolCardClick(event,this,'bmi')">
+<a class="tool-card" data-key="c23" href="/bmi-calculator.html" onclick="return handleToolCardClick(event,this,'bmi')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c23')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c23')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-wobble"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"></path></svg></span></div>
 <div class="tool-name">BMI Calculator</div>
 <div class="tool-desc">Calculate Body Mass Index with both US Imperial and Metric measurements.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c24" href="/#tool=tip" onclick="return handleToolCardClick(event,this,'tip')">
+<a class="tool-card" data-key="c24" href="/tip-calculator.html" onclick="return handleToolCardClick(event,this,'tip')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c24')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c24')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-ping"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6M9 16h4"></path></svg></span></div>
 <div class="tool-name">Tip Calculator</div>
 <div class="tool-desc">Calculate the tip, total bill and per-person split with zero guesswork.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c25" href="/#tool=discount" onclick="return handleToolCardClick(event,this,'discount')">
+<a class="tool-card" data-key="c25" href="/discount-calculator.html" onclick="return handleToolCardClick(event,this,'discount')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c25')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c25')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-orange"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M20 13 13 20l-9-9V4h7z"></path><circle cx="8.5" cy="8.5" r="1.5"></circle></svg></span></div>
 <div class="tool-name">Discount Calculator</div>
 <div class="tool-desc">Reveal the final price, amount saved and discount impact instantly.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c26" href="/#tool=loan" onclick="return handleToolCardClick(event,this,'loan')">
+<a class="tool-card" data-key="c26" href="/loan-calculator.html" onclick="return handleToolCardClick(event,this,'loan')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c26')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c26')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-count"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m3 10 9-6 9 6M5 10h14M6 10v8M10 10v8M14 10v8M18 10v8M4 18h16M3 21h18"></path></svg></span></div>
 <div class="tool-name">Loan Calculator</div>
 <div class="tool-desc">Estimate monthly payments, total cost and interest for a personal loan.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c26b" href="/#tool=bmr" onclick="return handleToolCardClick(event,this,'bmr')">
+<a class="tool-card" data-key="c26b" href="/bmr-calculator.html" onclick="return handleToolCardClick(event,this,'bmr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c26b')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c26b')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-purple"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22c4 0 7-3 7-7 0-3-2-5-4-7 0 3-2 4-3 4 1-4-1-7-4-10 0 5-3 7-3 12 0 5 3 8 7 8z"></path><path d="M10 18c0-2 1-3 2-5 0 2 2 2 2 4 0 2-1 3-2 3s-2-1-2-2z"></path></svg></span></div>
 <div class="tool-name">BMR Calculator</div>
 <div class="tool-desc">Estimate the calories your body burns at rest using a proven BMR formula.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c26c" href="/#tool=calorie" onclick="return handleToolCardClick(event,this,'calorie')">
+<a class="tool-card" data-key="c26c" href="/calorie-calculator.html" onclick="return handleToolCardClick(event,this,'calorie')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c26c')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c26c')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-red"><span class="tool-icon anim-shake"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 5c-1-2 0-4 2-5M15.5 6C19 6 21 9 21 13c0 5-4 9-6 9-1 0-2-1-3-1s-2 1-3 1c-2 0-6-4-6-9 0-4 3-7 6.5-7 1.2 0 2 .5 2.5 1 .5-.5 1.3-1 3.5-1z"></path></svg></span></div>
 <div class="tool-name">Calorie Calculator</div>
 <div class="tool-desc">Find estimated daily calorie needs based on your body and activity level.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c26d" href="/#tool=bodyfat" onclick="return handleToolCardClick(event,this,'bodyfat')">
+<a class="tool-card" data-key="c26d" href="/body-fat-calculator.html" onclick="return handleToolCardClick(event,this,'bodyfat')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c26d')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c26d')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-orange"><span class="tool-icon anim-wobble"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="m14 2 8 8L10 22l-8-8z"></path><path d="m7 17 2-2M10 20l2-2M4 14l2-2M13 11l2-2M16 8l2-2"></path></svg></span></div>
 <div class="tool-name">Body Fat Calculator</div>
 <div class="tool-desc">Estimate body-fat percentage using the US Navy tape measurement method.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c26e" href="/#tool=water" onclick="return handleToolCardClick(event,this,'water')">
+<a class="tool-card" data-key="c26e" href="/water-intake-calculator.html" onclick="return handleToolCardClick(event,this,'water')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c26e')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c26e')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-teal"><span class="tool-icon anim-float"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 2s7 7 7 13a7 7 0 0 1-14 0C5 9 12 2 12 2z"></path><path d="M9 16c.5 1.5 1.5 2 3 2"></path></svg></span></div>
 <div class="tool-name">Water Intake Calculator</div>
@@ -1350,27 +1369,27 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <div aria-hidden="true" class="section-orbit"><i></i><i></i><i></i></div>
 </div>
 <div class="tool-grid theme-conv">
-<a class="tool-card" data-key="c27" href="/#tool=unit" onclick="return handleToolCardClick(event,this,'unit')">
+<a class="tool-card" data-key="c27" href="/unit-converter.html" onclick="return handleToolCardClick(event,this,'unit')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c27')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c27')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-gray"><span class="tool-icon anim-flip"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M4 19V5M4 5h16M4 9h4M4 13h7M4 17h4"></path><path d="M20 5v14"></path></svg></span></div>
 <div class="tool-name">Unit Converter</div>
 <div class="tool-desc">Convert length, weight, temperature, speed and volume with live results.</div>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c28" href="/#tool=currency" onclick="return handleToolCardClick(event,this,'currency')">
+<a class="tool-card" data-key="c28" href="/currency-converter.html" onclick="return handleToolCardClick(event,this,'currency')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c28')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c28')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-teal"><span class="tool-icon anim-flip"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"></ellipse><path d="M5 6v5c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"></path></svg></span></div>
 <div class="tool-name">Currency Converter</div>
 <div class="tool-desc">Estimate values across 15 major world currencies with a simple workflow.</div>
 <span class="tool-badge hot">Hot</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c29" href="/#tool=case" onclick="return handleToolCardClick(event,this,'case')">
+<a class="tool-card" data-key="c29" href="/text-case-converter.html" onclick="return handleToolCardClick(event,this,'case')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c29')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c29')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-purple"><span class="tool-icon anim-shake"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M4 18 9 6l5 12M6 14h6"></path><path d="M14 11h3a3 3 0 0 1 0 6h-3zM14 8h3"></path></svg></span></div>
 <div class="tool-name">Text Case Converter</div>
 <div class="tool-desc">Switch text between uppercase, lowercase, Title Case and camelCase instantly.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="c30" href="/#tool=wordcount" onclick="return handleToolCardClick(event,this,'wordcount')">
+<a class="tool-card" data-key="c30" href="/word-counter.html" onclick="return handleToolCardClick(event,this,'wordcount')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'c30')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'c30')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 9h14M4 15h14M10 3 8 21M16 3l-2 18"></path></svg></span></div>
 <div class="tool-name">Word Counter</div>
@@ -1385,56 +1404,56 @@ footer{background:#101728;color:#AEB8CB;border-top:0;}footer a{color:#BAC4D5}foo
 <h2>⭐ Most Popular Right Now</h2>
 <p>Popular choices for document, text and everyday utility tasks.</p>
 <div class="tool-grid">
-<a class="tool-card" data-key="p1" href="/#tool=pdf2jpg" onclick="return handleToolCardClick(event,this,'pdf2jpg')">
+<a class="tool-card" data-key="p1" href="/pdf-to-jpg.html" onclick="return handleToolCardClick(event,this,'pdf2jpg')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p1')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p1')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-spin"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><circle cx="8.5" cy="9" r="1.5"></circle><path d="m21 15-5-5L5 20"></path></svg></span></div>
 <div class="tool-name">PDF to JPG</div>
 <div class="tool-desc">Export every PDF page as a sharp JPG image for sharing, publishing or reuse.</div>
 <span class="tool-badge hot">Most Popular</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p2" href="/#tool=ocr" onclick="return handleToolCardClick(event,this,'ocr')">
+<a class="tool-card" data-key="p2" href="/image-to-text.html" onclick="return handleToolCardClick(event,this,'ocr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p2')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p2')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-yellow"><span class="tool-icon anim-shake"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10M7 9h7M7 15h8"></path></svg></span></div>
 <div class="tool-name">Image to Text</div>
 <div class="tool-desc">Capture editable text from images with fast, private browser-based OCR.</div>
 <span class="tool-badge hot">Trending</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p3" href="/#tool=merge" onclick="return handleToolCardClick(event,this,'merge')">
+<a class="tool-card" data-key="p3" href="/merge-pdf.html" onclick="return handleToolCardClick(event,this,'merge')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p3')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p3')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-bounce"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="14" rx="2" width="10" x="4" y="3"></rect><rect height="14" rx="2" width="10" x="10" y="7"></rect><path d="M7 11h4M13 13h4"></path></svg></span></div>
 <div class="tool-name">Merge PDF</div>
 <div class="tool-desc">Combine multiple PDFs into one organized document in the exact order you choose.</div>
 <span class="tool-badge hot">Most Used</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p4" href="/#tool=qr" onclick="return handleToolCardClick(event,this,'qr')">
+<a class="tool-card" data-key="p4" href="/qr-code-generator.html" onclick="return handleToolCardClick(event,this,'qr')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p4')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p4')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><path d="M14 14h3v3h-3zM18 14h3M18 18h3v3M14 19v2"></path></svg></span></div>
 <div class="tool-name">QR Code Generator</div>
 <div class="tool-desc">Create a scannable QR code for any link or text and download it as PNG.</div>
 <span class="tool-badge">Popular</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p5" href="/#tool=sign" onclick="return handleToolCardClick(event,this,'sign')">
+<a class="tool-card" data-key="p5" href="/sign-pdf.html" onclick="return handleToolCardClick(event,this,'sign')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p5')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p5')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-green"><span class="tool-icon anim-write"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"></path></svg></span></div>
 <div class="tool-name">Sign PDF</div>
 <div class="tool-desc">Draw, type or upload a signature and place it precisely on any PDF page.</div>
 <span class="tool-badge">New</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p6" href="/#tool=password" onclick="return handleToolCardClick(event,this,'password')">
+<a class="tool-card" data-key="p6" href="/password-generator.html" onclick="return handleToolCardClick(event,this,'password')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p6')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p6')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-orange"><span class="tool-icon anim-lock"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="m11 12 8-8M16 4l4 4M14 6l4 4"></path></svg></span></div>
 <div class="tool-name">Password Generator</div>
 <div class="tool-desc">Build strong, customizable passwords with letters, numbers and symbols.</div>
 <span class="tool-badge">Popular</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p7" href="/#tool=age" onclick="return handleToolCardClick(event,this,'age')">
+<a class="tool-card" data-key="p7" href="/age-calculator.html" onclick="return handleToolCardClick(event,this,'age')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p7')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p7')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-pink"><span class="tool-icon anim-tick"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"></path></svg></span></div>
 <div class="tool-name">Age Calculator</div>
 <div class="tool-desc">See your exact age in years, months, days and hours from any birth date.</div>
 <span class="tool-badge">Popular</span>
 <div class="tool-card-footer"><span><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg> Private</span><span>Open tool <svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div></a>
-<a class="tool-card" data-key="p8" href="/#tool=wordcount" onclick="return handleToolCardClick(event,this,'wordcount')">
+<a class="tool-card" data-key="p8" href="/word-counter.html" onclick="return handleToolCardClick(event,this,'wordcount')">
 <span aria-label="Favorite this tool" aria-pressed="false" class="fav-btn" onclick="toggleFav(event,'p8')" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFav(event,'p8')}" role="button" tabindex="0"></span>
 <div class="tool-icon-wrap ibg-blue"><span class="tool-icon anim-pulse"><svg aria-hidden="true" class="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" viewbox="0 0 24 24"><path d="M5 9h14M4 15h14M10 3 8 21M16 3l-2 18"></path></svg></span></div>
 <div class="tool-name">Word Counter</div>
@@ -1635,6 +1654,7 @@ function toggleModalFullscreen(){
 }
 function closeTool(updateUrl=true){
   if(window.__tnResultObserver){window.__tnResultObserver.disconnect();window.__tnResultObserver=null;}
+  if(window._scannerStream){window._scannerStream.getTracks().forEach(t=>t.stop());window._scannerStream=null;}
   const overlay=document.getElementById('overlay');
   overlay.classList.remove('active');
   overlay.setAttribute('aria-hidden','true');
@@ -2098,7 +2118,8 @@ const TOOLS={
 
   docscanner:{
     title:'📷 Document Scanner',sub:'Use your phone camera or photos to build a clean, searchable multi-page PDF',
-    render:()=>`<div class="tn-scanner-capture"><label class="tn-capture-card"><span class="tn-capture-icon">📷</span><strong>Open camera</strong><span>Capture a document page with the rear camera.</span><input type="file" id="scanner-camera" accept="image/*" capture="environment"></label><label class="tn-capture-card"><span class="tn-capture-icon">🖼️</span><strong>Choose photos</strong><span>Add one or many existing document images.</span><input type="file" id="scanner-images" accept="image/*" multiple></label></div>
+    render:()=>`<div class="tn-scanner-capture"><button type="button" class="tn-capture-card tn-capture-camera" onclick="scannerOpenLiveCamera()"><span class="tn-capture-icon">📷</span><strong>Scan with camera</strong><span>Live viewfinder — position the page and capture.</span></button><label class="tn-capture-card"><span class="tn-capture-icon">🖼️</span><strong>Choose photos</strong><span>Add one or many existing document images.</span><input type="file" id="scanner-images" accept="image/*" multiple></label></div>
+      <div id="scanner-live-camera" class="scanner-live-camera" style="display:none;"><div class="scanner-live-inner"><video id="scanner-live-video" autoplay playsinline muted></video><div class="scanner-live-guide"></div><div class="scanner-live-hint">Fill the frame with the document, then capture</div><canvas id="scanner-live-canvas" style="display:none;"></canvas><div class="scanner-live-bar"><button type="button" class="scanner-live-close" onclick="scannerCloseLiveCamera()">✕</button><button type="button" class="scanner-live-shutter" onclick="scannerCaptureFrame()" aria-label="Capture page"><span></span></button><button type="button" class="scanner-live-switch" onclick="scannerSwitchCamera()" title="Switch camera">🔄</button></div><div id="scanner-live-count" class="scanner-live-count">0 pages captured</div></div></div>
       <div class="tn-options-card"><div class="tn-options-head"><span class="tn-options-title">Scan settings</span><span class="tn-options-badge">Live preview</span></div><div class="row"><div><label>Enhancement</label><select id="scanner-mode" onchange="renderScannerPages()"><option value="document">Document enhance</option><option value="original">Original</option><option value="bw">Black & white</option></select></div><div><label>OCR language</label><select id="scanner-lang"><option value="eng">English</option><option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option><option value="tur">Turkish</option></select></div></div>
       <div class="row" style="margin-top:2px;"><div><label>Brightness <span id="scanner-bright-val" style="color:var(--muted);font-weight:600;">0</span></label><input type="range" id="scanner-bright" min="-60" max="60" value="7" oninput="document.getElementById('scanner-bright-val').textContent=this.value;renderScannerPages()" style="width:100%;"></div><div><label>Contrast <span id="scanner-contrast-val" style="color:var(--muted);font-weight:600;">1.24</span></label><input type="range" id="scanner-contrast" min="80" max="220" value="124" oninput="document.getElementById('scanner-contrast-val').textContent=(this.value/100).toFixed(2);renderScannerPages()" style="width:100%;"></div></div>
       <label style="text-transform:none;letter-spacing:0;font-size:12px;display:flex;align-items:center;gap:8px;margin:10px 0 0"><input type="checkbox" id="scanner-ocr" checked> Make the exported PDF searchable with an OCR text layer</label></div>
@@ -3413,10 +3434,61 @@ async function doScanOCR(){
 // ── DOCUMENT SCANNER ─────────────────────────────────────────────────────────
 window._scannerPages=[];
 function initDocumentScanner(){
-  window._scannerPages=[];const imageInput=document.getElementById('scanner-images'),cameraInput=document.getElementById('scanner-camera');if(!imageInput&&!cameraInput)return;
+  window._scannerPages=[];const imageInput=document.getElementById('scanner-images');if(!imageInput)return;
   const add=async files=>{for(const f of Array.from(files||[])){if(!f.type.startsWith('image/'))continue;const url=URL.createObjectURL(f);try{const img=await new Promise((res,rej)=>{const x=new Image();x.onload=()=>res(x);x.onerror=rej;x.src=url});window._scannerPages.push({file:f,img,rotation:0,corners:null})}finally{URL.revokeObjectURL(url)}}renderScannerPages();if(window._scannerPages.length)tnSetStep(2)};
-  [imageInput,cameraInput].filter(Boolean).forEach(input=>input.addEventListener('change',e=>{add(e.target.files);e.target.value=''}));renderScannerPages();
+  imageInput.addEventListener('change',e=>{add(e.target.files);e.target.value=''});renderScannerPages();
+  window._scannerAddPages=add;
 }
+// ── LIVE CAMERA VIEWFINDER ────────────────────────────────────────────────────
+// Instead of handing off to the OS camera app (a jarring context switch), this opens
+// a real in-page camera preview — like Adobe Scan / CamScanner — so the person can see
+// exactly what they're about to capture and take multiple pages back-to-back.
+window._scannerStream=null;window._scannerFacing='environment';
+async function scannerOpenLiveCamera(){
+  const overlay=document.getElementById('scanner-live-camera');if(!overlay)return;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    showToast('Live camera not supported on this device — use "Choose photos" instead');return;
+  }
+  overlay.style.display='flex';document.body.style.overflow='hidden';
+  try{
+    window._scannerStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:window._scannerFacing,width:{ideal:1920},height:{ideal:1080}},audio:false});
+    const video=document.getElementById('scanner-live-video');video.srcObject=window._scannerStream;
+    scannerUpdateLiveCount();
+  }catch(err){
+    showToast('Camera access denied or unavailable');
+    scannerCloseLiveCamera();
+  }
+}
+function scannerCloseLiveCamera(){
+  const overlay=document.getElementById('scanner-live-camera');if(overlay)overlay.style.display='none';
+  document.body.style.overflow='';
+  if(window._scannerStream){window._scannerStream.getTracks().forEach(t=>t.stop());window._scannerStream=null;}
+}
+async function scannerSwitchCamera(){
+  window._scannerFacing=window._scannerFacing==='environment'?'user':'environment';
+  if(window._scannerStream)window._scannerStream.getTracks().forEach(t=>t.stop());
+  try{
+    window._scannerStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:window._scannerFacing,width:{ideal:1920},height:{ideal:1080}},audio:false});
+    document.getElementById('scanner-live-video').srcObject=window._scannerStream;
+  }catch(err){showToast('Could not switch camera');}
+}
+async function scannerCaptureFrame(){
+  const video=document.getElementById('scanner-live-video'),canvas=document.getElementById('scanner-live-canvas');
+  if(!video||!video.videoWidth)return;
+  canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+  canvas.getContext('2d').drawImage(video,0,0,canvas.width,canvas.height);
+  const blob=await new Promise(res=>canvas.toBlob(res,'image/jpeg',0.92));
+  const file=new File([blob],`scan-${Date.now()}.jpg`,{type:'image/jpeg'});
+  if(window._scannerAddPages)await window._scannerAddPages([file]);
+  scannerUpdateLiveCount();
+  const bar=document.querySelector('.scanner-live-shutter');if(bar){bar.classList.add('flash');setTimeout(()=>bar.classList.remove('flash'),180);}
+}
+function scannerUpdateLiveCount(){
+  const el=document.getElementById('scanner-live-count');if(!el)return;
+  const n=(window._scannerPages||[]).length;
+  el.textContent=n?`${n} page${n===1?'':'s'} captured — tap ✕ when done`:'0 pages captured';
+}
+
 // Bilinear-sampled perspective warp: maps a quadrilateral (4 corner points, clockwise from
 // top-left) in the source image onto a straight output rectangle. This is what gives the
 // "straighten a photographed page" effect real scanner apps use — canvas 2D's built-in
