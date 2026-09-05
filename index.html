@@ -1720,7 +1720,9 @@ function filterTools(query){
   const q=normalizeSearch(query);
   let visible=0;
   document.querySelectorAll('.tool-card').forEach(card=>{
-    const key=(new URL(card.getAttribute('href'), location.origin)).hash.replace('#tool=','');
+    const onclickAttr=card.getAttribute('onclick')||'';
+    const keyMatch=onclickAttr.match(/,'([a-z0-9]+)'\)$/i) || onclickAttr.match(/,'([a-z0-9]+)'/i);
+    const key=keyMatch?keyMatch[1]:'';
     const haystack=normalizeSearch(card.textContent+' '+(TOOL_SEARCH_ALIASES[key]||''));
     const match=!q || q.split(' ').every(term=>haystack.includes(term));
     card.hidden=!match;
