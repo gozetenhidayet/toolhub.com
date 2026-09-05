@@ -1521,6 +1521,7 @@ async function ensureLibsForTool(key){
     }
   }
   if(['ocr','scanocr','docscanner'].includes(key) && !window.Tesseract){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js'); }
+  if(key==='docscanner' && !window.fontkit){ await loadScript('https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js'); }
   if(key==='qr' && !window.QRCode){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js'); }
 }
 
@@ -1806,6 +1807,10 @@ const TOOLS={
     render:()=>`
       <label>Date of Birth</label>
       <input type="date" id="dob" max="${new Date().toISOString().split('T')[0]}" />
+      <label>Time of Birth <span style="color:var(--muted);font-weight:400;">(optional — leave blank if unknown)</span></label>
+      <input type="time" id="dob-time" />
+      <label>Calculate age as of <span style="color:var(--muted);font-weight:400;">(optional — defaults to right now)</span></label>
+      <input type="date" id="as-of-date" />
       <button class="btn" onclick="calcAge()">Calculate Age</button>
       <div id="age-out"></div>`,
     init(){}
@@ -1934,17 +1939,17 @@ const TOOLS={
   },
 
   currency:{
-    title:'💱 Currency Converter',sub:'15 major world currencies',
+    title:'💱 Currency Converter',sub:'Live exchange rates for 15+ world currencies',
     render:()=>{
       const cc=['USD','EUR','GBP','JPY','CAD','AUD','CHF','CNY','INR','MXN','BRL','KRW','TRY','SAR','AED'];
       const o=cc.map(c=>`<option value="${c}">${c}</option>`).join('');
       return`<label>Amount</label><input type="number" id="camt" value="100" placeholder="100">
-      <div class="row"><div><label>From</label><select id="cfrom">${o}</select></div><div><label>To</label><select id="cto">${o.replace('value="EUR"','value="EUR" selected')}</select></div></div>
+      <div class="row" style="align-items:end;"><div><label>From</label><select id="cfrom">${o}</select></div><button type="button" class="btn-sec btn" style="margin-bottom:1px;padding:10px 14px;" onclick="swapCurrencies()" title="Swap currencies">⇄</button><div><label>To</label><select id="cto">${o.replace('value="EUR"','value="EUR" selected')}</select></div></div>
       <button class="btn" onclick="convertCurr()">Convert</button>
       <div id="curr-out"></div>
-      <p style="color:var(--muted);font-size:13px;margin-top:10px;">* Approximate rates. Check your bank for exact figures.</p>`;
+      <p id="curr-status" style="color:var(--muted);font-size:12.5px;margin-top:10px;">Loading live rates…</p>`;
     },
-    init(){}
+    init(){ ensureLiveRates().then(renderCurrencyStatus); }
   },
 
   case:{
@@ -2032,11 +2037,16 @@ const TOOLS={
         <div class="sig-tabs">
           <div class="sig-tab active" id="sigtab-type" onclick="switchSigTab('type')">Type</div>
           <div class="sig-tab" id="sigtab-draw" onclick="switchSigTab('draw')">Draw</div>
+          <div class="sig-tab" id="sigtab-upload" onclick="switchSigTab('upload')">Upload</div>
         </div>
         <div id="sig-type-pane"><input type="text" id="sig-text" placeholder="Your Name" oninput="updateSignOverlay()" style="font-family:'Brush Script MT',cursive;font-size:22px;"></div>
         <div id="sig-draw-pane" style="display:none;">
           <canvas id="sig-canvas" width="460" height="140" style="width:100%;border:1.5px solid var(--border);border-radius:10px;background:#fff;touch-action:none;cursor:crosshair;"></canvas>
           <button class="btn-sec btn" style="margin-top:8px;" onclick="clearSigCanvas()">Clear</button>
+        </div>
+        <div id="sig-upload-pane" style="display:none;">
+          <label class="tn-capture-card" style="width:100%;cursor:pointer;"><span class="tn-capture-icon">🖊️</span><strong>Upload a signature image</strong><span>PNG or JPG — a white background is removed automatically.</span><input type="file" id="sig-upload-input" accept="image/png,image/jpeg" style="display:none;" onchange="handleSigUpload(event)"></label>
+          <div id="sig-upload-preview" style="margin-top:10px;"></div>
         </div>
         <label style="margin-top:14px;">Page Number</label>
         <input type="number" id="sig-page" value="1" min="1" onchange="updateSignPreviewPage()">
@@ -2108,13 +2118,13 @@ const TOOLS={
 
   ocr:{
     title:'🔍 Image to Text (OCR)',sub:'Extract text from any image using AI recognition',
-    render:()=>fileDropzone('ocr-file','image/*',false)+`<div id="ocr-list"></div><button class="btn" id="ocr-btn" style="display:none;margin-top:10px;" onclick="doOCR()">Extract Text</button><div id="ocr-out"></div>`,
+    render:()=>fileDropzone('ocr-file','image/*',false)+`<div id="ocr-list"></div><label style="margin-top:10px;">Text language</label><select id="ocr-lang"><option value="eng">English</option><option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option><option value="por">Portuguese</option><option value="ita">Italian</option><option value="tur">Turkish</option></select><button class="btn" id="ocr-btn" style="display:none;margin-top:10px;" onclick="doOCR()">Extract Text</button><div id="ocr-out"></div>`,
     init(){ setupDropzone('ocr-file','ocr-list','ocr-btn',false,'image/*'); }
   },
 
   scanocr:{
     title:'📱 Scan PDF to Text (OCR)',sub:'Run OCR on a scanned PDF to extract searchable text',
-    render:()=>fileDropzone('socr-file','application/pdf',false)+`<div id="socr-list"></div><button class="btn" id="socr-btn" style="display:none;margin-top:10px;" onclick="doScanOCR()">Run OCR</button><div id="socr-out"></div>`,
+    render:()=>fileDropzone('socr-file','application/pdf',false)+`<div id="socr-list"></div><label style="margin-top:10px;">Text language</label><select id="socr-lang"><option value="eng">English</option><option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option><option value="por">Portuguese</option><option value="ita">Italian</option><option value="tur">Turkish</option></select><button class="btn" id="socr-btn" style="display:none;margin-top:10px;" onclick="doScanOCR()">Run OCR</button><div id="socr-out"></div>`,
     init(){ setupDropzone('socr-file','socr-list','socr-btn',false,'application/pdf'); }
   },
 
@@ -2208,14 +2218,23 @@ function genLorem(){
 
 // ── AGE ───────────────────────────────────────────────────────────────────────
 function calcAge(){
-  const dob=new Date(document.getElementById('dob').value);
-  if(!dob||isNaN(dob)){alert('Please select your date of birth.');return;}
-  const now=new Date();
+  const dobDateStr=document.getElementById('dob').value;
+  const dobTimeStr=document.getElementById('dob-time').value || '00:00';
+  const asOfStr=document.getElementById('as-of-date').value;
+  if(!dobDateStr){alert('Please select your date of birth.');return;}
+  const dob=new Date(`${dobDateStr}T${dobTimeStr}:00`);
+  if(isNaN(dob)){alert('Please select a valid date of birth.');return;}
+  const now=asOfStr ? new Date(`${asOfStr}T${dobTimeStr}:00`) : new Date();
+  if(now<dob){alert('The "as of" date must be after the date of birth.');return;}
   let y=now.getFullYear()-dob.getFullYear(),m=now.getMonth()-dob.getMonth(),d=now.getDate()-dob.getDate();
+  let hh=now.getHours()-dob.getHours(),mm=now.getMinutes()-dob.getMinutes();
+  if(mm<0){hh--;mm+=60;}
+  if(hh<0){d--;hh+=24;}
   if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
   if(m<0){y--;m+=12;}
-  const td=Math.floor((now-dob)/86400000);
-  document.getElementById('age-out').innerHTML=`<div class="result-grid result-box green" style="margin-top:16px;"><div><div class="result-label">Years</div><div class="result-value green">${y}</div></div><div><div class="result-label">Months</div><div class="result-value green">${m}</div></div><div><div class="result-label">Days left</div><div class="result-value green">${d}</div></div><div><div class="result-label">Total Days</div><div class="result-value green">${td.toLocaleString()}</div></div></div>`;
+  const totalMs=now-dob,td=Math.floor(totalMs/86400000),th=Math.floor(totalMs/3600000);
+  const asOfNote=asOfStr?`<div style="color:var(--muted);font-size:12.5px;margin-top:10px;">Calculated as of ${now.toLocaleDateString()}${dobTimeStr!=='00:00'?' '+now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):''}</div>`:'';
+  document.getElementById('age-out').innerHTML=`<div class="result-grid result-box green" style="margin-top:16px;"><div><div class="result-label">Years</div><div class="result-value green">${y}</div></div><div><div class="result-label">Months</div><div class="result-value green">${m}</div></div><div><div class="result-label">Days</div><div class="result-value green">${d}</div></div><div><div class="result-label">Hours</div><div class="result-value green">${hh}</div></div></div><div class="result-grid result-box" style="margin-top:10px;"><div><div class="result-label">Total Days</div><div class="result-value">${td.toLocaleString()}</div></div><div><div class="result-label">Total Hours</div><div class="result-value">${th.toLocaleString()}</div></div></div>${asOfNote}`;
 }
 
 // ── BMI ───────────────────────────────────────────────────────────────────────
@@ -2379,16 +2398,21 @@ function calcTip(){
 // ── DISCOUNT ──────────────────────────────────────────────────────────────────
 function calcDiscount(){
   const o=+document.getElementById('oprice').value,p=+document.getElementById('dpct').value;
-  if(!o||!p){alert('Fill in both fields.');return;}
+  if(!o||o<=0||p<0){alert('Enter a price greater than 0 and a discount of 0% or more.');return;}
   const saved=o*p/100,final=o-saved;
   document.getElementById('disc-out').innerHTML=`<div class="result-grid result-box green" style="margin-top:16px;"><div><div class="result-label">You Save</div><div class="result-value green">$${saved.toFixed(2)}</div></div><div><div class="result-label">Final Price</div><div class="result-value green">$${final.toFixed(2)}</div></div></div>`;
 }
 
 // ── LOAN ──────────────────────────────────────────────────────────────────────
 function calcLoan(){
-  const P=+document.getElementById('lamt').value,r=+document.getElementById('lrate').value/100/12,n=+document.getElementById('lterm').value*12;
-  if(!P||!r||!n){alert('Fill in all fields.');return;}
-  const monthly=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const P=+document.getElementById('lamt').value,rPct=+document.getElementById('lrate').value,n=+document.getElementById('lterm').value*12,r=rPct/100/12;
+  if(!P||P<=0||rPct<0||!n||n<=0){alert('Fill in all fields (interest rate can be 0, but principal and term must be greater than 0).');return;}
+  let monthly;
+  if(r===0){
+    monthly=P/n; // 0% interest: equal principal-only payments, no compounding
+  }else{
+    monthly=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  }
   const totalPay=monthly*n,totalInt=totalPay-P;
   document.getElementById('loan-out').innerHTML=`<div class="result-grid result-box" style="margin-top:16px;"><div><div class="result-label">Monthly Payment</div><div class="result-value">$${monthly.toFixed(2)}</div></div><div><div class="result-label">Total Interest</div><div class="result-value">$${totalInt.toFixed(2)}</div></div><div><div class="result-label">Total Paid</div><div class="result-value">$${totalPay.toFixed(2)}</div></div><div><div class="result-label">Principal</div><div class="result-value">$${P.toLocaleString()}</div></div></div>`;
 }
@@ -2406,11 +2430,51 @@ function convertUnit(){
 }
 
 // ── CURRENCY ──────────────────────────────────────────────────────────────────
-const RATES={USD:1,EUR:0.92,GBP:0.79,JPY:149.5,CAD:1.36,AUD:1.53,CHF:0.89,CNY:7.24,INR:83.1,MXN:17.2,BRL:4.97,KRW:1325,TRY:32.1,SAR:3.75,AED:3.67};
-function convertCurr(){
+const RATES_FALLBACK={USD:1,EUR:0.92,GBP:0.79,JPY:149.5,CAD:1.36,AUD:1.53,CHF:0.89,CNY:7.24,INR:83.1,MXN:17.2,BRL:4.97,KRW:1325,TRY:32.1,SAR:3.75,AED:3.67};
+let RATES=null, RATES_UPDATED=null, RATES_IS_LIVE=false;
+async function ensureLiveRates(force=false){
+  if(RATES && !force) return RATES;
+  try{
+    const res=await fetch('https://open.er-api.com/v6/latest/USD');
+    const json=await res.json();
+    if(json && json.result==='success' && json.rates){
+      RATES=json.rates; RATES_UPDATED=json.time_last_update_utc||new Date().toUTCString(); RATES_IS_LIVE=true;
+      return RATES;
+    }
+    throw new Error('bad response');
+  }catch(err){
+    console.warn('Live exchange rates unavailable, using offline reference rates',err);
+    RATES=RATES_FALLBACK; RATES_UPDATED=null; RATES_IS_LIVE=false;
+    return RATES;
+  }
+}
+function renderCurrencyStatus(){
+  const el=document.getElementById('curr-status');
+  if(!el)return;
+  el.innerHTML = RATES_IS_LIVE
+    ? `<span style="color:#079A72;">● Live rates</span> · updated ${RATES_UPDATED} · <a href="#" onclick="refreshCurrencyRates();return false;" style="color:var(--accent);">refresh</a>`
+    : `<span style="color:#B54708;">● Offline reference rates</span> (live rates unavailable) · <a href="#" onclick="refreshCurrencyRates();return false;" style="color:var(--accent);">try again</a>`;
+}
+async function refreshCurrencyRates(){
+  const el=document.getElementById('curr-status');
+  if(el) el.innerHTML='Refreshing…';
+  await ensureLiveRates(true);
+  renderCurrencyStatus();
+  if(document.getElementById('camt').value) convertCurr();
+}
+function swapCurrencies(){
+  const f=document.getElementById('cfrom'),t=document.getElementById('cto');
+  const tmp=f.value; f.value=t.value; t.value=tmp;
+  convertCurr();
+}
+async function convertCurr(){
+  await ensureLiveRates();
   const a=+document.getElementById('camt').value,f=document.getElementById('cfrom').value,t=document.getElementById('cto').value;
+  if(!RATES[f]||!RATES[t]){ document.getElementById('curr-out').innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Rate not available for ${!RATES[f]?f:t} right now.</div>`; return; }
   const res=(a/RATES[f])*RATES[t];
-  document.getElementById('curr-out').innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">${a} ${f} =</div><div class="result-value green">${res.toLocaleString(undefined,{maximumFractionDigits:2})} ${t}</div></div>`;
+  const inverse=RATES[f]/RATES[t];
+  document.getElementById('curr-out').innerHTML=`<div class="result-box green" style="margin-top:16px;"><div class="result-label">${a} ${f} =</div><div class="result-value green">${res.toLocaleString(undefined,{maximumFractionDigits:2})} ${t}</div><div style="font-size:12px;color:var(--muted);margin-top:6px;">1 ${t} = ${inverse.toLocaleString(undefined,{maximumFractionDigits:4})} ${f}</div></div>`;
+  renderCurrencyStatus();
 }
 
 // ── TEXT CASE ─────────────────────────────────────────────────────────────────
@@ -2626,6 +2690,25 @@ function btnReset(btn){
 
 async function fileToArrayBuffer(file){
   return await file.arrayBuffer();
+}
+
+// Converts any browser-loadable image (WEBP, GIF, BMP, etc.) into real JPEG bytes via canvas.
+// Needed because pdf-lib's embedJpg() requires actual JPEG-encoded data — feeding it raw WEBP
+// bytes (which merely share a similar-looking MIME type prefix) would fail or produce garbage.
+async function tnImageFileToJpegBytes(file){
+  const url=URL.createObjectURL(file);
+  try{
+    const img=await new Promise((res,rej)=>{const x=new Image();x.onload=()=>res(x);x.onerror=rej;x.src=url;});
+    const canvas=document.createElement('canvas');
+    canvas.width=img.naturalWidth||img.width;canvas.height=img.naturalHeight||img.height;
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height); // flatten transparency onto white for formats like WEBP/PNG-with-alpha
+    ctx.drawImage(img,0,0);
+    const blob=await new Promise(res=>canvas.toBlob(res,'image/jpeg',0.92));
+    return new Uint8Array(await blob.arrayBuffer());
+  }finally{
+    URL.revokeObjectURL(url);
+  }
 }
 
 // Renders a small thumbnail of page 1 of a resulting PDF so the user can SEE the outcome before downloading.
@@ -2936,8 +3019,31 @@ let sigCtx=null, sigDrawing=false, sigHasDrawing=false;
 function switchSigTab(which){
   document.getElementById('sigtab-type').classList.toggle('active', which==='type');
   document.getElementById('sigtab-draw').classList.toggle('active', which==='draw');
+  document.getElementById('sigtab-upload').classList.toggle('active', which==='upload');
   document.getElementById('sig-type-pane').style.display = which==='type'?'':'none';
   document.getElementById('sig-draw-pane').style.display = which==='draw'?'':'none';
+  document.getElementById('sig-upload-pane').style.display = which==='upload'?'':'none';
+  updateSignOverlay();
+}
+window._sigUploadDataUrl=null;
+async function handleSigUpload(e){
+  const file=e.target.files&&e.target.files[0];
+  if(!file)return;
+  const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});
+  const img=await new Promise((res,rej)=>{const x=new Image();x.onload=()=>res(x);x.onerror=rej;x.src=dataUrl;});
+  // Remove a near-white background so the signature drops cleanly onto the page, like a real stamp.
+  const canvas=document.createElement('canvas');
+  canvas.width=img.width;canvas.height=img.height;
+  const ctx=canvas.getContext('2d');
+  ctx.drawImage(img,0,0);
+  const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const d=imageData.data;
+  for(let i=0;i<d.length;i+=4){
+    if(d[i]>235&&d[i+1]>235&&d[i+2]>235){ d[i+3]=0; } // near-white → transparent
+  }
+  ctx.putImageData(imageData,0,0);
+  window._sigUploadDataUrl=canvas.toDataURL('image/png');
+  document.getElementById('sig-upload-preview').innerHTML=`<img src="${window._sigUploadDataUrl}" style="max-width:220px;max-height:100px;border:1px solid var(--border);border-radius:8px;background:repeating-conic-gradient(#f0f2f8 0% 25%,#fff 0% 50%) 50%/16px 16px;">`;
   updateSignOverlay();
 }
 function initSigCanvas(){
@@ -3107,7 +3213,17 @@ function updateSignOverlay(){
   const inner=document.getElementById('sign-overlay-inner');
   if(!inner) return;
   const isDraw = document.getElementById('sigtab-draw') && document.getElementById('sigtab-draw').classList.contains('active');
-  if(isDraw){
+  const isUpload = document.getElementById('sigtab-upload') && document.getElementById('sigtab-upload').classList.contains('active');
+  if(isUpload){
+    if(window._sigUploadDataUrl){
+      const h=34*window._signImgScale;
+      inner.innerHTML=`<img src="${window._sigUploadDataUrl}" alt="Signature preview" style="height:${h}px;display:block;pointer-events:none;">`;
+    }else{
+      inner.textContent='🖊️ Upload a signature';
+      inner.style.fontFamily='inherit';
+      inner.style.fontSize='13px';
+    }
+  } else if(isDraw){
     if(sigHasDrawing){
       const c=document.getElementById('sig-canvas');
       const h=34*window._signImgScale;
@@ -3180,11 +3296,12 @@ async function doSignPDF(){
   const files=getFiles('sign-file');
   if(!files.length){alert('Please upload a PDF.');return;}
   const isDrawTab = document.getElementById('sigtab-draw').classList.contains('active');
+  const isUploadTab = document.getElementById('sigtab-upload').classList.contains('active');
   const pageNum = parseInt(document.getElementById('sig-page').value,10) || 1;
   const pos = window._signPos || {x:55,y:75};
   const out=document.getElementById('sign-out');
   try{
-    const { PDFDocument, rgb, StandardFonts } = PDFLib;
+    const { PDFDocument, rgb } = PDFLib;
     const bytes=await fileToArrayBuffer(files[0]);
     const doc=await PDFDocument.load(bytes,{ignoreEncryption:true});
     const pages=doc.getPages();
@@ -3194,7 +3311,13 @@ async function doSignPDF(){
     const px=(pos.x/100)*width;
     const py=height-(pos.y/100)*height;
 
-    if(isDrawTab){
+    if(isUploadTab){
+      if(!window._sigUploadDataUrl){alert('Please upload a signature image first.');return;}
+      const pngBytes=await fetch(window._sigUploadDataUrl).then(r=>r.arrayBuffer());
+      const img=await doc.embedPng(pngBytes);
+      const w=160*(window._signImgScale||1), h=w*(img.height/img.width);
+      page.drawImage(img,{x:px,y:py-h,width:w,height:h});
+    } else if(isDrawTab){
       if(!sigHasDrawing){alert('Please draw your signature first.');return;}
       const canvas=document.getElementById('sig-canvas');
       const dataUrl=canvas.toDataURL('image/png');
@@ -3205,13 +3328,32 @@ async function doSignPDF(){
     } else {
       const text=document.getElementById('sig-text').value.trim();
       if(!text){alert('Please type your signature.');return;}
-      const size=window._signFontSize||26;
-      const font=await doc.embedFont(StandardFonts.HelveticaOblique);
-      page.drawText(text,{x:px,y:py-size,size,font,color:rgb(0.1,0.1,0.18)});
+      // WYSIWYG fix: rasterize the typed signature using the exact same cursive font shown in the
+      // on-screen preview, then embed that as an image — instead of re-drawing the text with an
+      // unrelated PDF font (HelveticaOblique) that never actually matched what the user saw.
+      const previewSize=window._signFontSize||26;
+      const rasterScale=3; // render at higher resolution for a crisp signature at any zoom
+      const measureCanvas=document.createElement('canvas');
+      const mctx=measureCanvas.getContext('2d');
+      mctx.font=`${previewSize*rasterScale}px 'Brush Script MT', cursive`;
+      const textWidth=Math.max(10,mctx.measureText(text).width);
+      const canvas=document.createElement('canvas');
+      canvas.width=textWidth+40*rasterScale;
+      canvas.height=previewSize*rasterScale*1.6;
+      const ctx=canvas.getContext('2d');
+      ctx.font=`${previewSize*rasterScale}px 'Brush Script MT', cursive`;
+      ctx.fillStyle='#1a1d2e';
+      ctx.textBaseline='alphabetic';
+      ctx.fillText(text,20*rasterScale,canvas.height*0.68);
+      const dataUrl=canvas.toDataURL('image/png');
+      const pngBytes=await fetch(dataUrl).then(r=>r.arrayBuffer());
+      const img=await doc.embedPng(pngBytes);
+      const w=160*(window._signImgScale||1), h=w*(img.height/img.width);
+      page.drawImage(img,{x:px,y:py-h,width:w,height:h});
     }
     const outBytes=await doc.save();
     window._signedPdfBytes=outBytes;
-    out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Signature Added to Page ${pageNum}</div><div id="sign-result-preview"></div><button class="btn" style="margin-top:12px;" onclick="downloadBlob(new Blob([window._signedPdfBytes],{type:'application/pdf'}),'signed.pdf');showToast('Downloaded!')">⬇ Download signed.pdf</button></div>`;
+    out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Signature Added to Page ${pageNum}</div><div id="sign-result-preview"></div><button class="btn" style="margin-top:12px;" onclick="downloadBlob(new Blob([window._signedPdfBytes],{type:'application/pdf'}),'signed.pdf');showToast('Downloaded!')">⬇ Download signed.pdf</button></div><div style="margin-top:10px;font-size:12px;color:var(--muted);">📝 This adds a visual signature to your document — it is not a certificate-based digital signature. For contracts requiring formal e-signature compliance, use a dedicated e-signature service.</div>`;
     renderPdfThumbPreview(outBytes, 'sign-result-preview', pageNum);
   }catch(err){
     out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${err.message}</div>`;
@@ -3265,7 +3407,7 @@ async function doAddTextToPDF(){
 async function doImagesToPDF(){
   const files=getFiles('i2p-files');if(!files.length){alert('Please add at least one image.');return}const btn=document.getElementById('i2p-btn'),out=document.getElementById('i2p-out');btnLoading(btn,'Creating PDF…');out.innerHTML=progressHTML('i2p-prog','Building pages…');
   try{const {PDFDocument}=PDFLib,doc=await PDFDocument.create(),sizeOpt=document.getElementById('i2p-size')?.value||'auto',orient=document.getElementById('i2p-orient')?.value||'auto',margin=+(document.getElementById('i2p-margin')?.value||0),fit=document.getElementById('i2p-fit')?.value||'contain';
-    for(let i=0;i<files.length;i++){const file=files[i],bytes=new Uint8Array(await file.arrayBuffer()),isPng=file.type.includes('png'),img=isPng?await doc.embedPng(bytes):await doc.embedJpg(bytes);let pw=img.width,ph=img.height;if(sizeOpt==='a4'){pw=595.28;ph=841.89}else if(sizeOpt==='letter'){pw=612;ph=792}if(orient==='landscape'&&ph>pw)[pw,ph]=[ph,pw];if(orient==='portrait'&&pw>ph)[pw,ph]=[ph,pw];const page=doc.addPage([pw,ph]),availW=Math.max(1,pw-margin*2),availH=Math.max(1,ph-margin*2),scale=fit==='cover'?Math.max(availW/img.width,availH/img.height):Math.min(availW/img.width,availH/img.height),dw=img.width*scale,dh=img.height*scale;page.drawImage(img,{x:(pw-dw)/2,y:(ph-dh)/2,width:dw,height:dh});setProgress('i2p-prog',((i+1)/files.length)*90)}const outBytes=await doc.save();window._i2pBytes=outBytes;setProgress('i2p-prog',100);out.innerHTML=`<div class="result-box green"><div class="result-label">✓ Professional PDF created · ${files.length} page${files.length===1?'':'s'}</div><div id="i2p-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._i2pBytes],{type:'application/pdf'}),'images.pdf');showToast('Downloaded!')">↓ Download images.pdf</button></div>`;renderPdfThumbPreview(outBytes,'i2p-preview')
+    for(let i=0;i<files.length;i++){const file=files[i];let img;if(file.type.includes('png')){const bytes=new Uint8Array(await file.arrayBuffer());img=await doc.embedPng(bytes);}else{const jpegBytes=await tnImageFileToJpegBytes(file);img=await doc.embedJpg(jpegBytes);}let pw=img.width,ph=img.height;if(sizeOpt==='a4'){pw=595.28;ph=841.89}else if(sizeOpt==='letter'){pw=612;ph=792}if(orient==='landscape'&&ph>pw)[pw,ph]=[ph,pw];if(orient==='portrait'&&pw>ph)[pw,ph]=[ph,pw];const page=doc.addPage([pw,ph]),availW=Math.max(1,pw-margin*2),availH=Math.max(1,ph-margin*2),scale=fit==='cover'?Math.max(availW/img.width,availH/img.height):Math.min(availW/img.width,availH/img.height),dw=img.width*scale,dh=img.height*scale;page.drawImage(img,{x:(pw-dw)/2,y:(ph-dh)/2,width:dw,height:dh});setProgress('i2p-prog',((i+1)/files.length)*90)}const outBytes=await doc.save();window._i2pBytes=outBytes;setProgress('i2p-prog',100);out.innerHTML=`<div class="result-box green"><div class="result-label">✓ Professional PDF created · ${files.length} page${files.length===1?'':'s'}</div><div id="i2p-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._i2pBytes],{type:'application/pdf'}),'images.pdf');showToast('Downloaded!')">↓ Download images.pdf</button></div>`;renderPdfThumbPreview(outBytes,'i2p-preview')
   }catch(err){out.innerHTML=`<div class="result-box" style="color:#c0392b">Error: ${escapeHtml(err.message||'Could not create PDF.')}</div>`}btnReset(btn)
 }
 // Helper: ensure non-JPEG raster images (e.g. webp) get converted to real JPEG bytes for pdf-lib
@@ -3388,7 +3530,8 @@ async function doOCR(){
   btnLoading(btn,'Reading...');
   out.innerHTML=progressHTML('ocr-prog','Running OCR (this can take a moment)...');
   try{
-    const { data: { text } } = await Tesseract.recognize(files[0], 'eng', {
+    const lang=document.getElementById('ocr-lang').value;
+    const { data: { text } } = await Tesseract.recognize(files[0], lang, {
       logger: m=>{ if(m.status==='recognizing text') setProgress('ocr-prog', m.progress*100); }
     });
     window._ocrText=text;
@@ -3412,6 +3555,7 @@ async function doScanOCR(){
     const pdf=await pdfjsLib.getDocument({data:buf}).promise;
     let fullText='';
     const n=pdf.numPages;
+    const lang=document.getElementById('socr-lang').value;
     for(let i=1;i<=n;i++){
       const page=await pdf.getPage(i);
       const viewport=page.getViewport({scale:2});
@@ -3419,7 +3563,7 @@ async function doScanOCR(){
       canvas.width=viewport.width; canvas.height=viewport.height;
       await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
       const dataUrl=canvas.toDataURL('image/png');
-      const { data:{text} } = await Tesseract.recognize(dataUrl,'eng',{
+      const { data:{text} } = await Tesseract.recognize(dataUrl,lang,{
         logger: m=>{ if(m.status==='recognizing text') setProgress('socr-prog', ((i-1)+m.progress)/n*95); }
       });
       fullText += `--- Page ${i} ---\n${text}\n\n`;
@@ -3666,7 +3810,16 @@ function scannerApplyCrop(){
   const warpedImg=new Image(); warpedImg.onload=()=>{ page.img=warpedImg; page.rotation=0; page.corners=null; scannerCloseCrop(); renderScannerPages(); };
   warpedImg.src=warped.toDataURL('image/jpeg',0.92);
 }
-async function exportScannedPDF(){const pages=window._scannerPages||[];if(!pages.length){alert('Add at least one page.');return;}const btn=document.getElementById('scanner-export'),out=document.getElementById('scanner-out');btnLoading(btn,'Building PDF…');out.innerHTML=progressHTML('scanner-prog','Enhancing pages…');try{const {PDFDocument,rgb}=PDFLib;const doc=await PDFDocument.create(),mode=document.getElementById('scanner-mode').value,doOcr=document.getElementById('scanner-ocr').checked,lang=document.getElementById('scanner-lang').value;for(let i=0;i<pages.length;i++){const c=scannerProcessedCanvas(pages[i],mode),jpg=await new Promise(res=>c.toBlob(res,'image/jpeg',0.9)),bytes=new Uint8Array(await jpg.arrayBuffer()),img=await doc.embedJpg(bytes),pdfPage=doc.addPage([img.width,img.height]);pdfPage.drawImage(img,{x:0,y:0,width:img.width,height:img.height});if(doOcr&&window.Tesseract){setProgress('scanner-prog',((i+.2)/pages.length)*90);try{const {data:{text}}=await Tesseract.recognize(c,lang,{logger:m=>{if(m.status==='recognizing text')setProgress('scanner-prog',((i+m.progress)/pages.length)*90)}});if(text.trim())pdfPage.drawText(text.replace(/[^\x20-\x7E\n]/g,' ').slice(0,8000),{x:8,y:8,size:1,color:rgb(1,1,1),opacity:.01,maxWidth:Math.max(10,img.width-16),lineHeight:1.2});}catch(ocrErr){console.warn('OCR page failed',ocrErr);}}setProgress('scanner-prog',((i+1)/pages.length)*90);}const outBytes=await doc.save();window._scannerPdfBytes=outBytes;setProgress('scanner-prog',100);out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Scanned PDF ready</div><div id="scanner-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._scannerPdfBytes],{type:'application/pdf'}),'scanned-document.pdf');showToast('Downloaded!')">⬇ Download scanned-document.pdf</button></div>`;renderPdfThumbPreview(outBytes,'scanner-preview');}catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not create the scanned PDF.')}</div>`;}btnReset(btn);}
+const TN_UNICODE_FONT_URL='https://raw.githubusercontent.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf';
+async function tnGetUnicodeFont(doc){
+  if(!window._tnUnicodeFontBytes){
+    const res=await fetch(TN_UNICODE_FONT_URL);
+    window._tnUnicodeFontBytes=await res.arrayBuffer();
+  }
+  if(window.fontkit) doc.registerFontkit(window.fontkit);
+  return doc.embedFont(window._tnUnicodeFontBytes,{subset:true});
+}
+async function exportScannedPDF(){const pages=window._scannerPages||[];if(!pages.length){alert('Add at least one page.');return;}const btn=document.getElementById('scanner-export'),out=document.getElementById('scanner-out');btnLoading(btn,'Building PDF…');out.innerHTML=progressHTML('scanner-prog','Enhancing pages…');try{const {PDFDocument,rgb}=PDFLib;const doc=await PDFDocument.create(),mode=document.getElementById('scanner-mode').value,doOcr=document.getElementById('scanner-ocr').checked,lang=document.getElementById('scanner-lang').value;let unicodeFont=null;if(doOcr){try{unicodeFont=await tnGetUnicodeFont(doc);}catch(fontErr){console.warn('Unicode font embed failed, OCR text layer will be skipped for non-ASCII text',fontErr);}}for(let i=0;i<pages.length;i++){const c=scannerProcessedCanvas(pages[i],mode),jpg=await new Promise(res=>c.toBlob(res,'image/jpeg',0.9)),bytes=new Uint8Array(await jpg.arrayBuffer()),img=await doc.embedJpg(bytes),pdfPage=doc.addPage([img.width,img.height]);pdfPage.drawImage(img,{x:0,y:0,width:img.width,height:img.height});if(doOcr&&window.Tesseract){setProgress('scanner-prog',((i+.2)/pages.length)*90);try{const {data:{text}}=await Tesseract.recognize(c,lang,{logger:m=>{if(m.status==='recognizing text')setProgress('scanner-prog',((i+m.progress)/pages.length)*90)}});if(text.trim()){const drawOpts={x:8,y:8,size:1,color:rgb(1,1,1),opacity:.01,maxWidth:Math.max(10,img.width-16),lineHeight:1.2};if(unicodeFont)drawOpts.font=unicodeFont;pdfPage.drawText(text.slice(0,8000),drawOpts);}}catch(ocrErr){console.warn('OCR page failed',ocrErr);}}setProgress('scanner-prog',((i+1)/pages.length)*90);}const outBytes=await doc.save();window._scannerPdfBytes=outBytes;setProgress('scanner-prog',100);out.innerHTML=`<div class="result-box green" style="margin-top:16px;text-align:center;"><div class="result-label">✓ Scanned PDF ready</div><div id="scanner-preview"></div><button class="btn" style="margin-top:12px" onclick="downloadBlob(new Blob([window._scannerPdfBytes],{type:'application/pdf'}),'scanned-document.pdf');showToast('Downloaded!')">⬇ Download scanned-document.pdf</button></div>`;renderPdfThumbPreview(outBytes,'scanner-preview');}catch(err){out.innerHTML=`<div class="result-box" style="margin-top:16px;color:#c0392b;">Error: ${escapeHtml(err.message||'Could not create the scanned PDF.')}</div>`;}btnReset(btn);}
 
 // ── PDF → WORD (.docx, text-focused) ───────────────────────────────────────────
 function xmlEscape(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));}
